@@ -14,12 +14,19 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Auth::routes();
+
 Route::get('/', 'ClientHomeController@index')->name('clientHome');
 Route::get('/sakip', 'ClientSakipController@index')->name('clientSakip');
 Route::get('/tentang-sakip', 'ClientTentangSakipController@index')->name('clientTentangSakip');
 Route::get('/berita', 'ClientBeritaController@index')->name('clientBerita');
 Route::get('/gallery', 'ClientGalleryController@index')->name('clientGallery');
 
-Auth::routes();
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
 
 // Route::get('/home', 'ClientHomeController@index')->name('clientHome');
