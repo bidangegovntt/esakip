@@ -183,14 +183,6 @@
         </div>
       </div>
     </div>
-  </section>        
-  <!-- Contact Us -->
-  <section class="contact">
-    <center><h4>My Google Maps Demo</h4></center>
-    <!--The div element for the map -->
-    {{-- <div id="map"></div> --}}
-    <script>
-    </script>
   </section>
     
   <!-- Parthner -->

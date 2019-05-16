@@ -245,15 +245,6 @@
                 text-align: center;
             }    
         </style>
-
-        <script>
-            $("#login-button").click(function(event){
-                    event.preventDefault();
-                
-                $('form').fadeOut(500);
-                $('.wrapper').addClass('form-success');
-            });
-        </script>
     </head>
     <body>
     <body class="align">
@@ -273,21 +264,15 @@
                     {{-- <input id="login__username" type="text" name="username" class="form__input" placeholder="Username" required> --}}
                 
                     <input 
-                        id="email" 
-                        type="email" 
-                        class="form__input @error('email') is-invalid @enderror" 
-                        name="email" 
-                        value="{{ old('email') }}" 
+                        id="name" 
+                        type="text" 
+                        class="form__input @error('name') is-invalid @enderror" 
+                        name="name" 
+                        value="{{ old('name') }}" 
                         required 
-                        autocomplete="email" 
+                        autocomplete="name" 
                         autofocus 
-                        placeholder="Email">
-
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                        placeholder="Name">
                 
                 </div>
                 <div class="form__field">

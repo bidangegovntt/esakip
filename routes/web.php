@@ -22,9 +22,8 @@ Route::get('/tentang-sakip', 'ClientTentangSakipController@index')->name('client
 Route::get('/berita', 'ClientBeritaController@index')->name('clientBerita');
 Route::get('/gallery', 'ClientGalleryController@index')->name('clientGallery');
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('users', 'UserController');
 
 
 
