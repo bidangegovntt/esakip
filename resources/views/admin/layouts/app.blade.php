@@ -71,13 +71,13 @@
                         </li>
                         <li>
                             <a href="{{route('users.index')}}">
-                                <span class="oi oi-people"></span> Manage Users
+                                <span class="oi oi-people"></span> Users
                             </a>
                         </li>
                         <li>
-                            {{-- <a href="{{route('categories.index')}}">
-                                <span class="oi oi-tag"></span> Manage categories
-                            </a> --}}
+                            <a href="{{route('berita.index')}}">
+                                <span class="oi oi-tag"></span> Berita
+                            </a>
                         </li>
                         <li>
                             {{-- <a href="{{route('books.index')}}">
