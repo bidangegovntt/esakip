@@ -17,15 +17,21 @@
 Auth::routes();
 
 Route::get('/', 'ClientHomeController@index')->name('clientHome');
-Route::get('/sakip', 'ClientSakipController@index')->name('clientSakip');
-Route::get('/tentang-sakip', 'ClientTentangSakipController@index')->name('clientTentangSakip');
-Route::get('/berita', 'ClientBeritaController@index')->name('clientBerita');
-Route::get('/gallery', 'ClientGalleryController@index')->name('clientGallery');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('users', 'UserController');
-Route::resource('berita', 'BeritaController');
-Route::resource('gallery', 'GalleryController');
+Route::group(['prefix' => '/c'], function() {
+    Route::get('/sakip', 'ClientSakipController@index')->name('clientSakip');
+    Route::get('/tentang-sakip', 'ClientTentangSakipController@index')->name('clientTentangSakip');
+    Route::get('/berita', 'ClientBeritaController@index')->name('clientBerita');
+    Route::get('/gallery', 'ClientGalleryController@index')->name('clientGallery');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('users', 'UserController');
+    Route::resource('berita', 'BeritaController');
+    Route::resource('gallery', 'GalleryController');
+});
+
 
 
 
