@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Berita;
+use App\Gallery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class BeritaController extends Controller
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        $beritas = Berita::get();
+        $galleries = Gallery::get();
 
-        return view('admin.pages.berita.index', ['beritas' => $beritas]);
+        return view('admin.pages.gallery.index', ['galleries' => $galleries]);
     }
 
     /**
@@ -27,7 +27,7 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.berita.create');
+        return view('admin.pages.gallery.create');
     }
 
     /**
@@ -39,29 +39,27 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         \Validator::make($request->all(), [
-            "judul" => "required|min:5|max:200",
-            "deskripsi" => "required|min:20|max:1000",
-            "link" => "required|min:3",
+            "title" => "required|min:5|max:200",
+            "keterangan" => "required|min:20|max:1000"
         ])->validate();
 
         $image_name = null; 
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
-            $image_name = 'berita_' . time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('/img/berita');
+            $image_name = 'gallery_' . time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('/img/gallery');
             $image->move($path, $image_name);
         }
 
-        $berita = Berita::create([
-            "judul" =>$request->judul,
-            "deskripsi" => $request->deskripsi,
-            "link" => $request->link,
+        $gallery = Gallery::create([
+            "title" =>$request->title,
+            "keterangan" => $request->keterangan,
             "gambar" => $image_name
         ]);
 
         $request->session()->flash('status', 'Data berhasil disimpan');
         
-        return redirect()->route('berita.create');
+        return redirect()->route('gallery.create');
     }
 
     /**
@@ -83,9 +81,9 @@ class BeritaController extends Controller
      */
     public function edit($id)
     {
-        $berita = Berita::find($id);
+        $gallery = Gallery::find($id);
 
-        return view('admin.pages.berita.edit', ['berita' => $berita]);
+        return view('admin.pages.gallery.edit', ['gallery' => $gallery]);
     }
 
     /**
@@ -98,33 +96,31 @@ class BeritaController extends Controller
     public function update(Request $request, $id)
     {
         \Validator::make($request->all(), [
-            "judul" => "required|min:5|max:200",
-            "deskripsi" => "required|min:20|max:1000",
-            "link" => "required|min:3",
+            "title" => "required|min:5|max:200",
+            "keterangan" => "required|min:20|max:1000"
         ])->validate();
 
-        $berita = Berita::find($id);
-        $berita->judul = $request->judul;
-        $berita->deskripsi = $request->deskripsi;
-        $berita->link = $request->link;
+        $gallery = Gallery::find($id);
+        $gallery->title = $request->title;
+        $gallery->keterangan = $request->keterangan;
 
         if ($request->hasFile('gambar')) {
-            $destinationPath = public_path('/img/berita');
-            File::delete($destinationPath . '/' . $berita->gambar);
+            $destinationPath = public_path('/img/gallery');
+            File::delete($destinationPath . '/' . $gallery->gambar);
 
             $image = $request->file('gambar');
-            $image_name = 'berita_' . time() . '.' . $image->getClientOriginalExtension();
-            $path = public_path('/img/berita');
+            $image_name = 'gallery_' . time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('/img/gallery');
             $image->move($path, $image_name);
 
-            $berita->gambar = $image_name;
+            $gallery->gambar = $image_name;
         }
 
-        $berita->save();
+        $gallery->save();
 
         $request->session()->flash('status', 'Data berhasil diubah');
         
-        return redirect()->route('berita.edit', ['id' => $id]);
+        return redirect()->route('gallery.edit', ['id' => $id]);
     }
 
     /**
@@ -135,15 +131,15 @@ class BeritaController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $berita = Berita::find($id);
+        $gallery = Gallery::find($id);
 
-        $destinationPath = public_path('/img/berita');
-        File::delete($destinationPath . '/' . $berita->gambar);
+        $destinationPath = public_path('/img/gallery');
+        File::delete($destinationPath . '/' . $gallery->gambar);
         
-        $berita->delete();
+        $gallery->delete();
 
-        $request->session()->flash('status', 'Data ' . $berita->nama . ' berhasil dihapus');
+        $request->session()->flash('status', 'Data ' . $gallery->nama . ' berhasil dihapus');
         
-        return redirect()->route('berita.index');
+        return redirect()->route('gallery.index');
     }
 }

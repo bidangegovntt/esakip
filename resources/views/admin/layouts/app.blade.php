@@ -80,9 +80,9 @@
                             </a>
                         </li>
                         <li>
-                            {{-- <a href="{{route('books.index')}}">
-                                <span class="oi oi-book"></span> Manage books
-                            </a> --}}
+                            <a href="{{route('gallery.index')}}">
+                                <span class="oi oi-book"></span> Gallery
+                            </a>
                         </li>
                         <li>
                             {{-- <a href="{{route('orders.index')}}">
