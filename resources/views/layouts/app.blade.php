@@ -36,6 +36,7 @@
     <!-- COLORS -->
     <link rel="stylesheet" id="color" href="{{ asset('template/css/default.css') }}">
 
+    @yield('style')
     <!-- JavaScripts -->
     <script src="{{ asset('template/js/vendors/modernizr.js') }}"></script>
 
@@ -228,5 +229,7 @@
     <script type="text/javascript" src="{{ asset('template/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script> 
     <script type="text/javascript" src="{{ asset('template/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script> 
     <script src="{{ asset('template/js/zap.js') }}"></script>
+
+    @yield('script')
   </body>
 </html>
