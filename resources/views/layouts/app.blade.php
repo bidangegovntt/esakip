@@ -134,9 +134,9 @@
                   <!-- About Block -->
                   <div class="col-md-4">
                     <div class="block block-about">
-                      <h3 class="block-title no-underline"><span class="text-primary">E-SAKIP Kabupaten Purbalingga</span></h3>
+                      <h3 class="block-title no-underline text-center"><span class="text-primary">E-SAKIP Kabupaten Purbalingga</span></h3>
                       <div class="block-content">
-                        <p>Sistem Akuntabilitas Kinerja Instansi Pemerintah yang selanjutnya disingkat SAKIP, adalah rangkaian sistematik dari berbagai aktivitas, alat, dan prosedur yang dirancang untuk tujuan penetapan dan pengukuran, pengumpulan data, pengklasifikasian, pengikhtisaran, dan pelaporan kinerja pada instansi pemerintah, dalam rangka pertanggungjawaban dan peningkatan kinerja instansi pemerintah.</p>
+                        <p style="text-align: justify;">Sistem Akuntabilitas Kinerja Instansi Pemerintah yang selanjutnya disingkat SAKIP, adalah rangkaian sistematik dari berbagai aktivitas, alat, dan prosedur yang dirancang untuk tujuan penetapan dan pengukuran, pengumpulan data, pengklasifikasian, pengikhtisaran, dan pelaporan kinerja pada instansi pemerintah, dalam rangka pertanggungjawaban dan peningkatan kinerja instansi pemerintah.</p>
                         <img height="80" width="280" class="footer-logo" src="{{ asset('template/images/logo2.png') }}" alt=""> 
                       </div>
                     </div>
@@ -144,14 +144,13 @@
                   <!-- End About Block --> 
                         
                   <!-- Footer Links Block -->
-                  <div class="col-md-2">
+                  <div class="col-md-4">
                     <div class="block block-links">
-                      <h3 class="block-title"><span>Info</span></h3>
-                      <div class="block-content">
+                      <h3 class="block-title no-underline text-center"><span class="text-primary">INFO</span></h3>
+                      <div class="block-content text-center">
                         <ul>
                             <li><a href="sakip.php">E-SAKIP</a></li>
                             <li><a href="about.php">Tentang E-SAKIP</a></li>
-                            <li><a href="#.">Privacy Policy</a></li>
                             <li><a href="news.php">News</a></li>
                             <li><a href="gallery.php">Gallery</a></li>
                             <li><a href="login.php">login</a></li>
@@ -162,39 +161,22 @@
                   <!-- End Footer Links Block --> 
                         
                   <!-- Twitter Widget Block -->
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <div class="block block-twitter-widget">
-                        <h3 class="block-title"><span>Twitter</span></h3>
+                      <h3 class="block-title no-underline text-center"><span class="text-primary">MEDIA SOSIAL</span></h3>
                         <div class="block-content">
-                          <div class="twitter-item">
-                              <div class="twitter-content"> Looking for an awesome CREATIVE WordPress Theme? Esquise was updated and optimized to run even better. Find it here: <a href="http://t.co/0WWEMQEQ48" target="_blank">http://t.co/0WWEMQEQ48</a> </div>
-                              <div class="twitter-context"> <i class="fa fa-twitter"></i><span class="twitter-date">01 day ago</span> </div>
-                          </div>
-                        <div class="twitter-item">
-                            <div class="twitter-content"> It is a long established fact that a reader will be distracted by the readable . Find it here: <a href="http://t.co/0WWEMQEQ48" target="_blank">http://t.co/0WWEMQEQ48</a> </div>
-                              <div class="twitter-context"> <i class="fa fa-twitter"></i><span class="twitter-date">02 days ago</span> </div>
+                          <div class="block-content text-center">
+                            <ul>
+                                <li><a href="#">Facebook</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Instagram</a></li>
+                                <li><a href="#">Whatsapp</a></li>
+                                <li><a href="#">Email</a></li>
+                            </ul>
                           </div>
                         </div>
                     </div>
                   </div>
-                  <!-- End Twitter Widget Block --> 
-                        
-                  <!-- Instagram Widget Block -->
-                  <div class="col-md-3">
-                    <div class="block block-instagram-widget">
-                        <h3 class="block-title"><span>Instagram</span></h3>
-                        <ul>
-                        {{-- <li> <a href="#.."> <img src="{{ asset('template/images\footer\footer_instagram_01.png') }}" alt=""> <span class="overlay"><i class="fa fa-search"></i></span> </a> </li>
-                        <li> <a href="#.."> <img src="{{ asset('template/images\footer\footer_instagram_02.png') }}" alt=""> <span class="overlay"><i class="fa fa-search"></i></span> </a> </li>
-                        <li> <a href="#.."> <img src="{{ asset('template/images\footer\footer_instagram_03.png') }}" alt=""> <span class="overlay"><i class="fa fa-search"></i></span> </a> </li>
-                        <li> <a href="#.."> <img src="{{ asset('template/images\footer\footer_instagram_04.png') }}" alt=""> <span class="overlay"><i class="fa fa-search"></i></span> </a> </li>
-                        <li> <a href="#.."> <img src="{{ asset('template/images\footer\footer_instagram_05.png') }}" alt=""> <span class="overlay"><i class="fa fa-search"></i></span> </a> </li>
-                        <li> <a href="#.."> <img src="{{ asset('template/images\footer\footer_instagram_06.png') }}" alt=""> <span class="overlay"><i class="fa fa-search"></i></span> </a> </li> --}}
-                        </ul>
-                    </div>
-                  </div>
-                  <!-- End Instagram Widget Block --> 
-                        
                 </div>
               </div>
             </div>
@@ -207,17 +189,12 @@
               <div class="container">
                 <div class="row">
                   <div class="col-md-6 copyright">
-                    <p>&copy; 2019 - Design IT Telkom Purwokerto.</p>
+                    
                   </div>
                   <div class="col-md-6 social-links">
-                    <ul class="right">
-                        <li><a href="#."><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#."><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#."><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#."><i class="fa fa-behance"></i></a></li>
-                        <li><a href="#."><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#."><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
+                    <div class="right">
+                      <p>&copy; 2019 - Design IT Telkom Purwokerto. Developed by <a href="https://aepsemprul.github.io/" target="_blank">Aep Semprul</a></p>
+                    </div>
                   </div>
                 </div>
               </div>

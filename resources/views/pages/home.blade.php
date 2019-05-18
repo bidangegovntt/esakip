@@ -77,29 +77,7 @@
   </div>
 </section>
 <!-- Content -->
-<div id="content">       
-  <!-- Welcome -->
-  <section class="welcome padding-top-80">
-    <div class="container">
-      <div class="row">    
-        <!-- Intro Image -->
-        <div class="col-md-3 text-center animate fadeInLeft" data-wow-delay="0.5s"> 
-          <a href="#."> 
-            <img class="img-responsive" src="{{ asset('template/images/instagram/img-1.jpeg') }}" alt="Intro Image"> 
-          </a> 
-        </div>
-        <!-- Intro Text -->
-        <div class="col-md-9">
-          <div class="heading-block no-margin">
-            <h5 class="margin-bottom-30 animate fadeInDown" data-wow-delay="0.5s">Tentang E - SAKIP</h5>
-          </div>
-          <p class="animate fadeIn" data-wow-delay="0.5s">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>                
-          <a href="#." class="btn btn-large dark-border font-normal margin-top-80 letter-space-1 animate fadeInUp" data-wow-delay="0.5s">Selengkapnya</a> 
-        </div>
-      </div>
-    </div>
-  </section>
-    
+<div id="content"> 
   <!-- Blog -->
   <section class="blog padding-top-80">
     <div class="container">
@@ -108,7 +86,6 @@
         <div class="divider divider-short divider-center">
           <img class="i-div" src="{{ asset('template/images/divider/hammers.png') }}" alt="Divider Icon Image">
         </div>
-        <span>Tell Your Story</span> 
       </div>
     </div>          
     <!-- Blog -->
