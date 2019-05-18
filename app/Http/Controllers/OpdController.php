@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Opd;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class OpdController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $opds = Opd::get();
+
+        return view('admin.pages.opd.index', ['opds' => $opds]);
     }
 
     /**
@@ -23,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.user.create');
+        return view('admin.pages.opd.create');
     }
 
     /**
@@ -34,7 +37,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Validator::make($request->all(), [
+            "nama" => "required|min:5|max:200",
+        ])->validate();
+
+        $opd = Opd::create([
+            "nama" => $request->nama
+        ]);
+
+        $request->session()->flash('status', 'Data berhasil disimpan');
+        
+        return redirect()->route('opd.create');
     }
 
     /**
@@ -56,7 +69,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $opd = Opd::find($id);
+
+        return view('admin.pages.opd.edit', ['opd' => $opd]);
     }
 
     /**
@@ -68,7 +83,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \Validator::make($request->all(), [
+            "nama" => "required|min:5|max:200",
+        ])->validate();
+
+        $opd = Opd::find($id);
+        $opd->nama = $request->nama;
+        $opd->save();
+
+        $request->session()->flash('status', 'Data berhasil diubah');
+        
+        return redirect()->route('opd.edit', ['id' => $id]);
     }
 
     /**
@@ -77,8 +102,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $opd = Opd::find($id);
+        $opd->delete();
+
+        $request->session()->flash('status', 'Data ' . $opd->nama . ' berhasil dihapus');
+        
+        return redirect()->route('opd.index');
     }
 }

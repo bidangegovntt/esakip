@@ -10,13 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Auth::routes();
 
 Route::get('/', 'ClientHomeController@index')->name('clientHome');
+
+Route::match(["GET", "POST"], "/register", function(){
+    return redirect("/login");
+})->name("register");
 
 Route::group(['prefix' => '/c'], function() {
     Route::get('/sakip', 'ClientSakipController@index')->name('clientSakip');
@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', 'UserController');
     Route::resource('berita', 'BeritaController');
     Route::resource('gallery', 'GalleryController');
+    Route::resource('opd', 'OpdController');
+    Route::resource('jabatan-opd', 'JabatanOpdController');
 });
 
 

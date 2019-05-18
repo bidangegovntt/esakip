@@ -57,7 +57,7 @@ class BeritaController extends Controller
         }
 
         $berita = Berita::create([
-            "judul" =>$request->judul,
+            "judul" => $request->judul,
             "deskripsi" => $request->deskripsi,
             "link" => $request->link,
             "gambar" => $image_name

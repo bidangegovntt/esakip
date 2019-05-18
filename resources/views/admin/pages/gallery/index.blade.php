@@ -62,7 +62,7 @@
                             class="btn btn-info btn-sm"
                             > Edit </a>
                         <form
-                            onsubmit="return confirm('Delete this user permanently?')"
+                            onsubmit="return confirm('Delete this data permanently?')"
                             class="d-inline"
                             action="{{ route('gallery.destroy', ['id' => $gallery->id ]) }}"
                             method="POST">

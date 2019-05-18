@@ -37,7 +37,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand p-0">
-            <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="index.html"> Larashop </a>
+            <a class="navbar-brand text-center col-xs-12 col-md-3 col-lg-2 mr-0" href="index.html">E - SAKIP</a>
             <button class="btn btn-link d-block d-md-none" data-toggle="collapse" data-target="#sidebar-nav" role="button" >
                 <span class="oi oi-menu"></span>
             </button>
@@ -71,7 +71,7 @@
                         </li>
                         <li>
                             <a href="{{route('users.index')}}">
-                                <span class="oi oi-people"></span> Users
+                                <span class="oi oi-people"></span> Users OPD
                             </a>
                         </li>
                         <li>
@@ -85,9 +85,14 @@
                             </a>
                         </li>
                         <li>
-                            {{-- <a href="{{route('orders.index')}}">
-                                <span class="oi oi-inbox"></span> Manage orders
-                            </a> --}}
+                            <a href="{{route('opd.index')}}">
+                                <span class="oi oi-inbox"></span> Nama OPD
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('jabatan-opd.index')}}">
+                                <span class="oi oi-inbox"></span> Jabatan OPD
+                            </a>
                         </li>
                         <div class="d-block d-md-none">
                             <div class="dropdown-divider"></div>
@@ -101,9 +106,6 @@
                             </li>
                         </div>
                     </ul>
-                    <div class="pl-3 d-none d-md-block position-fixed"style="bottom: 0px">
-                        <span class="oi oi-cog"></span> Setting
-                    </div>
                 </div>
                 <div class="col-lg-10 col-md-9 p-4">
                     <div class="row ">
