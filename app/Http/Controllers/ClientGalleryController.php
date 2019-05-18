@@ -9,7 +9,7 @@ class ClientGalleryController extends Controller
 {
     public function index() 
     {
-        $galleries = Gallery::get();
+        $galleries = Gallery::orderBy('id', 'desc')->get();
 
         return view('pages.gallery', ['galleries' => $galleries]);
     }

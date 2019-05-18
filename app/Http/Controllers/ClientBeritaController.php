@@ -9,7 +9,7 @@ class ClientBeritaController extends Controller
 {
     public function index() 
     {
-        $beritas = Berita::paginate(5);
+        $beritas = Berita::orderBy('id', 'desc')->paginate(5);
         
         return view('pages.berita', ['beritas' => $beritas]);
     }
