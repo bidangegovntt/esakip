@@ -1,5 +1,124 @@
 @extends('layouts.app')
 
+@section('style')
+
+<style>
+    .spasi{
+        margin-top: 5%;
+        margin-left: 20%;
+        margin-right: 10%;
+        margin-bottom: 10%;
+    }
+
+    .spasi2{
+        padding-top: 60px;
+    }
+
+    .spasi3{
+        padding-top: 10%;
+        padding-left: 20%;
+        padding-right: 8%;
+        padding-bottom: 10%;
+    }
+    #change {
+        height: 15rem;
+        width: 20rem;
+        color: black;
+        background: white;
+    }
+
+    #change:hover{
+        color: white;
+        background: #FFD733;
+    }
+    #change1 {
+        height: 15rem;
+        width: 27rem;
+        color: black;
+        background: white;
+    }
+
+    #change1:hover{
+        color: white;
+        background: #FFD733;
+    }
+    .border {
+        border: 1px;
+    }
+</style>
+
+@endsection
+
 @section('content')
-    sakip
+
+<section>
+    <div class="spasi">
+        <div class="col-md-12">
+            <center>
+                <div id="change" class="col-md-3">
+                    <a href="{{ url('c/sakip/rencana-strategi') }}">
+                        <img src="{{ asset('template/images/iconbox/icon1.png') }}" alt="">
+                        <h5>Rencana Strategi</h5>
+                    </a>
+                </div>
+        
+                <div id="change" class="col-md-3">
+                    <a href="{{ url('c/sakip/rencana-kinerja-tahunan') }}">
+                        <img src="{{ asset('template/images/iconbox/icon2.png') }}" alt="">
+                        <h5>Rencana Kinerja Tahunan</h5>
+                    </a>
+                </div>
+        
+                <div id="change" class="col-md-3">
+                    <a href="{{ url('c/sakip/indikator-kinerja-utama') }}">
+                        <img src="{{ asset('template/images/iconbox/icon3.png') }}" alt="">
+                        <h5>Indikator Kinerja Utama</h5>
+                    </a>
+                </div>
+        
+                <div id="change" class="col-md-3">
+                    <a href="{{ url('c/sakip/perjanjian-kinerja') }}">
+                        <img src="{{ asset('template/images/iconbox/icon4.png') }}" alt="">
+                        <h5>Perjanjian Kinerja</h5>
+                    </a>
+                </div>
+            </center>
+        </div>
+
+        <div class="spasi3"></div>
+            
+        <div class="col-md-12">
+            <center>
+                <div id="change" class="col-md-4">
+                    <a href="{{ url('c/sakip/capaian-kinerja') }}">
+                        <img src="{{ asset('template/images/iconbox/icon5.png') }}" alt="">
+                        <h5>Capaian Kinerja</h5>
+                    </a>
+                </div>
+                
+                <div id="change" class="col-md-4">
+                    <a href="{{ url('c/sakip/rpjmd') }}">
+                        <img src="{{ asset('template/images/iconbox/icon6.png') }}" alt="">
+                        <h5>RPJMD</h5>
+                    </a>
+                </div>
+        
+                <div id="change" class="col-md-4">
+                    <a href="{{ url('c/sakip/lkjlp') }}lkjlp.php">
+                        <img src="{{ asset('template/images/iconbox/icon7.png') }}" alt="">
+                        <h5>LKjIP</h5>
+                    </a>
+                </div>
+                <div id="change" class="col-md-4">
+                    <a href="{{ url('c/sakip/grafik') }}">
+                        <img src="{{ asset('template/images/iconbox/icon8.png') }}" alt="">
+                        <h5>Realisasi kuangan Grafik Dan Fisik</h5>
+                    </a>
+                </div>
+            </center>
+        </div>
+    </div>
+    <div class="spasi2"></div>
+</section>
+
 @endsection

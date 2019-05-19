@@ -20,7 +20,7 @@
           <div class="tp-caption skewfromleft tp-resizeme" data-x="left" data-hoffset="-50" data-y="bottom" data-voffset="0" data-speed="500" data-start="700" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 5; max-width: auto; max-height: auto; white-space: normal;"><img src="{{ asset('template/images\sliders\7\cc.jpg') }}"></div>
           
           <!-- LAYER NR. 2 -->
-          <div class="tp-caption skewfromright tp-resizeme" data-x="center" data-hoffset="-55" data-y="center" data-voffset="0" data-speed="500" data-start="900" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 6; white-space: normal;"><a href="sakip.php" class="btn btn-med btn-color">GO TO SAKIP</a> </div>
+          <div class="tp-caption skewfromright tp-resizeme" data-x="center" data-hoffset="-55" data-y="center" data-voffset="0" data-speed="500" data-start="900" data-easing="Power3.easeInOut" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300" style="z-index: 6; white-space: normal;"><a href="{{ url('/c/sakip') }}" class="btn btn-med btn-color">GO TO SAKIP</a> </div>
         </li>
         <!-- SLIDE  -->
         <li data-transition="random" data-slotamount="7"> 
@@ -92,24 +92,31 @@
     <div class="container-fluid">   
       <!-- Blog Row -->
       <div class="posts posts-list list-style-1 row  margin-bottom-80"> 
-        <!-- Blog -->
-        <div class="entry col-lg-6 no-padding animate fadeInLeft" data-wow-delay="0.4s">
-          <div class="entry-image"> 
-            <a href="#."> 
-              <img class="responsive-img" src="{{ asset('template/images/blog/1/img-1.jpg') }}" alt="Blog Thumbnail Image"> 
-            </a> 
+        @foreach ($beritas as $key => $berita) 
+        
+          @if ($key % 2)
+            <div class="entry col-lg-6 no-padding animate fadeInLeft" data-wow-delay="0.4s">              
+          @else
+          <div class="entry col-lg-6 no-padding animate fadeInRight" data-wow-delay="0.4s">
+          @endif
+          <!-- Blog -->          
+            <div class="entry-image"> 
+              <a href="#."> 
+                <img class="responsive-img" src="{{ asset('img/berita/' . $berita->gambar) }}" alt="Blog Thumbnail Image"> 
+              </a> 
+            </div>
+            <div class="entry-body"> <span class="entry-category">{{ $berita->judul }}</span>
+              <h4 class="entry-title">
+                <a href="{{ $berita->link }}"></a>
+              </h4>
+              <p class="entry-content text-justify">{{ str_limit($berita->deskripsi, 150, '.....') }}</p>
+              <a href="{{ $berita->link }}" class="more-link">Selengkapnya <i class="fa  fa-long-arrow-right"></i></a> 
+            </div>
           </div>
-          <div class="entry-body"> <span class="entry-category">Branding design</span>
-            <h4 class="entry-title">
-              <a href="#.">Leeds Juicery</a>
-            </h4>
-            <p class="entry-content">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore </p>
-            <a href="#." class="more-link">Read More <i class="fa  fa-long-arrow-right"></i></a> 
-          </div>
-        </div>
+        @endforeach
           
-        <!-- Blog -->
-        <div class="entry col-lg-6 no-padding animate fadeInRight" data-wow-delay="0.4s">
+        {{-- <!-- Blog -->
+        <div class="entry col-lg-6 no-padding animate fadeInLeft" data-wow-delay="0.4s">
           <div class="entry-image"> 
             <a href="#."> 
               <img class="responsive-img" src="{{ asset('template/images/blog/1/img-1.jpg') }}" alt="Blog Thumbnail Image"> 
@@ -157,7 +164,7 @@
             </p>
             <a href="#." class="more-link">Read More <i class="fa fa-long-arrow-right"></i></a> 
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
   </section>

@@ -20,6 +20,18 @@ Route::match(["GET", "POST"], "/register", function(){
 
 Route::group(['prefix' => '/c'], function() {
     Route::get('/sakip', 'ClientSakipController@index')->name('clientSakip');
+
+    Route::group(['prefix' => '/sakip'], function() {
+        Route::get('/rencana-strategi', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi');
+        Route::get('/rencana-kinerja-tahunan', 'ClientSakipController@rencana_kinerja_tahunan')->name('sakip.rencana_kinerja_tahunan');
+        Route::get('/indikator-kinerja-utama', 'ClientSakipController@indikator_kinerja_utama')->name('sakip.indikator_kinerja_utama');
+        Route::get('/perjanjian-kinerja', 'ClientSakipController@perjanjian_kinerja')->name('sakip.perjanjian_kinerja');
+        Route::get('/capaian-kinerja', 'ClientSakipController@capaian_kinerja')->name('sakip.capaian_kinerja');
+        Route::get('/rpjmd', 'ClientSakipController@rpjmd')->name('sakip.rpjmd');
+        Route::get('/lkjlp', 'ClientSakipController@lkjlp')->name('sakip.lkjlp');
+        Route::get('/grafik', 'ClientSakipController@grafik')->name('sakip.grafik');
+    })
+
     Route::get('/tentang-sakip', 'ClientTentangSakipController@index')->name('clientTentangSakip');
     Route::get('/berita', 'ClientBeritaController@index')->name('clientBerita');
     Route::get('/gallery', 'ClientGalleryController@index')->name('clientGallery');

@@ -8,17 +8,6 @@
 
 @section('content')
 
-<!-- Content -->
-<div id="content"> 
-    <section class="sub-banner">
-        <div class="container">
-            <div class="position-center-center">
-                <h2>Galeri</h2>
-            </div>
-        </div>
-    </section>
-</div>
-<!-- Team -->
 <section class="bg-light" id="team">
     <div class="container">        
         <div class="row">
