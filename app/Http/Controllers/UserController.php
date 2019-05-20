@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Opd;
+use App\JabatanOpd;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::get();
+
+        return view('admin.pages.user.index', ['users' => $users]);
     }
 
     /**
@@ -23,7 +28,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.user.create');
+        $opds = Opd::get();
+        $jabatan_opds = JabatanOpd::get();
+
+        return view('admin.pages.user.create', ['opds' => $opds, 'jabatan_opds' => $jabatan_opds]);
     }
 
     /**
@@ -34,7 +42,30 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Validator::make($request->all(), [
+            "nip" => "required|numeric",
+            "name" => "required|min:3|max:100",
+            "opd_id" => "required",
+            "jabatan_id" => "required",
+            "password" => "required|min:5",
+            "roles" => "required", 
+            "status" => "required",
+        ])->validate();
+
+        $users = User::create([
+            "nip" => $request->nip,
+            "name" => $request->name,
+            "opd_id" => $request->opd_id,
+            "jabatan_id" => $request->jabatan_id,
+            "email" => $request->email,
+            "password" => $request->password,
+            "roles" => $request->roles,
+            "status" => $request->status
+        ]);
+
+        $request->session()->flash('status', 'Data berhasil disimpan');
+        
+        return redirect()->route('users.create');
     }
 
     /**
@@ -56,7 +87,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $opds = Opd::get();
+        $jabatanOpds = JabatanOpd::get();
+
+        return view('admin.pages.user.edit', [
+                'user' => $user,
+                'opds' => $opds,
+                'jabatanOpds' => $jabatanOpds
+            ]);
     }
 
     /**
@@ -68,7 +107,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \Validator::make($request->all(), [
+            "nip" => "required|numeric",
+            "name" => "required|min:3|max:100",
+            "opd_id" => "required",
+            "jabatan_id" => "required",
+            "roles" => "required", 
+            "status" => "required",
+        ])->validate();
+
+        $user = User::find($id);
+        $user->nip = $request->nip;
+        $user->name = $request->name;
+        $user->opd_id = $request->opd_id;
+        $user->jabatan_id = $request->jabatan_id;
+        $user->email = $request->email;
+        $user->roles = $request->roles;
+        $user->status = $request->status;
+        $user->save();
+
+        $request->session()->flash('status', 'Data berhasil diubah');
+        
+        return redirect()->route('users.edit', ['id' => $id]);
     }
 
     /**
@@ -77,8 +137,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->delete();
+
+        $request->session()->flash('status', 'Data ' . $user->nama . ' berhasil dihapus');
+        
+        return redirect()->route('users.index');
     }
 }

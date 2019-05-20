@@ -30,7 +30,7 @@ Route::group(['prefix' => '/c'], function() {
         Route::get('/rpjmd', 'ClientSakipController@rpjmd')->name('sakip.rpjmd');
         Route::get('/lkjlp', 'ClientSakipController@lkjlp')->name('sakip.lkjlp');
         Route::get('/grafik', 'ClientSakipController@grafik')->name('sakip.grafik');
-    })
+    });
 
     Route::get('/tentang-sakip', 'ClientTentangSakipController@index')->name('clientTentangSakip');
     Route::get('/berita', 'ClientBeritaController@index')->name('clientBerita');

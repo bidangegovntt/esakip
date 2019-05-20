@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'roles', 'phone', 'status'
+        'name', 'email', 'password', 'roles', 'phone', 'status', 'nip', 'opd_id', 'jabatan_id'
     ];
 
     /**
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function data_opd() {
+        return $this->belongsTo('App\Opd', 'opd_id', 'id');
+    }
+
+    public function data_jabatan_opd() {
+        return $this->belongsTo('App\JabatanOpd', 'jabatan_id', 'id');
+    }
 }

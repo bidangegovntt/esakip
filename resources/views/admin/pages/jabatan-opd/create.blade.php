@@ -24,7 +24,8 @@
             class="form-control {{$errors->first('nama') ? "is-invalid" : ""}}" 
             value="{{old('nama')}}"
             name="nama"
-            placeholder="Nama"/>
+            placeholder="Nama"
+            autofocus />
         <div class="invalid-feedback">
             {{$errors->first('nama')}}
         </div>

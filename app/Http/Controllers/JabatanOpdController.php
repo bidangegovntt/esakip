@@ -47,7 +47,7 @@ class JabatanOpdController extends Controller
 
         $request->session()->flash('status', 'Data berhasil disimpan');
         
-        return redirect()->route('opd.create');
+        return redirect()->route('jabatan-opd.create');
     }
 
     /**
