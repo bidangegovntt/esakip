@@ -18,6 +18,7 @@
         action="{{ route('opd.store') }}"
         method="POST">
         @csrf
+
         <label>Nama</label><br>
         <input
             type="text"
@@ -30,6 +31,7 @@
             {{$errors->first('nama')}}
         </div>
         <br>
+        
         <input
             type="submit"
             class="btn btn-primary"

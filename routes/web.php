@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('gallery', 'GalleryController');
     Route::resource('opd', 'OpdController');
     Route::resource('jabatan-opd', 'JabatanOpdController');
+    Route::resource('rencana-strategi', 'RencanaStrategiController');
 });
 
 

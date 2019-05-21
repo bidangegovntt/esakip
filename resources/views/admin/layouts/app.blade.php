@@ -97,6 +97,11 @@
                                 <span class="oi oi-inbox"></span> Jabatan OPD
                             </a>
                         </li>
+                        <li>
+                            <a href="{{route('rencana-strategi.index')}}">
+                                <span class="oi oi-inbox"></span> Rencana Strategi
+                            </a>
+                        </li>
                         <div class="d-block d-md-none">
                             <div class="dropdown-divider"></div>
                             <li><a href="#"> Profile</a></li>
