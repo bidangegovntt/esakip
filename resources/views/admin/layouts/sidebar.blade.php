@@ -50,7 +50,7 @@
                 <li class="{{ set_active(['master/bidang', 'master/bidang/*']) }}"><a href="{{ url('master/bidang') }}"><i class="fa fa-circle-o"></i> Bidang </a></li>
                 <li class="{{ set_active(['master/subbidang', 'master/subbidang/*']) }}"><a href="{{ url('master/subbidang') }}"><i class="fa fa-circle-o"></i> Subbidang </a></li>
                 <li class="{{ set_active(['master/jabatan-opd', 'master/jabatan-opd/*']) }}"><a href="{{ url('master/jabatan-opd') }}"><i class="fa fa-circle-o"></i> Jabatan </a></li>
-                <li class="{{ set_active(['master/pejabat-opd', 'master/pejabat_opd/*']) }}"><a href="{{ url('master/pejabat-opd') }}"><i class="fa fa-circle-o"></i> Pejabat OPD </a></li>
+                <li class="{{ set_active(['master/pejabat-opd', 'master/pejabat-opd/*']) }}"><a href="{{ url('master/pejabat-opd') }}"><i class="fa fa-circle-o"></i> Pejabat OPD </a></li>
                 <li class="{{ set_active(['master/pejabat-bidang', 'master/pejabat-bidang/*']) }}"><a href="{{ url('master/pejabat-bidang') }}"><i class="fa fa-circle-o"></i> Pejabat Bidang </a></li>
                 <li class="{{ set_active(['master/pejabat-subbidang', 'master/pejabat-subbidang/*']) }}"><a href="{{ url('master/pejabat-subbidang') }}"><i class="fa fa-circle-o"></i> Pejabat Subbidang </a></li>
             </ul>
