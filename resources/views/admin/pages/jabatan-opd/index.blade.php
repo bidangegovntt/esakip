@@ -3,68 +3,88 @@
 @section('title') List Jabatan OPD @endsection
 
 @section('content')
-<div class="row">
-    <div class="col-md-12">
-        <div class="row mb-3">
-            <div class="col-md-12 text-right">
-                <a
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Manage Jabatan
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Jabatan</a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12"> 
+            @if(session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+            <div class="box">
+                <div class="box-header">
+                    <a
                     href="{{ route('jabatan-opd.create') }}"
-                    class="btn btn-primary"
-                    >Create Jabatan OPD</a>
+                    class="btn btn-info"
+                    ><i class="fa fa-plus"></i></a>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered table-stripped">
+                        <thead style="background-color: #428bca;">
+                            <tr>
+                                <th style="color: #ffffff; text-align: center;"><b>No</b></th>
+                                <th style="color: #ffffff; text-align: center;"><b>Nama Jabatan OPD</b></th>
+                                <th style="color: #ffffff; text-align: center;"><b>Action</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($jabatanOpds as $key => $jabatanOpd)
+                            <tr>
+                                <td style="text-align: center;">{{ $key + 1 }}</td>
+                                <td>{{ $jabatanOpd->nama }}</td>
+                                <td style="width: 100px;">
+                                    <div class="col-xs-6" style="padding-right: 5px; padding-left: 0;">
+                                            <a
+                                            href="{{ route('jabatan-opd.edit', ['id' => $jabatanOpd->id]) }}"
+                                            class="btn btn-info btn-sm btn-block"
+                                            > <i class="fa fa-edit"></i> </a>
+                                    </div>
+                                    <div class="col-xs-6" style="padding-right: 5px; padding-left: 0;">
+                                        <form
+                                            onsubmit="return confirm('Delete this data permanently?')"
+                                            action="{{ route('jabatan-opd.destroy', ['id' => $jabatanOpd->id ]) }}"
+                                            method="POST">
+                                            @csrf
+                                            <input
+                                                type="hidden"
+                                                name="_method"
+                                                value="DELETE">
+                                            <button
+                                                type="submit"
+                                                class="btn btn-danger btn-sm btn-block">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>                                        
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="10">
+                                    {{-- {{$books->appends(Request::all())->links()}} --}}
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
-
-        @if(session('status'))
-            <div class="alert alert-success">
-                {{session('status')}}
-            </div>
-        @endif
-
-        <table class="table table-bordered table-stripped">
-            <thead>
-                <tr>
-                    <th><b>No</b></th>
-                    <th><b>Nama Jabatan OPD</b></th>
-                    <th><b>Action</b></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($jabatanOpds as $key => $jabatanOpd)
-                <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $jabatanOpd->nama }}</td>
-                    <td>
-                        <a
-                            href="{{ route('jabatan-opd.edit', ['id' => $jabatanOpd->id]) }}"
-                            class="btn btn-info btn-sm"
-                            > Edit </a>
-                        <form
-                            onsubmit="return confirm('Delete this data permanently?')"
-                            class="d-inline"
-                            action="{{ route('jabatan-opd.destroy', ['id' => $jabatanOpd->id ]) }}"
-                            method="POST">
-                            @csrf
-                            <input
-                                type="hidden"
-                                name="_method"
-                                value="DELETE">
-                            <input
-                                type="submit"
-                                value="Delete"
-                                class="btn btn-danger btn-sm">
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="10">
-                        {{-- {{$books->appends(Request::all())->links()}} --}}
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
     </div>
-</div>
+</section>
 @endsection
