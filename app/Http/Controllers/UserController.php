@@ -43,24 +43,17 @@ class UserController extends Controller
     public function store(Request $request)
     {
         \Validator::make($request->all(), [
-            "nip" => "required|numeric",
             "name" => "required|min:3|max:100",
             "opd_id" => "required",
-            "jabatan_id" => "required",
             "password" => "required|min:5",
-            "roles" => "required", 
-            "status" => "required",
+            "roles" => "required"
         ])->validate();
 
         $users = User::create([
-            "nip" => $request->nip,
             "name" => $request->name,
             "opd_id" => $request->opd_id,
-            "jabatan_id" => $request->jabatan_id,
-            "email" => $request->email,
-            "password" => $request->password,
-            "roles" => $request->roles,
-            "status" => $request->status
+            'password' => bcrypt($request->password),
+            "roles" => $request->roles
         ]);
 
         $request->session()->flash('status', 'Data berhasil disimpan');
@@ -89,12 +82,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $opds = Opd::get();
-        $jabatanOpds = JabatanOpd::get();
 
         return view('admin.pages.user.edit', [
                 'user' => $user,
-                'opds' => $opds,
-                'jabatanOpds' => $jabatanOpds
+                'opds' => $opds
             ]);
     }
 
@@ -108,22 +99,17 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         \Validator::make($request->all(), [
-            "nip" => "required|numeric",
             "name" => "required|min:3|max:100",
+            // "password" => "required",
             "opd_id" => "required",
-            "jabatan_id" => "required",
             "roles" => "required", 
-            "status" => "required",
         ])->validate();
 
         $user = User::find($id);
-        $user->nip = $request->nip;
         $user->name = $request->name;
+        // $user->password = $request->password;
         $user->opd_id = $request->opd_id;
-        $user->jabatan_id = $request->jabatan_id;
-        $user->email = $request->email;
         $user->roles = $request->roles;
-        $user->status = $request->status;
         $user->save();
 
         $request->session()->flash('status', 'Data berhasil diubah');

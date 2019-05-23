@@ -39,12 +39,20 @@ Route::group(['prefix' => '/c'], function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::resource('users', 'UserController');
-    Route::resource('berita', 'BeritaController');
-    Route::resource('gallery', 'GalleryController');
-    Route::resource('opd', 'OpdController');
-    Route::resource('jabatan-opd', 'JabatanOpdController');
-    Route::resource('rencana-strategi', 'RencanaStrategiController');
+
+    Route::group(['prefix' => '/master'], function() {
+        Route::resource('users', 'UserController');
+        Route::resource('berita', 'BeritaController');
+        Route::resource('gallery', 'GalleryController');
+        Route::resource('opd', 'OpdController');
+        Route::resource('jabatan-opd', 'JabatanOpdController');
+        Route::resource('bidang', 'BidangController');
+        Route::resource('rencana-strategi', 'RencanaStrategiController');
+        Route::resource('blok', 'BlokController');
+        Route::resource('pejabat-opd', 'PejabatOpdController');
+        Route::resource('pejabat-bidang', 'PejabatBidangController');
+        Route::resource('pejabat-subbidang', 'PejabatSubbidangController');
+    });
 });
 
 
