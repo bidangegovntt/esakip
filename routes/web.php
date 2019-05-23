@@ -47,6 +47,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('opd', 'OpdController');
         Route::resource('jabatan-opd', 'JabatanOpdController');
         Route::resource('bidang', 'BidangController');
+        Route::resource('subbidang', 'SubbidangController');
         Route::resource('rencana-strategi', 'RencanaStrategiController');
         Route::resource('blok', 'BlokController');
         Route::resource('pejabat-opd', 'PejabatOpdController');
