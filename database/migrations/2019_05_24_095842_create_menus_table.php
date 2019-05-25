@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBloksTable extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateBloksTable extends Migration
      */
     public function up()
     {
-        Schema::create('bloks', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->tinyInteger('menu_id');
-            $table->tinyInteger('user_id');
+            $table->string('nama', 50);
+            $table->text('link');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateBloksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bloks');
+        Schema::dropIfExists('menus');
     }
 }

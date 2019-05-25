@@ -65,7 +65,6 @@
                             <label>Level</label><br>
                             <select class="form-control" name="roles" id="roles">
                                 <option value="" selected>--Pilih Level--</option>
-                                <option value="administrator">Administrator</option>
                                 <option value="monitoring tingkat pusat">Monitoring Tingkat Pusat</option>
                                 <option value="monitoring tingkat unit">Monitoring Tingkat Unit</option>
                                 <option value="unit kerja">Unit Kerja</option>
