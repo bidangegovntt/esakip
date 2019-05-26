@@ -56,7 +56,7 @@
                 <li class="{{ set_active(['master/pejabat-subbidang', 'master/pejabat-subbidang/*']) }}"><a href="{{ url('master/pejabat-subbidang') }}"><i class="fa fa-circle-o"></i> Pejabat Subbidang </a></li>
             </ul>
         </li>
-        <li class=" treeview">
+        <li class="{{ set_active(['input', 'input/*']) }} treeview">
             <a href="#">
                 <i class="fa fa-book"></i> <span>Data Input</span>
                 <span class="pull-right-container">
@@ -64,7 +64,7 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> RPJMD </a></li>
+                <li class="{{ set_active(['input/rpjmd', 'input/rpjmd/*']) }}"><a href="{{ url('input/rpjmd') }}"><i class="fa fa-circle-o"></i> RPJMD </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> RENSTRA </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Indikator Kinerja Utama </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Rencana Program dan Kegiatan </a></li>

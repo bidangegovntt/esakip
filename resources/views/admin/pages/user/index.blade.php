@@ -52,14 +52,13 @@
                                 <td>{{ str_limit($user->password, 10, '.....') }}</td>
                                 <td>{{ $user->roles }}</td>
                                 <td>{{ $user->data_opd->nama }}</td>
-                                <td style="width: 100px;">
-                                    <div class="col-xs-6" style="padding-right: 5px; padding-left: 0;">
-                                            <a
+                                <td style="width: 150px;">
+                                    <div class="col-xs-4" style="padding-right: 5px; padding-left: 0;">
+                                        <a
                                             href="{{ route('users.edit', ['id' => $user->id]) }}"
-                                            class="btn btn-info btn-sm btn-block"
-                                            > <i class="fa fa-edit"></i> </a>
+                                            class="btn btn-info btn-sm btn-block"><i class="fa fa-edit"></i> </a>
                                     </div>
-                                    <div class="col-xs-6" style="padding-right: 5px; padding-left: 0;">
+                                    <div class="col-xs-4" style="padding-right: 5px; padding-left: 0;">
                                         <form
                                             onsubmit="return confirm('Delete this data permanently?')"
                                             action="{{ route('users.destroy', ['id' => $user->id ]) }}"
@@ -75,6 +74,11 @@
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>                                        
+                                    </div>
+                                    <div class="col-xs-4" style="padding-right: 5px; padding-left: 0;">
+                                        <a
+                                            href="{{ route('users.privilege', ['id' => $user->id]) }}"
+                                            class="btn btn-success btn-sm btn-block"><i class="fa fa-lock"></i></a>
                                     </div>
                                 </td>
                             </tr>

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Opd;
+use App\Menu;
+use App\User;
 use App\JabatanOpd;
 use Illuminate\Http\Request;
 
@@ -132,5 +133,12 @@ class UserController extends Controller
         $request->session()->flash('status', 'Data ' . $user->nama . ' berhasil dihapus');
         
         return redirect()->route('users.index');
+    }
+
+    public function privilege() 
+    {
+        $menus = Menu::get();
+
+        return view('admin.pages.user.privilege', ['menus' => $menus]);
     }
 }
