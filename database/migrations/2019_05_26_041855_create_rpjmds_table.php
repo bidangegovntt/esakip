@@ -18,13 +18,8 @@ class CreateRpjmdsTable extends Migration
             $table->smallInteger('tahun_awal')->nullable()->default(12);
             $table->smallInteger('tahun_akhir')->nullable()->default(12);
             $table->text('tujuan')->nullable()->default('text');
-            $table->tinyInteger('sasaran_id');
-            $table->tinyInteger('indikator_kinerja_id');
-            $table->tinyInteger('tahun_1');
-            $table->tinyInteger('tahun_2');
-            $table->tinyInteger('tahun_3');
-            $table->tinyInteger('tahun_4');
-            $table->tinyInteger('tahun_5');
+            $table->text('sasaran')->nullable()->default('text');
+            $table->text('indikator_kinerja')->nullable()->default('text');
             $table->timestamps();
             $table->integer('created_by');
             $table->integer('updated_by')->nullable();

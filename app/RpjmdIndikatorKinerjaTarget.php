@@ -10,11 +10,11 @@ class RpjmdIndikatorKinerjaTarget extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'rpjmd_indikator_kinerja_id', 'tahun'
+        'rpjmd_id', 'tahun', 'nilai'
     ];
-
-    public function data_rpjmd_indikator_kinerja()
+    
+    public function data_rpjmd()
     {
-        return $this->belongsTo('App\RpjmdIndikatorKinerja', 'rpjmd_indikator_kinerja_id', 'id');
+        return $this->belongsTo('App\Rpjmd', 'rpjmd_id', 'id');
     }
 }

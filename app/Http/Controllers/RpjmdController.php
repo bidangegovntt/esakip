@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Rpjmd;
 use Illuminate\Http\Request;
+use App\RpjmdIndikatorKinerjaTarget;
 
 class RpjmdController extends Controller
 {
@@ -24,9 +25,12 @@ class RpjmdController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.pages.rpjmd.create');
+    public function create(Request $request)
+    {        
+        return view('admin.pages.rpjmd.create', [
+            'tahun_awal' => $request->tahun,
+            'tahun_akhir' => $request->sampai
+        ]);
     }
 
     /**
@@ -37,7 +41,25 @@ class RpjmdController extends Controller
      */
     public function store(Request $request)
     {
+        $rpjmd = Rpjmd::create([
+            'tahun_awal' => $request->tahun_awal,
+            'tahun_akhir' => $request->tahun_akhir,
+            'tujuan' => $request->tujuan,
+            'sasaran' => $request->sasaran,
+            'indikator_kinerja' => $request->indikator_kinerja
+        ]);
+
+        foreach ($request->target as $key => $targete) {
+            $data_insert = RpjmdIndikatorKinerjaTarget::create([
+                'rpjmd_id' => $rpjmd->id,
+                'tahun' => $request->tahun[$key],
+                'nilai' => $targete
+            ]);
+        }
+
+        $request->session()->flash('status', 'Data berhasil disimpan');
         
+        return redirect()->route('rpjmd.index');
     }
 
     /**
@@ -46,9 +68,13 @@ class RpjmdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $rpjmds = Rpjmd::with('data_target')->orderBy('tujuan')->get();
+
+        // return view('admin.pages.rpjmd.index', ['rpjmds' => $rpjmds]);
+        // return response($rpjmds);
+        return view('admin.pages.rpjmd.datarpjmd', compact('rpjmds'));
     }
 
     /**
@@ -59,7 +85,10 @@ class RpjmdController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rpjmd = Rpjmd::find($id);
+        $rpjmd_targets = RpjmdIndikatorKinerjaTarget::where('rpjmd_id', $rpjmd->id)->get();
+
+        return view('admin.pages.rpjmd.edit', ['rpjmd' => $rpjmd, 'rpjmd_targets' => $rpjmd_targets]);
     }
 
     /**
@@ -71,7 +100,23 @@ class RpjmdController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rpjmd = Rpjmd::find($id);
+        $rpjmd->tujuan = $request->tujuan;
+        $rpjmd->sasaran = $request->sasaran;
+        $rpjmd->indikator_kinerja = $request->indikator_kinerja;
+        $rpjmd->save();
+
+        foreach ($request->target as $key => $targete) {
+            $data_update = RpjmdIndikatorKinerjaTarget::where([
+                    'rpjmd_id' => $rpjmd->id,
+                    'tahun' => $request->tahun[$key]
+                ])
+                ->update(['nilai' => $request->target[$key]]);
+        }
+
+        $request->session()->flash('status', 'Data berhasil diubah');
+        
+        return redirect()->route('rpjmd.index');
     }
 
     /**
@@ -82,6 +127,12 @@ class RpjmdController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rpjmd = rpjmd::find($id);
+
+        $rpjmd->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 }

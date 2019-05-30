@@ -10,16 +10,11 @@ class Rpjmd extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'tahun_awal', 'tahun_akhir', 'tujuan', 'sasaran_id', 'indikator_kinerja_id'
+        'tahun_awal', 'tahun_akhir', 'tujuan', 'sasaran', 'indikator_kinerja'
     ];
-    
-    public function data_sasaran()
-    {
-        return $this->belongsTo('App\RpjmdSasaran', 'sasaran_id', 'id');
-    }
 
-    public function data_indikator_kinerja()
+    public function data_target()
     {
-        return $this->belongsTo('App\RpjmdIndikatorKinerja', 'indikator_kinerja_id', 'id');
+        return $this->hasMany('App\RpjmdIndikatorKinerjaTarget', 'rpjmd_id', 'id');
     }
 }

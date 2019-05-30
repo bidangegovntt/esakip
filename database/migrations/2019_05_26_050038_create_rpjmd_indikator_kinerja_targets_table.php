@@ -15,8 +15,9 @@ class CreateRpjmdIndikatorKinerjaTargetsTable extends Migration
     {
         Schema::create('rpjmd_indikator_kinerja_targets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->smallInteger('rpjmd_indikator_kinerja_id')->nullable()->default(12);
+            $table->smallInteger('rpjmd_id')->nullable()->default(12);
             $table->smallInteger('tahun')->nullable()->default(12);
+            $table->tinyInteger('nilai');
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by');
