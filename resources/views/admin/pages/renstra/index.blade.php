@@ -219,13 +219,35 @@
                                     var b = value_layout.data_target[a];
                                     tr += "<td>" + b.nilai + "</td>";
                                 }
-                                tr += "<td>act</td></tr>";
+                                tr +=   "<td style=\"width: 90px;\">" + 
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-info btn-sm btn-block\"><i class=\"fa fa-edit\"></i></button>" +
+                                            "</div>" +
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block\"><i class=\"fa fa-trash\"></i></button>" +
+                                            "</div>" +
+                                        "</td>";
+                                tr +=   "</tr>";
+                                tr +=   "<tr>" +
+                                            "<td></td>" +
+                                            "<td><button class=\"btn btn-success\" style=\"padding: 3px 8px 3px 8px;\"><i class=\"fa fa-plus\"></i></button></td>" +
+                                            "<td><button class=\"btn btn-success\" style=\"padding: 3px 8px 3px 8px;\"><i class=\"fa fa-plus\"></i></button></td>" +
+                                            "<td><button class=\"btn btn-success\" style=\"padding: 3px 8px 3px 8px;\"><i class=\"fa fa-plus\"></i></button></td>" +
+                                        "</tr>";
                             } else {
                                 for(a = 0; a < value_layout.data_target.length; a++) {
                                     var b = value_layout.data_target[a];
                                     tr += "<td>" + b.nilai + "</td>";
                                 }
-                                tr += "<td>act</td></tr><td></td><td></td>";
+                                tr +=   "<td style=\"width: 90px;\">" + 
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-info btn-sm btn-block\"><i class=\"fa fa-edit\"></i></button>" +
+                                            "</div>" +
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block\"><i class=\"fa fa-trash\"></i></button>" +
+                                            "</div>" +
+                                        "</td>";
+                                tr +=   "</tr><td></td><td></td>";
                             }
 
                             sasaran = value_layout.sasaran_id;
