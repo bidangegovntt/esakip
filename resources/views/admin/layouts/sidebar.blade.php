@@ -65,7 +65,7 @@
             </a>
             <ul class="treeview-menu">
                 <li class="{{ set_active(['input/rpjmd', 'input/rpjmd/*']) }}"><a href="{{ url('input/rpjmd') }}"><i class="fa fa-circle-o"></i> RPJMD </a></li>
-                <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> RENSTRA </a></li>
+                <li class="{{ set_active(['input/renstra', 'input/renstra/*']) }}"><a href="{{ url('input/renstra') }}"><i class="fa fa-circle-o"></i> RENSTRA </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Indikator Kinerja Utama </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Rencana Program dan Kegiatan </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Perjanjian Kinerja </a></li>

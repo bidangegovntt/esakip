@@ -60,6 +60,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['prefix' => '/input'], function() {
         Route::resource('rpjmd', 'RpjmdController');
+
+        Route::get('/getDataRenstra', 'RenstraController@getDataRenstra');
+        Route::resource('renstra', 'RenstraController');
     });
 });
 
