@@ -22,4 +22,9 @@ class RenstraTujuan extends Model
     {
         return $this->hasMany('App\RenstraSasaran', 'renstra_tujuan_id', 'id');
     }
+
+    public function data_layout()
+    {
+        return $this->hasMany('App\RenstraLayout', 'tujuan_id', 'id');
+    }
 }

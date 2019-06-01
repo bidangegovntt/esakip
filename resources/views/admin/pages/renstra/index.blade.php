@@ -195,25 +195,42 @@
                 dataType: 'json',
                 success: function(response) {                    
                     $.each(response.data, function(i, value){
-                        console.log(i);
-                        var tr = "<tr>";
-                        tr += "<td>" + parseInt(i + 1) + "</td>";
-
-                        $.each(value.data_renstra_sasaran, function(i, value_sasaran) {
-                            // console.log("sas");
-
-                            // tr += "<td>" + value.deskripsi + "</td>";
-                            // tr += "<td>" + value_sasaran.deskripsi + "</td>";
-
-                            $.each(value_sasaran.data_renstra_indikator, function(i, value_indikator) {
-                            // console.log("sas");
+                        console.log(value);
+                        var tr = "<tr></tr>";
+                            tr += "<td>" + parseInt(i + 1) + "</td>";
                             tr += "<td>" + value.deskripsi + "</td>";
-                            tr += "<td>" + value_sasaran.deskripsi + "</td>";
-                                tr += "<td>" + value_indikator.deskripsi + "</td></tr><td>";
-                            })
 
+                        var sasaran = '';
+                        
+                        $.each(value.data_layout, function(i, value_layout) {
+                            // console.log("sas"); 
+                            if(sasaran == value_layout.sasaran_id) {
+                                tr += "<td></td>";
+                            } else {
+                                tr += "<td>" + value_layout.data_sasaran.deskripsi + "</td>";
+                            }                          
+                            
+                            tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                            
+                            var isLastElement = i == value.data_layout.length -1;
 
+                            if (isLastElement) {                                
+                                for(a = 0; a < value_layout.data_target.length; a++) {
+                                    var b = value_layout.data_target[a];
+                                    tr += "<td>" + b.nilai + "</td>";
+                                }
+                                tr += "<td>act</td></tr>";
+                            } else {
+                                for(a = 0; a < value_layout.data_target.length; a++) {
+                                    var b = value_layout.data_target[a];
+                                    tr += "<td>" + b.nilai + "</td>";
+                                }
+                                tr += "<td>act</td></tr><td></td><td></td>";
+                            }
+
+                            sasaran = value_layout.sasaran_id;
                         });
+
                         $('#tabeldata').append(tr);
                     });
                 }

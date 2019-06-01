@@ -129,7 +129,7 @@ class RenstraController extends Controller
     public function getDataRenstra()
     {
         // $renstras = RenstraTujuan::with('data_renstra_sasaran.data_renstra_indikator')->get();
-        $renstras = RenstraTujuan::with('data_renstra_sasaran.data_renstra_indikator')->get();
+        $renstras = RenstraTujuan::with('data_layout.data_target', 'data_layout.data_sasaran', 'data_layout.data_indikator')->get();
 
         return response()->json([
             'success' => 'Berhasil mengambil data',
