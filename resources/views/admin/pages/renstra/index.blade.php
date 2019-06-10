@@ -151,6 +151,189 @@
     </div>
 </div>
 
+<!-- Modal Create -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal form-edit">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data RENSTRA</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="edit-id">
+                    <div class="form-group">
+                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
+                        </div>
+                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="opd" class="col-sm-3 control-label">OPD</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
+                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-tujuan-text" placeholder="Tujuan">
+                            <input type="hidden" class="form-control" id="edit-tujuan-id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran">
+                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
+                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
+                        </div>
+                    </div>
+                    <div id="edit-target">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Tambah Sasaran -->
+<div class="modal fade" id="modalSasaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal form-sasaran">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Sasaran RENSTRA</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="edit-id">
+                    <div class="form-group">
+                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
+                        </div>
+                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="opd" class="col-sm-3 control-label">OPD</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
+                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-tujuan-text" placeholder="Tujuan" disabled>
+                            <input type="hidden" class="form-control" id="edit-tujuan-id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran">
+                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
+                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
+                        </div>
+                    </div>
+                    <div id="edit-target">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Tambah Indikator -->
+<div class="modal fade" id="modalIndikator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal form-indikator">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator RENSTRA</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="edit-id">
+                    <div class="form-group">
+                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
+                        </div>
+                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="opd" class="col-sm-3 control-label">OPD</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
+                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-tujuan-text" placeholder="Tujuan" disabled>
+                            <input type="hidden" class="form-control" id="edit-tujuan-id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran" disabled>
+                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
+                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
+                        </div>
+                    </div>
+                    <div id="edit-target">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('script')
@@ -167,23 +350,8 @@
             $('#modalCreate').modal();
         });
 
-        // modal create show
-        $('#modalCreate').on('show.bs.modal', function() {
-            var tahun_awal = $('#tahun_awal').val();
-            var tahun_akhir = $('#tahun_akhir').val();
-            var opd_text = $('#opd').children("option:selected").text();
-            var opd_id = $('#opd').children("option:selected").val();
-
-            $('#input-tahun-awal').val(tahun_awal);
-            $('#input-tahun-akhir').val(tahun_akhir);
-            $('#input-opd-text').val(opd_text);
-            $('#input-opd-id').val(opd_id);
-
-            $('#input-target').append().empty();
-
-            for(i = tahun_awal; i <= tahun_akhir; i++) {
-                $('#input-target').append("<div class=form-group form-horizontal><label for=indikator class=col-sm-3 control-label style=\"text-align: right;\">" + i + "</label><div class=col-sm-9><input type=number class=form-control id=input-target placeholder=0></div></div>");
-            }
+        $('.btn-secondary').on('click', function() {
+            showData();
         });
 
         showData();
@@ -195,7 +363,6 @@
                 dataType: 'json',
                 success: function(response) {                    
                     $.each(response.data, function(i, value){
-                        console.log(value);
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
                             tr += "<td>" + value.deskripsi + "</td>";
@@ -203,7 +370,7 @@
                         var sasaran = '';
                         
                         $.each(value.data_layout, function(i, value_layout) {
-                            // console.log("sas"); 
+                            // console.log(value_layout.id); 
                             if(sasaran == value_layout.sasaran_id) {
                                 tr += "<td></td>";
                             } else {
@@ -221,18 +388,19 @@
                                 }
                                 tr +=   "<td style=\"width: 90px;\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-info btn-sm btn-block\"><i class=\"fa fa-edit\"></i></button>" +
+                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
                                             "</div>" +
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block\"><i class=\"fa fa-trash\"></i></button>" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
                                             "</div>" +
                                         "</td>";
                                 tr +=   "</tr>";
                                 tr +=   "<tr>" +
                                             "<td></td>" +
-                                            "<td><button class=\"btn btn-success\" style=\"padding: 3px 8px 3px 8px;\"><i class=\"fa fa-plus\"></i></button></td>" +
-                                            "<td><button class=\"btn btn-success\" style=\"padding: 3px 8px 3px 8px;\"><i class=\"fa fa-plus\"></i></button></td>" +
-                                            "<td><button class=\"btn btn-success\" style=\"padding: 3px 8px 3px 8px;\"><i class=\"fa fa-plus\"></i></button></td>" +
+                                            "<td></td>" +
+                                            "<td><button class=\"btn btn-success btn-sasaran\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
+                                            "<td><button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
+                                            "<td colspan=\"6\"></td>" +
                                         "</tr>";
                             } else {
                                 for(a = 0; a < value_layout.data_target.length; a++) {
@@ -241,10 +409,10 @@
                                 }
                                 tr +=   "<td style=\"width: 90px;\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-info btn-sm btn-block\"><i class=\"fa fa-edit\"></i></button>" +
+                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
                                             "</div>" +
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block\"><i class=\"fa fa-trash\"></i></button>" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
                                             "</div>" +
                                         "</td>";
                                 tr +=   "</tr><td></td><td></td>";
@@ -259,6 +427,37 @@
             });
         }
 
+        // modal create show
+        $('#modalCreate').on('show.bs.modal', function() {
+
+            $('#tabeldata').empty();
+
+            var tahun_awal = $('#tahun_awal').val();
+            var tahun_akhir = $('#tahun_akhir').val();
+            var opd_text = $('#opd').children("option:selected").text();
+            var opd_id = $('#opd').children("option:selected").val();
+
+            $('#input-tahun-awal').val(tahun_awal);
+            $('#input-tahun-akhir').val(tahun_akhir);
+            $('#input-opd-text').val(opd_text);
+            $('#input-opd-id').val(opd_id);
+
+            $('#input-target').append().empty();
+
+            var form_target_index = parseInt($('#tahun_akhir').val()) - parseInt($('#tahun_awal').val());
+            // console.log(form_target_index);
+            for(i = 0; i <= form_target_index; i++) {
+                var label = parseInt(tahun_awal) + parseInt(i);
+                $('#input-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
+                                                "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
+                                                "<div class=\"col-sm-9\">" +
+                                                    "<input type=\"number\" class=\"form-control\" id=\"input-target-" + i + "\" name=\"\" placeholder=0>" +
+                                                    "<input type=\"hidden\" class=\"form-control\" id=\"input-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
+                                                "</div>" +
+                                            "</div>");
+            }            
+        });
+
         // simpan data renstra
         $('.form-create').on('submit', function(e) {
             e.preventDefault();
@@ -268,7 +467,20 @@
             var tujuan = $('#input-tujuan').val();
             var sasaran = $('#input-sasaran').val();
             var indikator = $('#input-indikator').val();
+            var target = [];
 
+            for(i = 0; i < 5; i++) {
+                var nilai = $("#input-target-" + i).val();
+                var tahun = $("#input-target-tahun-" + i).val();
+                // console.log(text);
+                target.push({
+                    tahun: tahun,
+                    nilai: nilai
+                });
+            }
+
+            // console.log(target);
+            
             $.ajax({
                 url: 'renstra',
                 type: 'POST',
@@ -279,13 +491,317 @@
                     opd_id: opd_id,
                     tujuan: tujuan,
                     sasaran: sasaran,
-                    indikator: indikator
+                    indikator: indikator,
+                    target: target
                 },
                 success: function(response) {
-                    console.log(response.success);
+                    // console.log(response);
                     if(response.success) {
                         $('#modalCreate').modal('hide');
+                        tujuan = $('#input-tujuan').val("");
+                        sasaran = $('#input-sasaran').val("");
+                        indikator = $('#input-indikator').val("");
                     }
+                    showData();
+                }
+            });
+        });
+
+        // Edit Data
+        $("#tabeldata").on('click', '.btn-edit', function() {
+            $('#edit-target').empty();
+            $('#tabeldata').empty();
+
+            var id = $(this).data('id');
+            
+            $.ajax({
+                    url: '{{ URL::route('renstra.edit', 'id') }}',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        id: id
+                        },
+                    success: function(response) {
+                        // console.log(response.renstra);
+                        $('#modalEdit').modal();
+                        $('#edit-tahun-awal').val(response.renstra.data_tujuan.data_renstra.tahun_awal);
+                        $('#edit-id').val(response.renstra.id);
+                        $('#edit-tahun-akhir').val(response.renstra.data_tujuan.data_renstra.tahun_akhir);
+                        $('#edit-opd-text').val(response.renstra.data_tujuan.data_renstra.data_opd.nama);
+                        $('#edit-opd-id').val(response.renstra.data_tujuan.data_renstra.opd_id);
+                        $('#edit-tujuan-text').val(response.renstra.data_tujuan.deskripsi);
+                        $('#edit-tujuan-id').val(response.renstra.tujuan_id);
+                        $('#edit-sasaran-text').val(response.renstra.data_sasaran.deskripsi);
+                        $('#edit-sasaran-id').val(response.renstra.sasaran_id);
+                        $('#edit-indikator-text').val(response.renstra.data_indikator.deskripsi);
+                        $('#edit-indikator-id').val(response.renstra.indikator_id);
+
+                        for(i = 0; i < response.renstra.data_indikator.data_renstra_target.length; i++) {
+                            // console.log(i);
+                            var label = parseInt(response.renstra.data_tujuan.data_renstra.tahun_awal) + parseInt(i);
+                            $('#edit-target').append(   "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
+                                                            "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
+                                                            "<div class=\"col-sm-9\">" +
+                                                                "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" value=\"" + response.renstra.data_indikator.data_renstra_target[i].nilai + "\" placeholder=0>" +
+                                                                "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
+                                                            "</div>" +
+                                                        "</div>");
+                        }
+                    }
+            });
+        });
+
+        // update data
+        $('.form-edit').on('submit', function(e) {
+            e.preventDefault();
+
+            var id = $('#edit-id').val();
+            var tahun_awal = $('#edit-tahun-awal').val();
+            var tahun_akhir = $('#edit-tahun-akhir').val();
+            var opd_id = $('#edit-opd-id').val();
+            var tujuan_text = $('#edit-tujuan-text').val();
+            var tujuan_id = $('#edit-tujuan-id').val();
+            var sasaran_text = $('#edit-sasaran-text').val();
+            var sasaran_id = $('#edit-sasaran-id').val();
+            var indikator_text = $('#edit-indikator-text').val();
+            var indikator_id = $('#edit-indikator-id').val();
+            var target = [];
+
+            for(i = 0; i < 5; i++) {
+                var nilai = $("#edit-target-" + i).val();
+                var tahun = $("#edit-target-tahun-" + i).val();
+                // console.log(text);
+                target.push({
+                    tahun: tahun,
+                    nilai: nilai
+                });
+            }
+
+            $.ajax({
+                url: '{{ URL::route('renstra.update', 'id') }}',
+                type: 'PUT',
+                data: {
+                    _token: CSRF_TOKEN,
+                    tahun_awal: tahun_awal,
+                    tahun_akhir: tahun_akhir,
+                    opd_id: opd_id,
+                    tujuan_text: tujuan_text,
+                    tujuan_id: tujuan_id,
+                    sasaran_text: sasaran_text,
+                    sasaran_id: sasaran_id,
+                    indikator_text: indikator_text,
+                    indikator_id: indikator_id,
+                    target: target
+                },
+                success: function(response) {
+                    // console.log(response);
+                    if(response.success) {
+                        $('#modalEdit').modal('hide');
+                        tujuan = $('#input-tujuan').val("");
+                        sasaran = $('#input-sasaran').val("");
+                        indikator = $('#input-indikator').val("");
+                    }
+                    showData();
+                }
+            });
+        });
+
+        // delete data
+        $("#tabeldata").on('click', '.btn-delete', function() {
+            $('#tabeldata').empty();
+            
+            var id = $(this).data('id');
+            if (confirm("Yakin akan menghapus?")) {
+                $.ajax({
+                    url: 'hapusRenstra',
+                    type: 'POST',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        id: id
+                    },
+                    success: function(response) {
+                        showData();
+                    }
+                });
+            } else {
+                showData();
+            }            
+        });
+
+        // tambah sasaran
+        $('#tabeldata').on('click', '.btn-sasaran', function() {
+            $('#modalSasaran #edit-target').empty();
+            $('#tabeldata').empty();
+
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: 'tambahSasaranRenstra',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id:id
+                },
+                success: function(response) {
+                    // console.log(response.data.data_tujuan.data_renstra.data_opd.nama);
+                    $('#modalSasaran').modal();
+                    $('#modalSasaran #edit-tahun-awal').val(response.data.data_tujuan.data_renstra.tahun_awal);
+                    $('#modalSasaran #edit-tahun-akhir').val(response.data.data_tujuan.data_renstra.tahun_akhir);
+                    $('#modalSasaran #edit-opd-text').val(response.data.data_tujuan.data_renstra.data_opd.nama);
+                    $('#modalSasaran #edit-tujuan-text').val(response.data.data_tujuan.deskripsi);
+                    $('#modalSasaran #edit-tujuan-id').val(response.data.data_tujuan.id);
+
+                    var form_target_index = parseInt($('#modalSasaran #edit-tahun-akhir').val()) - parseInt($('#modalSasaran #edit-tahun-awal').val());
+                    console.log(form_target_index);
+                    for(i = 0; i <= form_target_index; i++) {
+                        var label = parseInt($('#modalSasaran #edit-tahun-awal').val()) + parseInt(i);
+                        $('#modalSasaran #edit-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
+                                                                    "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
+                                                                    "<div class=\"col-sm-9\">" +
+                                                                        "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" placeholder=0>" +
+                                                                        "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
+                                                                    "</div>" +
+                                                                "</div>");
+                    }
+                }
+            });
+        });
+
+        // simpan data sasaran
+        $('.form-sasaran').on('submit', function(e) {
+            e.preventDefault();
+
+            var id = $('#modalSasaran #edit-id').val();
+            var tujuan_text = $('#modalSasaran #edit-tujuan-text').val();
+            var tujuan_id = $('#modalSasaran #edit-tujuan-id').val();
+            var sasaran_text = $('#modalSasaran #edit-sasaran-text').val();
+            var sasaran_id = $('#modalSasaran #edit-sasaran-id').val();
+            var indikator_text = $('#modalSasaran #edit-indikator-text').val();
+            var indikator_id = $('#modalSasaran #edit-indikator-id').val();
+            var target = [];
+
+            for(i = 0; i < 5; i++) {
+                var nilai = $("#modalSasaran #edit-target-" + i).val();
+                var tahun = $("#modalSasaran #edit-target-tahun-" + i).val();
+                // console.log(text);
+                target.push({
+                    tahun: tahun,
+                    nilai: nilai
+                });
+            }
+
+            $.ajax({
+                url: 'masukkanSasaranRenstra',
+                type: 'POST',
+                data: {
+                    _token: CSRF_TOKEN,
+                    tujuan_text: tujuan_text,
+                    tujuan_id: tujuan_id,
+                    sasaran_text: sasaran_text,
+                    sasaran_id: sasaran_id,
+                    indikator_text: indikator_text,
+                    indikator_id: indikator_id,
+                    target: target
+                },
+                success: function(response) {
+                    console.log(response);
+                    if(response.success) {
+                        $('#modalSasaran').modal('hide');
+                        tujuan = $('#modalSasaran #edit-tujuan-text').val("");
+                        sasaran = $('#modalSasaran #edit-sasaran-text').val("");
+                        indikator = $('#modalSasaran #edit-indikator-text').val("");
+                    }
+                    showData();
+                }
+            });
+        });
+
+        // tambah indikator
+        $('#tabeldata').on('click', '.btn-indikator', function() {
+            $('#modalIndikator #edit-target').empty();
+            $('#tabeldata').empty();
+
+            var id = $(this).data('id');
+
+            $.ajax({
+                url: 'tambahIndikatorRenstra',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id:id
+                },
+                success: function(response) {
+                    // console.log(response.data.data_tujuan.data_renstra.data_opd.nama);
+                    $('#modalIndikator').modal();
+                    $('#modalIndikator #edit-tahun-awal').val(response.data.data_tujuan.data_renstra.tahun_awal);
+                    $('#modalIndikator #edit-tahun-akhir').val(response.data.data_tujuan.data_renstra.tahun_akhir);
+                    $('#modalIndikator #edit-opd-text').val(response.data.data_tujuan.data_renstra.data_opd.nama);
+                    $('#modalIndikator #edit-tujuan-text').val(response.data.data_tujuan.deskripsi);
+                    $('#modalIndikator #edit-tujuan-id').val(response.data.data_tujuan.id);
+                    $('#modalIndikator #edit-sasaran-text').val(response.data.data_sasaran.deskripsi);
+                    $('#modalIndikator #edit-sasaran-id').val(response.data.data_sasaran.id);
+
+                    var form_target_index = parseInt($('#modalIndikator #edit-tahun-akhir').val()) - parseInt($('#modalIndikator #edit-tahun-awal').val());
+                    console.log(form_target_index);
+                    for(i = 0; i <= form_target_index; i++) {
+                        var label = parseInt($('#modalIndikator #edit-tahun-awal').val()) + parseInt(i);
+                        $('#modalIndikator #edit-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
+                                                                    "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
+                                                                    "<div class=\"col-sm-9\">" +
+                                                                        "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" placeholder=0>" +
+                                                                        "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
+                                                                    "</div>" +
+                                                                "</div>");
+                    }
+                }
+            });
+        });
+
+        // simpan data indikator
+        $('.form-indikator').on('submit', function(e) {
+            e.preventDefault();
+
+            var id = $('#modalIndikator #edit-id').val();
+            var tujuan_text = $('#modalIndikator #edit-tujuan-text').val();
+            var tujuan_id = $('#modalIndikator #edit-tujuan-id').val();
+            var sasaran_text = $('#modalIndikator #edit-sasaran-text').val();
+            var sasaran_id = $('#modalIndikator #edit-sasaran-id').val();
+            var indikator_text = $('#modalIndikator #edit-indikator-text').val();
+            var indikator_id = $('#modalIndikator #edit-indikator-id').val();
+            var target = [];
+
+            for(i = 0; i < 5; i++) {
+                var nilai = $("#modalIndikator #edit-target-" + i).val();
+                var tahun = $("#modalIndikator #edit-target-tahun-" + i).val();
+                // console.log(text);
+                target.push({
+                    tahun: tahun,
+                    nilai: nilai
+                });
+            }
+
+            $.ajax({
+                url: 'masukkanIndikatorRenstra',
+                type: 'POST',
+                data: {
+                    _token: CSRF_TOKEN,
+                    tujuan_text: tujuan_text,
+                    tujuan_id: tujuan_id,
+                    sasaran_text: sasaran_text,
+                    sasaran_id: sasaran_id,
+                    indikator_text: indikator_text,
+                    indikator_id: indikator_id,
+                    target: target
+                },
+                success: function(response) {
+                    console.log(response);
+                    if(response.success) {
+                        $('#modalIndikator').modal('hide');
+                        tujuan = $('#modalIndikator #edit-tujuan-text').val("");
+                        sasaran = $('#modalIndikator #edit-sasaran-text').val("");
+                        indikator = $('#modalIndikator #edit-indikator-text').val("");
+                    }
+                    showData();
                 }
             });
         });

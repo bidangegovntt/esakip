@@ -62,6 +62,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('rpjmd', 'RpjmdController');
 
         Route::get('/getDataRenstra', 'RenstraController@getDataRenstra');
+        Route::post('/hapusRenstra', 'RenstraController@hapus');
+        Route::get('/tambahSasaranRenstra', 'RenstraController@tambahSasaran');
+        Route::post('/masukkanSasaranRenstra', 'RenstraController@masukkanSasaran');
+        Route::get('/tambahIndikatorRenstra', 'RenstraController@tambahIndikator');
+        Route::post('/masukkanIndikatorRenstra', 'RenstraController@masukkanIndikator');
         Route::resource('renstra', 'RenstraController');
     });
 });
