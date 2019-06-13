@@ -1,5 +1,21 @@
 @extends('admin.layouts.app')
 
+@section('style')
+    <style>
+        @media print {
+            #thead {
+                background-color: red;
+            }
+        }
+        
+        @media screen {
+            #thead {
+                background-color: red;
+            }
+        }
+    </style>
+@endsection
+
 @section('content')
     
 <!-- Content Header (Page header) -->
@@ -23,7 +39,7 @@
                 </div>
             @endif
             <div class="box">
-                    <div class="box-header">
+                    <div class="box-header header-tahun-hide">
                         <div class="form-group form-horizontal">
                             <label for="tahun_awal" class="col-sm-1 control-label">Tahun</label>
                             <div class="col-sm-2">
@@ -35,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-header">
+                    <div class="box-header header-opd-hide">
                         <div class="form-group form-horizontal">
                             <label for="opd" class="col-sm-1 control-label">OPD</label>
                             <div class="col-sm-5">
@@ -50,14 +66,14 @@
                     </div>
                 <!-- /.box-header -->
                 <hr>
-                <div class="box-header">
+                <div class="box-header header-button-hide">
                     <a
                         href="#"
                         class="btn btn-info btn-cari"
                         ><i class="fa fa-search"></i> Cari</a>
                     <a
-                        href="{{ route('bidang.create') }}"
-                        class="btn btn-info"
+                        href="#"
+                        class="btn btn-info btn-cetak"
                         ><i class="fa fa-file-pdf-o"></i> Cetak</a>
                     <a
                         href="#"
@@ -66,22 +82,19 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                    <button id="showAfterPrint">Load</button>
                     <table id="example1" class="table table-bordered table-striped">
-                        <thead style="background-color: #428bca;">
+                        <thead style="background-color: #428bca;" id="thead">
                             <tr>
                                 <th style="color: #ffffff; text-align: center;" rowspan="2">No</th>
                                 <th style="color: #ffffff; text-align: center;" rowspan="2">Tujuan</th>
                                 <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
                                 <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator Kinerja</th>
                                 <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="5">Target</th>
-                                <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2">Action</th>
+                                <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2" id="action">Action</th>
                             </tr>
-                            <tr id="target">
-                                <th style="color: #ffffff; text-align: center;">Tahun</th>
-                                <th style="color: #ffffff; text-align: center;">Tahun</th>
-                                <th style="color: #ffffff; text-align: center;">Tahun</th>
-                                <th style="color: #ffffff; text-align: center;">Tahun</th>
-                                <th style="color: #ffffff; text-align: center;">Tahun</th>
+                            <tr id="head-target">
+                                
                             </tr>
                         </thead>
                         <tbody id="tabeldata">
@@ -342,8 +355,82 @@
     $(document).ready(function() {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
+        $('.btn-cari').on('click', function(e) {
+            e.preventDefault();
+
+            var tahun_awal = $('#tahun_awal').val();
+            var tahun_akhir = $('#tahun_akhir').val();
+            var opd = $('#opd').children("option:selected").val();
+
+            $.ajax({
+                url: 'cariRenstra',
+                type: 'POST',
+                data: {
+                    _token: CSRF_TOKEN,
+                    tahun_awal: tahun_awal,
+                    tahun_akhir: tahun_akhir,
+                    opd: opd
+                },
+                success: function(response) {
+                    showData();
+                }
+            });
+        });
+
+        $('#showAfterPrint').hide();
+        $('#showAfterPrint').on('click', function() {
+            location.reload();
+        });
+
+        $('.btn-cetak').on('click', function(e) {
+            e.preventDefault();
+            $('.header-tahun-hide').hide();
+            $('.header-opd-hide').hide();
+            $('.header-button-hide').hide();
+            $('table #trLast').hide();
+            $('table #action').hide();
+            $('table #tdAction').hide();
+            $('hr').hide();
+            $('#showAfterPrint').show();
+            
+            window.print();
+
+            // var tahun_awal = $('#tahun_awal').val();
+            // var tahun_akhir = $('#tahun_akhir').val();
+            // var opd = $('#opd').children("option:selected").val();
+
+            // window.location = "cetakRenstra/?tahun_awal=" + tahun_awal + "&tahun_akhir=" + tahun_akhir + "&opd=" + opd;
+
+            // var tahun_awal = $('#tahun_awal').val();
+            // var tahun_akhir = $('#tahun_akhir').val();
+            // var opd = $('#opd').children("option:selected").val();
+
+            // $.ajax({
+            //     url: 'cetakRenstra',
+            //     type: 'POST',
+            //     data: {
+            //         _token: CSRF_TOKEN,
+            //         tahun_awal: tahun_awal,
+            //         tahun_akhir: tahun_akhir,
+            //         opd: opd
+            //     }
+            // });
+        });
+
         $('#tahun_awal').keyup(function() {
+            $('#head-target').empty();
             $('#tahun_akhir').val(parseInt($('#tahun_awal').val()) + 4);
+            var tahun = $('#tahun_awal').val();
+
+            if(tahun == null) {
+                tahun = 1;
+            }
+            var head_target = [];
+            for(i = 0; i < 5; i++) {
+                var th = parseInt(tahun) + parseInt(i);
+                head_target +=   "<th style=\"color: #ffffff; text-align: center;\">" + th + "</th>";
+            }
+            $('#head-target').append(head_target);
         });
 
         $('.btn-tambah').on('click', function() {
@@ -386,7 +473,7 @@
                                     var b = value_layout.data_target[a];
                                     tr += "<td>" + b.nilai + "</td>";
                                 }
-                                tr +=   "<td style=\"width: 90px;\">" + 
+                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
                                                 "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
                                             "</div>" +
@@ -395,7 +482,7 @@
                                             "</div>" +
                                         "</td>";
                                 tr +=   "</tr>";
-                                tr +=   "<tr>" +
+                                tr +=   "<tr id=\"trLast\">" +
                                             "<td></td>" +
                                             "<td></td>" +
                                             "<td><button class=\"btn btn-success btn-sasaran\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
@@ -407,7 +494,7 @@
                                     var b = value_layout.data_target[a];
                                     tr += "<td>" + b.nilai + "</td>";
                                 }
-                                tr +=   "<td style=\"width: 90px;\">" + 
+                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
                                                 "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
                                             "</div>" +

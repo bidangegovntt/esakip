@@ -61,6 +61,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => '/input'], function() {
         Route::resource('rpjmd', 'RpjmdController');
 
+        Route::post('/cariRenstra', 'RenstraController@cari');
+        Route::get('/cetakPreviewRenstra', 'RenstraController@cetakPreview');
+        Route::get('/cetakRenstra', 'RenstraController@cetak');
         Route::get('/getDataRenstra', 'RenstraController@getDataRenstra');
         Route::post('/hapusRenstra', 'RenstraController@hapus');
         Route::get('/tambahSasaranRenstra', 'RenstraController@tambahSasaran');

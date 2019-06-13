@@ -8,6 +8,7 @@ use App\RenstraLayout;
 use App\RenstraTarget;
 use App\RenstraTujuan;
 use App\RenstraSasaran;
+use PDF;
 use App\RenstraIndikator;
 use Illuminate\Http\Request;
 
@@ -304,5 +305,68 @@ class RenstraController extends Controller
         return response()->json([
             'success' => 'data berhasil disimpan'
         ]);
+    }
+
+    public function cari(Request $request)
+    {
+        // return $request;
+        $tahun_awal = $request->tahun_awal;
+        $tahun_akhir = $request->tahun_akhir;
+
+        $renstras = RenstraTujuan::whereHas('data_layout', function($query) {
+            $query->where('deleted_at', null);
+        })
+        ->whereHas('data_renstra', function($query) use ($tahun_awal, $tahun_akhir) {
+            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir);
+        })
+        ->with('data_renstra','data_layout.data_target', 'data_layout.data_sasaran', 'data_layout.data_indikator')->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $renstras
+        ]);
+    }
+
+    public function cetakPreview(Request $request)
+    {
+        $tahun_awal = $request->tahun_awal;
+        $tahun_akhir = $request->tahun_akhir;
+        $opd = $request->opd;
+
+        $data = RenstraTujuan::whereHas('data_layout', function($query) {
+            $query->where('deleted_at', null);
+        })
+        ->whereHas('data_renstra', function($query) use ($tahun_awal, $tahun_akhir) {
+            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir);
+        })
+        ->with('data_renstra','data_layout.data_target', 'data_layout.data_sasaran', 'data_layout.data_indikator')
+        ->get();
+    }
+
+    public function cetak(Request $request)
+    {
+        $tahun_awal = $request->tahun_awal;
+        $tahun_akhir = $request->tahun_akhir;
+        $opd = $request->opd;
+
+        return $tahun_akhir . " " . $tahun_awal . " " . $opd;
+
+        // $data = RenstraTujuan::whereHas('data_layout', function($query) {
+        //     $query->where('deleted_at', null);
+        // })
+        // ->whereHas('data_renstra', function($query) use ($tahun_awal, $tahun_akhir) {
+        //     $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir);
+        // })
+        // ->with('data_renstra','data_layout.data_target', 'data_layout.data_sasaran', 'data_layout.data_indikator')
+        // ->get();
+
+        // $pdf = PDF::loadView('admin.pages.renstra.cetak');
+        // return $pdf->download('invoice.pdf');
+
+        // return view('admin.pages.renstra.cetak', [
+        //     'tahun_awal' => $tahun_awal,
+        //     'tahun_akhir' => $tahun_akhir,
+        //     'opd' => $opd
+        // ]);
     }
 }
