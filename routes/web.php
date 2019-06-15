@@ -71,6 +71,15 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/tambahIndikatorRenstra', 'RenstraController@tambahIndikator');
         Route::post('/masukkanIndikatorRenstra', 'RenstraController@masukkanIndikator');
         Route::resource('renstra', 'RenstraController');
+
+        Route::post('/cariIku', 'IkuController@cari');
+        Route::get('/getDataIku', 'IkuController@getDataIku');
+        Route::post('/hapusIku', 'IkuController@hapus');
+        Route::get('/tambahSasaranIku', 'IkuController@tambahSasaran');
+        Route::post('/masukkanSasaranIku', 'IkuController@masukkanSasaran');
+        Route::get('/tambahIndikatorIku', 'IkuController@tambahIndikator');
+        Route::post('/masukkanIndikatorIku', 'IkuController@masukkanIndikator');
+        Route::resource('iku', 'IkuController');
     });
 });
 
