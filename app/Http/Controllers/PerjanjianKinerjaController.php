@@ -192,4 +192,15 @@ class PerjanjianKinerjaController extends Controller
             'data' => $perjanjianKinerjas
         ]);
     }
+
+    public function hapus(Request $request)
+    {
+        $perjanjianKinerja = PerjanjianKinerjaLayout::find($request->id);
+
+        $perjanjianKinerja->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+    }
 }
