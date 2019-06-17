@@ -154,7 +154,7 @@
         <div class="modal-content">
             <form class="form-horizontal form-edit">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data RENSTRA</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data IKU</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" class="form-control" id="edit-id">
@@ -217,7 +217,7 @@
         <div class="modal-content">
             <form class="form-horizontal form-indikator">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator RENSTRA</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator IKU</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" class="form-control" id="edit-id">

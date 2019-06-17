@@ -99,7 +99,7 @@
         <div class="modal-content">
             <form class="form-horizontal form-create">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data IKU</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Perjanjian Kinerja</h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -165,6 +165,81 @@
     </div>
 </div>
 
+<!-- Modal Edit -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal form-edit">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data Perjanjian Kinerja</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="edit-id">
+                    <div class="form-group">
+                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
+                        </div>
+                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="opd" class="col-sm-3 control-label">OPD</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
+                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran">
+                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
+                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="target-kinerja" class="col-sm-3 control-label">Target Kinerja</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="edit-target-kinerja" placeholder="Target Kinerja"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tw" class="col-sm-3 control-label">tw</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-tw" placeholder="tw">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="target" class="col-sm-3 control-label">Target</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-target" placeholder="Target">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="satuan" class="col-sm-3 control-label">Satuan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-satuan" placeholder="Satuan">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('script')
@@ -181,73 +256,7 @@
             var tahun_akhir = $('#tahun_akhir').val();
             var opd = $('#opd').children("option:selected").val();
 
-            $.ajax({
-                url: 'cariPerjanjianKinerja',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    tahun_awal: tahun_awal,
-                    tahun_akhir: tahun_akhir,
-                    opd: opd
-                },
-                success: function(response) {
-                    console.log(response);
-                    $.each(response.data, function(i, value){
-                        var tr = "<tr></tr>";
-                            tr += "<td>" + parseInt(i + 1) + "</td>";
-                            tr += "<td>" + value.deskripsi + "</td>";
-
-                        var indikator = '';
-                        
-                        $.each(value.data_layout, function(i, value_layout) {
-                            if(indikator == value_layout.indikator_id) {
-                                tr += "<td></td>";
-                            } else {
-                                tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
-                                tr += "<td>" + value_layout.target_kinerja + "</td>";
-                            }                          
-                            
-                            tr += "<td>" + value_layout.tw + "</td>";
-                            tr += "<td>" + value_layout.target + "</td>";
-                            tr += "<td>" + value_layout.satuan + "</td>";
-                            
-                            var isLastElement = i == value.data_layout.length -1;
-
-                            if (isLastElement) {
-                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
-                                            "</div>" +
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
-                                            "</div>" +
-                                        "</td>";
-                                tr +=   "</tr>";
-                                tr +=   "<tr id=\"trLast\">" +
-                                            "<td></td>" +
-                                            "<td></td>" +
-                                            "<td><button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
-                                            "<td colspan=\"6\"></td>" +
-                                        "</tr>";
-                            } else {
-                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
-                                            "</div>" +
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
-                                            "</div>" +
-                                        "</td>";
-                                tr +=   "</tr><td></td><td></td>";
-                            }
-
-                            indikator = value_layout.sasaran_id;
-                        });
-
-                        $('#tabeldata').append(tr);
-                    });
-                }
-            });
+            showData(tahun_awal, tahun_akhir, opd);
         });
 
         $('#showAfterPrint').hide();
@@ -284,13 +293,22 @@
 
         // showData();
 
-        function showData() {
+        function showData(data_tahun_awal, data_tahun_akhir, data_opd) {
+            var tahun_awal = data_tahun_awal;
+            var tahun_akhir = data_tahun_akhir;
+            var opd = data_opd;
+
             $.ajax({
-                url: 'getDataPerjanjianKinerja',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {      
-                    // console.log(response);              
+                url: 'cariPerjanjianKinerja',
+                type: 'POST',
+                data: {
+                    _token: CSRF_TOKEN,
+                    tahun_awal: tahun_awal,
+                    tahun_akhir: tahun_akhir,
+                    opd: opd
+                },
+                success: function(response) {
+                    // console.log(response);
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
@@ -404,7 +422,11 @@
                         target = $('#input-target').val("");
                         satuan = $('#input-satuan').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
@@ -416,7 +438,7 @@
             var id = $(this).data('id');
             
             $.ajax({
-                    url: '{{ URL::route('iku.edit', 'id') }}',
+                    url: '{{ URL::route('perjanjianKinerja.edit', 'id') }}',
                     type: 'GET',
                     data: {
                         _token: CSRF_TOKEN,
@@ -425,17 +447,19 @@
                     success: function(response) {
                         // console.log(response.renstra);
                         $('#modalEdit').modal();
-                        $('#edit-tahun-awal').val(response.iku.data_sasaran.data_iku.tahun_awal);
-                        $('#edit-id').val(response.iku.id);
-                        $('#edit-tahun-akhir').val(response.iku.data_sasaran.data_iku.tahun_akhir);
-                        $('#edit-opd-text').val(response.iku.data_sasaran.data_iku.data_opd.nama);
-                        $('#edit-opd-id').val(response.iku.data_sasaran.data_iku.opd_id);
-                        $('#edit-sasaran-text').val(response.iku.data_sasaran.deskripsi);
-                        $('#edit-sasaran-id').val(response.iku.sasaran_id);
-                        $('#edit-indikator-text').val(response.iku.data_indikator.deskripsi);
-                        $('#edit-indikator-id').val(response.iku.indikator_id);
-                        $('#edit-penjelasan').val(response.iku.penjelasan);
-                        $('#edit-penanggung-jawab').val(response.iku.penanggung_jawab);
+                        $('#edit-tahun-awal').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_awal);
+                        $('#edit-id').val(response.data.id);
+                        $('#edit-tahun-akhir').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_akhir);
+                        $('#edit-opd-text').val(response.data.data_sasaran.data_perjanjian_kinerja.data_opd.nama);
+                        $('#edit-opd-id').val(response.data.data_sasaran.data_perjanjian_kinerja.opd_id);
+                        $('#edit-sasaran-text').val(response.data.data_sasaran.deskripsi);
+                        $('#edit-sasaran-id').val(response.data.sasaran_id);
+                        $('#edit-indikator-text').val(response.data.data_indikator.deskripsi);
+                        $('#edit-indikator-id').val(response.data.indikator_id);
+                        $('#edit-target-kinerja').val(response.data.target_kinerja);
+                        $('#edit-tw').val(response.data.tw);
+                        $('#edit-target').val(response.data.target);
+                        $('#edit-satuan').val(response.data.satuan);
                     }
             });
         });
@@ -452,11 +476,13 @@
             var sasaran_id = $('#edit-sasaran-id').val();
             var indikator_text = $('#edit-indikator-text').val();
             var indikator_id = $('#edit-indikator-id').val();
-            var penjelasan = $('#edit-penjelasan').val();
-            var penanggung_jawab = $('#edit-penanggung-jawab').val();
+            var target_kinerja = $('#edit-target-kinerja').val();
+            var tw = $('#edit-tw').val();
+            var target = $('#edit-target').val();
+            var satuan = $('#edit-satuan').val();
 
             $.ajax({
-                url: '{{ URL::route('iku.update', 'id') }}',
+                url: '{{ URL::route('perjanjianKinerja.update', 'id') }}',
                 type: 'PUT',
                 data: {
                     _token: CSRF_TOKEN,
@@ -468,8 +494,10 @@
                     sasaran_id: sasaran_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
-                    penjelasan: penjelasan,
-                    penanggung_jawab: penanggung_jawab
+                    target_kinerja: target_kinerja,
+                    tw: tw,
+                    target: target,
+                    satuan: satuan
                 },
                 success: function(response) {
                     // console.log(response);
@@ -477,10 +505,16 @@
                         $('#modalEdit').modal('hide');
                         sasaran = $('#edit-sasaran').val("");
                         indikator = $('#edit-indikator').val("");
-                        penjelasan = $('#edit-penjelasan').val("");
-                        penanggung_jawab = $('#edit-penanggung-jawab').val("");
+                        target_kinerja = $('#edit-target-kinerja').val("");
+                        tw = $('#edit-tw').val("");
+                        target = $('#edit-target').val("");
+                        satuan = $('#edit-satuan').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });

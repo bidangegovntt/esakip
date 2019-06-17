@@ -103,9 +103,20 @@ class PerjanjianKinerjaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $perjanjianKinerjas = PerjanjianKinerjaLayout::with(
+            'data_sasaran',
+            'data_indikator',
+            'data_sasaran.data_perjanjian_kinerja',
+            'data_sasaran.data_perjanjian_kinerja.data_opd'
+        )
+        ->find($request->id);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan',
+            'data' => $perjanjianKinerjas
+        ]);
     }
 
     /**
@@ -117,7 +128,24 @@ class PerjanjianKinerjaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $perjanjian_kinerja_sasaran = PerjanjianKinerjaSasaran::find($request->sasaran_id);
+        $perjanjian_kinerja_sasaran->deskripsi = $request->sasaran_text;
+        $perjanjian_kinerja_sasaran->save();
+
+        $perjanjian_kinerja_indikator = PerjanjianKinerjaIndikator::find($request->indikator_id);
+        $perjanjian_kinerja_indikator->deskripsi = $request->indikator_text;
+        $perjanjian_kinerja_indikator->save();
+
+        $perjanjian_kinerja_layout = PerjanjianKinerjaLayout::find($request->id);
+        $perjanjian_kinerja_layout->target_kinerja = $request->target_kinerja;
+        $perjanjian_kinerja_layout->tw = $request->tw;
+        $perjanjian_kinerja_layout->target = $request->target;
+        $perjanjian_kinerja_layout->satuan = $request->satuan;
+        $perjanjian_kinerja_layout->save();
+
+        return response()->json([
+            'success' => 'data berhasil diperbaharui'
+        ]);
     }
 
     /**
