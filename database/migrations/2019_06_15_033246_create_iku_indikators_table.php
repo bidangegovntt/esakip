@@ -15,7 +15,7 @@ class CreateIkuIndikatorsTable extends Migration
     {
         Schema::create('iku_indikators', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->smallInteger('iku_sasaran_id')->nullable()->default(12);
+            $table->smallInteger('sasaran_id')->nullable()->default(12);
             $table->text('deskripsi')->nullable()->default('text');
             $table->timestamps();
             $table->softDeletes();

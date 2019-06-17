@@ -5,7 +5,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Manage RENSTRA
+        Manage IKU
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -41,9 +41,9 @@
                             <div class="col-sm-5">
                                 <select class="form-control" id="opd">
                                     <option value="">--Pilih OPD--</option>
-                                    {{-- @foreach ($opds as $opd)
+                                    @foreach ($opds as $opd)
                                         <option value="{{ $opd->id }}">{{ $opd->nama }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -70,15 +70,12 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead style="background-color: #428bca;" id="thead">
                             <tr>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">No</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Tujuan</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator Kinerja</th>
-                                <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="5">Target</th>
-                                <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2" id="action">Action</th>
-                            </tr>
-                            <tr id="head-target">
-                                
+                                <th style="color: #ffffff; text-align: center;">No</th>
+                                <th style="color: #ffffff; text-align: center;">Sasaran</th>
+                                <th style="color: #ffffff; text-align: center;">Indikator Kinerja</th>
+                                <th style="color: #ffffff; text-align: center;">Penjelasan</th>
+                                <th style="color: #ffffff; text-align: center;">Penanggung Jawab</th>
+                                <th style="color: #ffffff; text-align: center;" id="action">Action</th>
                             </tr>
                         </thead>
                         <tbody id="tabeldata">
@@ -91,13 +88,13 @@
     </div>
 </section>
 
-{{-- <!-- Modal Create -->
+<!-- Modal Create -->
 <div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <form class="form-horizontal form-create">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data RENSTRA</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data IKU</h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -118,12 +115,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="input-tujuan" placeholder="Tujuan">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-sasaran" placeholder="Sasaran">
@@ -135,8 +126,17 @@
                             <input type="text" class="form-control" id="input-indikator" placeholder="Indikator">
                         </div>
                     </div>
-                    <div id="input-target">
-                        
+                    <div class="form-group">
+                        <label for="penjelasan" class="col-sm-3 control-label">Penjelasan</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="input-penjelasan" placeholder="Penjelasan"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="penanggung-jawab" class="col-sm-3 control-label">Penanggug Jawab</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-penanggung-jawab" placeholder="Penanggung Jawab">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -148,7 +148,7 @@
     </div>
 </div>
 
-<!-- Modal Create -->
+<!-- Modal Edit -->
 <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -176,13 +176,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-tujuan-text" placeholder="Tujuan">
-                            <input type="hidden" class="form-control" id="edit-tujuan-id">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran">
@@ -196,69 +189,17 @@
                             <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
                         </div>
                     </div>
-                    <div id="edit-target">
-                        
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Tambah Sasaran -->
-<div class="modal fade" id="modalSasaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form class="form-horizontal form-sasaran">
-                <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Sasaran RENSTRA</h5>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" class="form-control" id="edit-id">
                     <div class="form-group">
-                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
-                        </div>
-                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="opd" class="col-sm-3 control-label">OPD</label>
+                        <label for="penjelasan" class="col-sm-3 control-label">Penjelasan</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
-                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
+                            <textarea class="form-control" id="edit-penjelasan" placeholder="Penjelasan"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
+                        <label for="penanggung-jawab" class="col-sm-3 control-label">Penanggug Jawab</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-tujuan-text" placeholder="Tujuan" disabled>
-                            <input type="hidden" class="form-control" id="edit-tujuan-id">
+                            <input type="text" class="form-control" id="edit-penanggung-jawab" placeholder="Penanggung Jawab">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran">
-                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
-                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
-                        </div>
-                    </div>
-                    <div id="edit-target">
-                        
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -298,13 +239,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-tujuan-text" placeholder="Tujuan" disabled>
-                            <input type="hidden" class="form-control" id="edit-tujuan-id">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran" disabled>
@@ -318,8 +252,17 @@
                             <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
                         </div>
                     </div>
-                    <div id="edit-target">
-                        
+                    <div class="form-group">
+                        <label for="penjelasan" class="col-sm-3 control-label">Penjelasan</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="edit-penjelasan" placeholder="Penjelasan"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="penanggung-jawab" class="col-sm-3 control-label">Penanggug Jawab</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-penanggung-jawab" placeholder="Penanggung Jawab">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -329,13 +272,13 @@
             </form>
         </div>
     </div>
-</div> --}}
+</div>
 
 @endsection
 
 @section('script')
 
-{{-- <script>
+<script>
     $(document).ready(function() {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
@@ -347,7 +290,7 @@
             var opd = $('#opd').children("option:selected").val();
 
             $.ajax({
-                url: 'cariRenstra',
+                url: 'cariIku',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
@@ -375,46 +318,15 @@
             $('table #action').hide();
             $('table #tdAction').hide();
             $('hr').hide();
-            $('#showAfterPrint').show();
             
             window.print();
 
-            // var tahun_awal = $('#tahun_awal').val();
-            // var tahun_akhir = $('#tahun_akhir').val();
-            // var opd = $('#opd').children("option:selected").val();
-
-            // window.location = "cetakRenstra/?tahun_awal=" + tahun_awal + "&tahun_akhir=" + tahun_akhir + "&opd=" + opd;
-
-            // var tahun_awal = $('#tahun_awal').val();
-            // var tahun_akhir = $('#tahun_akhir').val();
-            // var opd = $('#opd').children("option:selected").val();
-
-            // $.ajax({
-            //     url: 'cetakRenstra',
-            //     type: 'POST',
-            //     data: {
-            //         _token: CSRF_TOKEN,
-            //         tahun_awal: tahun_awal,
-            //         tahun_akhir: tahun_akhir,
-            //         opd: opd
-            //     }
-            // });
+            $('#showAfterPrint').show();
         });
 
         $('#tahun_awal').keyup(function() {
             $('#head-target').empty();
             $('#tahun_akhir').val(parseInt($('#tahun_awal').val()) + 4);
-            var tahun = $('#tahun_awal').val();
-
-            if(tahun == null) {
-                tahun = 1;
-            }
-            var head_target = [];
-            for(i = 0; i < 5; i++) {
-                var th = parseInt(tahun) + parseInt(i);
-                head_target +=   "<th style=\"color: #ffffff; text-align: center;\">" + th + "</th>";
-            }
-            $('#head-target').append(head_target);
         });
 
         $('.btn-tambah').on('click', function() {
@@ -425,38 +337,35 @@
             showData();
         });
 
-        showData();
+        // showData();
 
         function showData() {
             $.ajax({
-                url: 'getDataRenstra',
+                url: 'getDataIku',
                 type: 'GET',
                 dataType: 'json',
-                success: function(response) {                    
+                success: function(response) {      
+                    // console.log(response);              
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
                             tr += "<td>" + value.deskripsi + "</td>";
 
-                        var sasaran = '';
+                        var indikator = '';
                         
                         $.each(value.data_layout, function(i, value_layout) {
-                            // console.log(value_layout.id); 
-                            if(sasaran == value_layout.sasaran_id) {
+                            if(indikator == value_layout.indikator_id) {
                                 tr += "<td></td>";
                             } else {
-                                tr += "<td>" + value_layout.data_sasaran.deskripsi + "</td>";
+                                tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
                             }                          
                             
-                            tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                            tr += "<td>" + value_layout.penjelasan + "</td>";
+                            tr += "<td>" + value_layout.penanggung_jawab + "</td>";
                             
                             var isLastElement = i == value.data_layout.length -1;
 
-                            if (isLastElement) {                                
-                                for(a = 0; a < value_layout.data_target.length; a++) {
-                                    var b = value_layout.data_target[a];
-                                    tr += "<td>" + b.nilai + "</td>";
-                                }
+                            if (isLastElement) {
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
                                                 "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
@@ -469,15 +378,10 @@
                                 tr +=   "<tr id=\"trLast\">" +
                                             "<td></td>" +
                                             "<td></td>" +
-                                            "<td><button class=\"btn btn-success btn-sasaran\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
                                             "<td><button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
                                             "<td colspan=\"6\"></td>" +
                                         "</tr>";
                             } else {
-                                for(a = 0; a < value_layout.data_target.length; a++) {
-                                    var b = value_layout.data_target[a];
-                                    tr += "<td>" + b.nilai + "</td>";
-                                }
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
                                                 "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
@@ -489,7 +393,7 @@
                                 tr +=   "</tr><td></td><td></td>";
                             }
 
-                            sasaran = value_layout.sasaran_id;
+                            indikator = value_layout.sasaran_id;
                         });
 
                         $('#tabeldata').append(tr);
@@ -512,21 +416,6 @@
             $('#input-tahun-akhir').val(tahun_akhir);
             $('#input-opd-text').val(opd_text);
             $('#input-opd-id').val(opd_id);
-
-            $('#input-target').append().empty();
-
-            var form_target_index = parseInt($('#tahun_akhir').val()) - parseInt($('#tahun_awal').val());
-            // console.log(form_target_index);
-            for(i = 0; i <= form_target_index; i++) {
-                var label = parseInt(tahun_awal) + parseInt(i);
-                $('#input-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
-                                                "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
-                                                "<div class=\"col-sm-9\">" +
-                                                    "<input type=\"number\" class=\"form-control\" id=\"input-target-" + i + "\" name=\"\" placeholder=0>" +
-                                                    "<input type=\"hidden\" class=\"form-control\" id=\"input-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
-                                                "</div>" +
-                                            "</div>");
-            }            
         });
 
         // simpan data renstra
@@ -535,43 +424,32 @@
             var tahun_awal = $('#input-tahun-awal').val();
             var tahun_akhir = $('#input-tahun-akhir').val();
             var opd_id = $('#input-opd-id').val();
-            var tujuan = $('#input-tujuan').val();
             var sasaran = $('#input-sasaran').val();
             var indikator = $('#input-indikator').val();
-            var target = [];
-
-            for(i = 0; i < 5; i++) {
-                var nilai = $("#input-target-" + i).val();
-                var tahun = $("#input-target-tahun-" + i).val();
-                // console.log(text);
-                target.push({
-                    tahun: tahun,
-                    nilai: nilai
-                });
-            }
-
-            // console.log(target);
+            var penjelasan = $('#input-penjelasan').val();
+            var penanggung_jawab = $('#input-penanggung-jawab').val();
             
             $.ajax({
-                url: 'renstra',
+                url: 'iku',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
                     tahun_awal: tahun_awal,
                     tahun_akhir: tahun_akhir,
                     opd_id: opd_id,
-                    tujuan: tujuan,
                     sasaran: sasaran,
                     indikator: indikator,
-                    target: target
+                    penjelasan: penjelasan,
+                    penanggung_jawab: penanggung_jawab
                 },
                 success: function(response) {
                     // console.log(response);
                     if(response.success) {
                         $('#modalCreate').modal('hide');
-                        tujuan = $('#input-tujuan').val("");
                         sasaran = $('#input-sasaran').val("");
                         indikator = $('#input-indikator').val("");
+                        penjelasan = $('#input-penjelasan').val("");
+                        penanggung_jawab = $('#input-penanggung-jawab').val("");
                     }
                     showData();
                 }
@@ -580,13 +458,12 @@
 
         // Edit Data
         $("#tabeldata").on('click', '.btn-edit', function() {
-            $('#edit-target').empty();
             $('#tabeldata').empty();
 
             var id = $(this).data('id');
             
             $.ajax({
-                    url: '{{ URL::route('renstra.edit', 'id') }}',
+                    url: '{{ URL::route('iku.edit', 'id') }}',
                     type: 'GET',
                     data: {
                         _token: CSRF_TOKEN,
@@ -595,29 +472,17 @@
                     success: function(response) {
                         // console.log(response.renstra);
                         $('#modalEdit').modal();
-                        $('#edit-tahun-awal').val(response.renstra.data_tujuan.data_renstra.tahun_awal);
-                        $('#edit-id').val(response.renstra.id);
-                        $('#edit-tahun-akhir').val(response.renstra.data_tujuan.data_renstra.tahun_akhir);
-                        $('#edit-opd-text').val(response.renstra.data_tujuan.data_renstra.data_opd.nama);
-                        $('#edit-opd-id').val(response.renstra.data_tujuan.data_renstra.opd_id);
-                        $('#edit-tujuan-text').val(response.renstra.data_tujuan.deskripsi);
-                        $('#edit-tujuan-id').val(response.renstra.tujuan_id);
-                        $('#edit-sasaran-text').val(response.renstra.data_sasaran.deskripsi);
-                        $('#edit-sasaran-id').val(response.renstra.sasaran_id);
-                        $('#edit-indikator-text').val(response.renstra.data_indikator.deskripsi);
-                        $('#edit-indikator-id').val(response.renstra.indikator_id);
-
-                        for(i = 0; i < response.renstra.data_indikator.data_renstra_target.length; i++) {
-                            // console.log(i);
-                            var label = parseInt(response.renstra.data_tujuan.data_renstra.tahun_awal) + parseInt(i);
-                            $('#edit-target').append(   "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
-                                                            "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
-                                                            "<div class=\"col-sm-9\">" +
-                                                                "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" value=\"" + response.renstra.data_indikator.data_renstra_target[i].nilai + "\" placeholder=0>" +
-                                                                "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
-                                                            "</div>" +
-                                                        "</div>");
-                        }
+                        $('#edit-tahun-awal').val(response.iku.data_sasaran.data_iku.tahun_awal);
+                        $('#edit-id').val(response.iku.id);
+                        $('#edit-tahun-akhir').val(response.iku.data_sasaran.data_iku.tahun_akhir);
+                        $('#edit-opd-text').val(response.iku.data_sasaran.data_iku.data_opd.nama);
+                        $('#edit-opd-id').val(response.iku.data_sasaran.data_iku.opd_id);
+                        $('#edit-sasaran-text').val(response.iku.data_sasaran.deskripsi);
+                        $('#edit-sasaran-id').val(response.iku.sasaran_id);
+                        $('#edit-indikator-text').val(response.iku.data_indikator.deskripsi);
+                        $('#edit-indikator-id').val(response.iku.indikator_id);
+                        $('#edit-penjelasan').val(response.iku.penjelasan);
+                        $('#edit-penanggung-jawab').val(response.iku.penanggung_jawab);
                     }
             });
         });
@@ -630,47 +495,37 @@
             var tahun_awal = $('#edit-tahun-awal').val();
             var tahun_akhir = $('#edit-tahun-akhir').val();
             var opd_id = $('#edit-opd-id').val();
-            var tujuan_text = $('#edit-tujuan-text').val();
-            var tujuan_id = $('#edit-tujuan-id').val();
             var sasaran_text = $('#edit-sasaran-text').val();
             var sasaran_id = $('#edit-sasaran-id').val();
             var indikator_text = $('#edit-indikator-text').val();
             var indikator_id = $('#edit-indikator-id').val();
-            var target = [];
-
-            for(i = 0; i < 5; i++) {
-                var nilai = $("#edit-target-" + i).val();
-                var tahun = $("#edit-target-tahun-" + i).val();
-                // console.log(text);
-                target.push({
-                    tahun: tahun,
-                    nilai: nilai
-                });
-            }
+            var penjelasan = $('#edit-penjelasan').val();
+            var penanggung_jawab = $('#edit-penanggung-jawab').val();
 
             $.ajax({
-                url: '{{ URL::route('renstra.update', 'id') }}',
+                url: '{{ URL::route('iku.update', 'id') }}',
                 type: 'PUT',
                 data: {
                     _token: CSRF_TOKEN,
+                    id: id,
                     tahun_awal: tahun_awal,
                     tahun_akhir: tahun_akhir,
                     opd_id: opd_id,
-                    tujuan_text: tujuan_text,
-                    tujuan_id: tujuan_id,
                     sasaran_text: sasaran_text,
                     sasaran_id: sasaran_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
-                    target: target
+                    penjelasan: penjelasan,
+                    penanggung_jawab: penanggung_jawab
                 },
                 success: function(response) {
                     // console.log(response);
                     if(response.success) {
                         $('#modalEdit').modal('hide');
-                        tujuan = $('#input-tujuan').val("");
-                        sasaran = $('#input-sasaran').val("");
-                        indikator = $('#input-indikator').val("");
+                        sasaran = $('#edit-sasaran').val("");
+                        indikator = $('#edit-indikator').val("");
+                        penjelasan = $('#edit-penjelasan').val("");
+                        penanggung_jawab = $('#edit-penanggung-jawab').val("");
                     }
                     showData();
                 }
@@ -684,7 +539,7 @@
             var id = $(this).data('id');
             if (confirm("Yakin akan menghapus?")) {
                 $.ajax({
-                    url: 'hapusRenstra',
+                    url: 'hapusIku',
                     type: 'POST',
                     data: {
                         _token: CSRF_TOKEN,
@@ -699,103 +554,14 @@
             }            
         });
 
-        // tambah sasaran
-        $('#tabeldata').on('click', '.btn-sasaran', function() {
-            $('#modalSasaran #edit-target').empty();
-            $('#tabeldata').empty();
-
-            var id = $(this).data('id');
-
-            $.ajax({
-                url: 'tambahSasaranRenstra',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id:id
-                },
-                success: function(response) {
-                    // console.log(response.data.data_tujuan.data_renstra.data_opd.nama);
-                    $('#modalSasaran').modal();
-                    $('#modalSasaran #edit-tahun-awal').val(response.data.data_tujuan.data_renstra.tahun_awal);
-                    $('#modalSasaran #edit-tahun-akhir').val(response.data.data_tujuan.data_renstra.tahun_akhir);
-                    $('#modalSasaran #edit-opd-text').val(response.data.data_tujuan.data_renstra.data_opd.nama);
-                    $('#modalSasaran #edit-tujuan-text').val(response.data.data_tujuan.deskripsi);
-                    $('#modalSasaran #edit-tujuan-id').val(response.data.data_tujuan.id);
-
-                    var form_target_index = parseInt($('#modalSasaran #edit-tahun-akhir').val()) - parseInt($('#modalSasaran #edit-tahun-awal').val());
-                    console.log(form_target_index);
-                    for(i = 0; i <= form_target_index; i++) {
-                        var label = parseInt($('#modalSasaran #edit-tahun-awal').val()) + parseInt(i);
-                        $('#modalSasaran #edit-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
-                                                                    "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
-                                                                    "<div class=\"col-sm-9\">" +
-                                                                        "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" placeholder=0>" +
-                                                                        "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
-                                                                    "</div>" +
-                                                                "</div>");
-                    }
-                }
-            });
-        });
-
-        // simpan data sasaran
-        $('.form-sasaran').on('submit', function(e) {
-            e.preventDefault();
-
-            var id = $('#modalSasaran #edit-id').val();
-            var tujuan_text = $('#modalSasaran #edit-tujuan-text').val();
-            var tujuan_id = $('#modalSasaran #edit-tujuan-id').val();
-            var sasaran_text = $('#modalSasaran #edit-sasaran-text').val();
-            var sasaran_id = $('#modalSasaran #edit-sasaran-id').val();
-            var indikator_text = $('#modalSasaran #edit-indikator-text').val();
-            var indikator_id = $('#modalSasaran #edit-indikator-id').val();
-            var target = [];
-
-            for(i = 0; i < 5; i++) {
-                var nilai = $("#modalSasaran #edit-target-" + i).val();
-                var tahun = $("#modalSasaran #edit-target-tahun-" + i).val();
-                // console.log(text);
-                target.push({
-                    tahun: tahun,
-                    nilai: nilai
-                });
-            }
-
-            $.ajax({
-                url: 'masukkanSasaranRenstra',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    tujuan_text: tujuan_text,
-                    tujuan_id: tujuan_id,
-                    sasaran_text: sasaran_text,
-                    sasaran_id: sasaran_id,
-                    indikator_text: indikator_text,
-                    indikator_id: indikator_id,
-                    target: target
-                },
-                success: function(response) {
-                    console.log(response);
-                    if(response.success) {
-                        $('#modalSasaran').modal('hide');
-                        tujuan = $('#modalSasaran #edit-tujuan-text').val("");
-                        sasaran = $('#modalSasaran #edit-sasaran-text').val("");
-                        indikator = $('#modalSasaran #edit-indikator-text').val("");
-                    }
-                    showData();
-                }
-            });
-        });
-
         // tambah indikator
         $('#tabeldata').on('click', '.btn-indikator', function() {
-            $('#modalIndikator #edit-target').empty();
             $('#tabeldata').empty();
 
             var id = $(this).data('id');
 
             $.ajax({
-                url: 'tambahIndikatorRenstra',
+                url: 'tambahIndikatorIku',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -804,26 +570,11 @@
                 success: function(response) {
                     // console.log(response.data.data_tujuan.data_renstra.data_opd.nama);
                     $('#modalIndikator').modal();
-                    $('#modalIndikator #edit-tahun-awal').val(response.data.data_tujuan.data_renstra.tahun_awal);
-                    $('#modalIndikator #edit-tahun-akhir').val(response.data.data_tujuan.data_renstra.tahun_akhir);
-                    $('#modalIndikator #edit-opd-text').val(response.data.data_tujuan.data_renstra.data_opd.nama);
-                    $('#modalIndikator #edit-tujuan-text').val(response.data.data_tujuan.deskripsi);
-                    $('#modalIndikator #edit-tujuan-id').val(response.data.data_tujuan.id);
+                    $('#modalIndikator #edit-tahun-awal').val(response.data.data_sasaran.data_iku.tahun_awal);
+                    $('#modalIndikator #edit-tahun-akhir').val(response.data.data_sasaran.data_iku.tahun_akhir);
+                    $('#modalIndikator #edit-opd-text').val(response.data.data_sasaran.data_iku.data_opd.nama);
                     $('#modalIndikator #edit-sasaran-text').val(response.data.data_sasaran.deskripsi);
                     $('#modalIndikator #edit-sasaran-id').val(response.data.data_sasaran.id);
-
-                    var form_target_index = parseInt($('#modalIndikator #edit-tahun-akhir').val()) - parseInt($('#modalIndikator #edit-tahun-awal').val());
-                    console.log(form_target_index);
-                    for(i = 0; i <= form_target_index; i++) {
-                        var label = parseInt($('#modalIndikator #edit-tahun-awal').val()) + parseInt(i);
-                        $('#modalIndikator #edit-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
-                                                                    "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
-                                                                    "<div class=\"col-sm-9\">" +
-                                                                        "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" placeholder=0>" +
-                                                                        "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
-                                                                    "</div>" +
-                                                                "</div>");
-                    }
                 }
             });
         });
@@ -833,36 +584,24 @@
             e.preventDefault();
 
             var id = $('#modalIndikator #edit-id').val();
-            var tujuan_text = $('#modalIndikator #edit-tujuan-text').val();
-            var tujuan_id = $('#modalIndikator #edit-tujuan-id').val();
             var sasaran_text = $('#modalIndikator #edit-sasaran-text').val();
             var sasaran_id = $('#modalIndikator #edit-sasaran-id').val();
             var indikator_text = $('#modalIndikator #edit-indikator-text').val();
             var indikator_id = $('#modalIndikator #edit-indikator-id').val();
-            var target = [];
-
-            for(i = 0; i < 5; i++) {
-                var nilai = $("#modalIndikator #edit-target-" + i).val();
-                var tahun = $("#modalIndikator #edit-target-tahun-" + i).val();
-                // console.log(text);
-                target.push({
-                    tahun: tahun,
-                    nilai: nilai
-                });
-            }
-
+            var penjelasan = $('#modalIndikator #edit-penjelasan').val();
+            var penanggung_jawab = $('#modalIndikator #edit-penanggung-jawab').val();
+            
             $.ajax({
-                url: 'masukkanIndikatorRenstra',
+                url: 'masukkanIndikatorIku',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
-                    tujuan_text: tujuan_text,
-                    tujuan_id: tujuan_id,
                     sasaran_text: sasaran_text,
                     sasaran_id: sasaran_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
-                    target: target
+                    penjelasan: penjelasan,
+                    penanggung_jawab: penanggung_jawab
                 },
                 success: function(response) {
                     console.log(response);
@@ -871,12 +610,14 @@
                         tujuan = $('#modalIndikator #edit-tujuan-text').val("");
                         sasaran = $('#modalIndikator #edit-sasaran-text').val("");
                         indikator = $('#modalIndikator #edit-indikator-text').val("");
+                        penjelasan = $('#modalIndikator #edit-penjelasan').val("");
+                        penanggung_jawab = $('#modalIndikator #edit-penanggung-jawab').val("");
                     }
                     showData();
                 }
             });
         });
     });
-</script> --}}
+</script>
 
 @endsection
