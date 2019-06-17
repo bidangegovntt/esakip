@@ -5,11 +5,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Manage IKU
+        Manage Perjanjian Kinerja
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">IKU</a></li>
+        <li><a href="#">Perjanjian Kinerja</a></li>
     </ol>
 </section>
 
@@ -70,12 +70,17 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead style="background-color: #428bca;" id="thead">
                             <tr>
-                                <th style="color: #ffffff; text-align: center;">No</th>
-                                <th style="color: #ffffff; text-align: center;">Sasaran</th>
-                                <th style="color: #ffffff; text-align: center;">Indikator Kinerja</th>
-                                <th style="color: #ffffff; text-align: center;">Penjelasan</th>
-                                <th style="color: #ffffff; text-align: center;">Penanggung Jawab</th>
-                                <th style="color: #ffffff; text-align: center;" id="action">Action</th>
+                                <th style="color: #ffffff; text-align: center;" rowspan="2">No</th>
+                                <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
+                                <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator</th>
+                                <th style="color: #ffffff; text-align: center;" rowspan="2">Target Kinerja</th>
+                                <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="3">Target</th>
+                                <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2" id="action">Action</th>
+                            </tr>
+                            <tr id="head-target">
+                                <th style="color: #ffffff; text-align: center;">Tw</th>
+                                <th style="color: #ffffff; text-align: center;">Target</th>
+                                <th style="color: #ffffff; text-align: center;">Satuan</th>
                             </tr>
                         </thead>
                         <tbody id="tabeldata">
@@ -127,141 +132,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="penjelasan" class="col-sm-3 control-label">Penjelasan</label>
+                        <label for="target-kinerja" class="col-sm-3 control-label">Target Kinerja</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="input-penjelasan" placeholder="Penjelasan"></textarea>
+                            <input type="text" class="form-control" id="input-target-kinerja" placeholder="Target Kinerja">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="penanggung-jawab" class="col-sm-3 control-label">Penanggug Jawab</label>
+                        <label for="tw" class="col-sm-3 control-label">Tw</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="input-penanggung-jawab" placeholder="Penanggung Jawab">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Edit -->
-<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form class="form-horizontal form-edit">
-                <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data RENSTRA</h5>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" class="form-control" id="edit-id">
-                    <div class="form-group">
-                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
-                        </div>
-                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
+                            <input type="text" class="form-control" id="input-tw" placeholder="Tw">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="opd" class="col-sm-3 control-label">OPD</label>
+                        <label for="target" class="col-sm-3 control-label">Target</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
-                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
+                            <input type="text" class="form-control" id="input-target" placeholder="Target">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <label for="satuan" class="col-sm-3 control-label">Satuan</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran">
-                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
-                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="penjelasan" class="col-sm-3 control-label">Penjelasan</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" id="edit-penjelasan" placeholder="Penjelasan"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="penanggung-jawab" class="col-sm-3 control-label">Penanggug Jawab</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-penanggung-jawab" placeholder="Penanggung Jawab">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Tambah Indikator -->
-<div class="modal fade" id="modalIndikator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <form class="form-horizontal form-indikator">
-                <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator RENSTRA</h5>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" class="form-control" id="edit-id">
-                    <div class="form-group">
-                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
-                        </div>
-                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
-                        <div class="col-sm-3">
-                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="opd" class="col-sm-3 control-label">OPD</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
-                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran" disabled>
-                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
-                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="penjelasan" class="col-sm-3 control-label">Penjelasan</label>
-                        <div class="col-sm-9">
-                            <textarea class="form-control" id="edit-penjelasan" placeholder="Penjelasan"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="penanggung-jawab" class="col-sm-3 control-label">Penanggug Jawab</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-penanggung-jawab" placeholder="Penanggung Jawab">
+                            <input type="text" class="form-control" id="input-satuan" placeholder="Satuan">
                         </div>
                     </div>
                 </div>
@@ -284,13 +175,14 @@
 
         $('.btn-cari').on('click', function(e) {
             e.preventDefault();
+            $('#tabeldata').empty();
 
             var tahun_awal = $('#tahun_awal').val();
             var tahun_akhir = $('#tahun_akhir').val();
             var opd = $('#opd').children("option:selected").val();
 
             $.ajax({
-                url: 'cariIku',
+                url: 'cariPerjanjianKinerja',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
@@ -299,7 +191,61 @@
                     opd: opd
                 },
                 success: function(response) {
-                    showData();
+                    console.log(response);
+                    $.each(response.data, function(i, value){
+                        var tr = "<tr></tr>";
+                            tr += "<td>" + parseInt(i + 1) + "</td>";
+                            tr += "<td>" + value.deskripsi + "</td>";
+
+                        var indikator = '';
+                        
+                        $.each(value.data_layout, function(i, value_layout) {
+                            if(indikator == value_layout.indikator_id) {
+                                tr += "<td></td>";
+                            } else {
+                                tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                                tr += "<td>" + value_layout.target_kinerja + "</td>";
+                            }                          
+                            
+                            tr += "<td>" + value_layout.tw + "</td>";
+                            tr += "<td>" + value_layout.target + "</td>";
+                            tr += "<td>" + value_layout.satuan + "</td>";
+                            
+                            var isLastElement = i == value.data_layout.length -1;
+
+                            if (isLastElement) {
+                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
+                                            "</div>" +
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
+                                            "</div>" +
+                                        "</td>";
+                                tr +=   "</tr>";
+                                tr +=   "<tr id=\"trLast\">" +
+                                            "<td></td>" +
+                                            "<td></td>" +
+                                            "<td><button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
+                                            "<td colspan=\"6\"></td>" +
+                                        "</tr>";
+                            } else {
+                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
+                                            "</div>" +
+                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
+                                            "</div>" +
+                                        "</td>";
+                                tr +=   "</tr><td></td><td></td>";
+                            }
+
+                            indikator = value_layout.sasaran_id;
+                        });
+
+                        $('#tabeldata').append(tr);
+                    });
                 }
             });
         });
@@ -340,7 +286,7 @@
 
         function showData() {
             $.ajax({
-                url: 'getDataIku',
+                url: 'getDataPerjanjianKinerja',
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {      
@@ -357,10 +303,12 @@
                                 tr += "<td></td>";
                             } else {
                                 tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                                tr += "<td>" + value_layout.target_kinerja + "</td>";
                             }                          
                             
-                            tr += "<td>" + value_layout.penjelasan + "</td>";
-                            tr += "<td>" + value_layout.penanggung_jawab + "</td>";
+                            tr += "<td>" + value_layout.tw + "</td>";
+                            tr += "<td>" + value_layout.target + "</td>";
+                            tr += "<td>" + value_layout.satuan + "</td>";
                             
                             var isLastElement = i == value.data_layout.length -1;
 
@@ -425,11 +373,13 @@
             var opd_id = $('#input-opd-id').val();
             var sasaran = $('#input-sasaran').val();
             var indikator = $('#input-indikator').val();
-            var penjelasan = $('#input-penjelasan').val();
-            var penanggung_jawab = $('#input-penanggung-jawab').val();
+            var target_kinerja = $('#input-target-kinerja').val();
+            var tw = $('#input-tw').val();
+            var target = $('#input-target').val();
+            var satuan = $('#input-satuan').val();
             
             $.ajax({
-                url: 'iku',
+                url: 'perjanjianKinerja',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
@@ -438,8 +388,10 @@
                     opd_id: opd_id,
                     sasaran: sasaran,
                     indikator: indikator,
-                    penjelasan: penjelasan,
-                    penanggung_jawab: penanggung_jawab
+                    target_kinerja: target_kinerja,
+                    tw: tw,
+                    target: target,
+                    satuan: satuan
                 },
                 success: function(response) {
                     // console.log(response);
@@ -447,8 +399,10 @@
                         $('#modalCreate').modal('hide');
                         sasaran = $('#input-sasaran').val("");
                         indikator = $('#input-indikator').val("");
-                        penjelasan = $('#input-penjelasan').val("");
-                        penanggung_jawab = $('#input-penanggung-jawab').val("");
+                        target_kinerja = $('#input-target-kinerja').val("");
+                        tw = $('#input-tw').val("");
+                        target = $('#input-target').val("");
+                        satuan = $('#input-satuan').val("");
                     }
                     showData();
                 }

@@ -43,20 +43,18 @@ class IkuController extends Controller
     {
         $ikuData = Iku::first();
         
-        if($ikuData == []) {
-            $iku = Iku::create([
-                "tahun_awal" => $request->tahun_awal,
-                "tahun_akhir" => $request->tahun_akhir,
-                "opd_id" => $request->opd_id
-            ]); 
-        } else {
-            
+        if($ikuData != [] && $ikuData->opd_id == $request->opd_id) {
             $iku = Iku::where([
                 'tahun_awal' => $request->tahun_awal,
                 'opd_id' => $request->opd_id, 
             ])
             ->first();
-            
+        } else {
+            $iku = Iku::create([
+                "tahun_awal" => $request->tahun_awal,
+                "tahun_akhir" => $request->tahun_akhir,
+                "opd_id" => $request->opd_id
+            ]);            
         }
 
         // iku sasaran
