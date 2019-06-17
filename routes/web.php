@@ -84,8 +84,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/cariPerjanjianKinerja', 'PerjanjianKinerjaController@cari');
         Route::get('/getDataPerjanjianKinerja', 'PerjanjianKinerjaController@getDataPerjanjianKinerja');
         Route::post('/hapusPerjanjianKinerja', 'PerjanjianKinerjaController@hapus');
-        Route::get('/tambahSasaranPerjanjianKinerja', 'PerjanjianKinerjaController@tambahSasaran');
-        Route::post('/masukkanSasaranPerjanjianKinerja', 'PerjanjianKinerjaController@masukkanSasaran');
         Route::get('/tambahIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@tambahIndikator');
         Route::post('/masukkanIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@masukkanIndikator');
         Route::resource('perjanjianKinerja', 'PerjanjianKinerjaController');

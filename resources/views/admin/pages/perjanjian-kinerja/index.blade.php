@@ -240,6 +240,81 @@
     </div>
 </div>
 
+<!-- Modal Tambah Indikator -->
+<div class="modal fade" id="modalIndikator" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-horizontal form-indikator">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator IKU</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="edit-id">
+                    <div class="form-group">
+                        <label for="tahun_awal" class="col-sm-3 control-label">Tahun Awal</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-awal" placeholder="Tahun Awal" disabled>
+                        </div>
+                        <label for="tahun_akhir" class="col-sm-3 control-label">Tahun Akhir</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="edit-tahun-akhir" placeholder="Tahun Akhir" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="opd" class="col-sm-3 control-label">OPD</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-opd-text" placeholder="OPD" disabled>
+                            <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran" disabled>
+                            <input type="hidden" class="form-control" id="edit-sasaran-id" placeholder="Sasaran">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
+                            <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="target-kinerja" class="col-sm-3 control-label">Target Kinerja</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="edit-target-kinerja" placeholder="Target Kinerja"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tw" class="col-sm-3 control-label">tw</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-tw" placeholder="tw">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="target" class="col-sm-3 control-label">Target</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-target" placeholder="Target">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="satuan" class="col-sm-3 control-label">Satuan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-satuan" placeholder="Satuan">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('script')
@@ -556,7 +631,7 @@
             var id = $(this).data('id');
 
             $.ajax({
-                url: 'tambahIndikatorIku',
+                url: 'tambahIndikatorPerjanjianKinerja',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -565,9 +640,9 @@
                 success: function(response) {
                     // console.log(response.data.data_tujuan.data_renstra.data_opd.nama);
                     $('#modalIndikator').modal();
-                    $('#modalIndikator #edit-tahun-awal').val(response.data.data_sasaran.data_iku.tahun_awal);
-                    $('#modalIndikator #edit-tahun-akhir').val(response.data.data_sasaran.data_iku.tahun_akhir);
-                    $('#modalIndikator #edit-opd-text').val(response.data.data_sasaran.data_iku.data_opd.nama);
+                    $('#modalIndikator #edit-tahun-awal').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_awal);
+                    $('#modalIndikator #edit-tahun-akhir').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_akhir);
+                    $('#modalIndikator #edit-opd-text').val(response.data.data_sasaran.data_perjanjian_kinerja.data_opd.nama);
                     $('#modalIndikator #edit-sasaran-text').val(response.data.data_sasaran.deskripsi);
                     $('#modalIndikator #edit-sasaran-id').val(response.data.data_sasaran.id);
                 }
@@ -583,11 +658,13 @@
             var sasaran_id = $('#modalIndikator #edit-sasaran-id').val();
             var indikator_text = $('#modalIndikator #edit-indikator-text').val();
             var indikator_id = $('#modalIndikator #edit-indikator-id').val();
-            var penjelasan = $('#modalIndikator #edit-penjelasan').val();
-            var penanggung_jawab = $('#modalIndikator #edit-penanggung-jawab').val();
+            var target_kinerja = $('#modalIndikator #edit-target-kinerja').val();
+            var tw = $('#modalIndikator #edit-tw').val();
+            var target = $('#modalIndikator #edit-target').val();
+            var satuan = $('#modalIndikator #edit-satuan').val();
             
             $.ajax({
-                url: 'masukkanIndikatorIku',
+                url: 'masukkanIndikatorPerjanjianKinerja',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
@@ -595,8 +672,10 @@
                     sasaran_id: sasaran_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
-                    penjelasan: penjelasan,
-                    penanggung_jawab: penanggung_jawab
+                    target_kinerja: target_kinerja,
+                    tw: tw,
+                    target: target,
+                    satuan: satuan
                 },
                 success: function(response) {
                     console.log(response);
@@ -605,10 +684,16 @@
                         tujuan = $('#modalIndikator #edit-tujuan-text').val("");
                         sasaran = $('#modalIndikator #edit-sasaran-text').val("");
                         indikator = $('#modalIndikator #edit-indikator-text').val("");
-                        penjelasan = $('#modalIndikator #edit-penjelasan').val("");
-                        penanggung_jawab = $('#modalIndikator #edit-penanggung-jawab').val("");
+                        target_kinerja = $('#modalIndikator #edit-target-kinerja').val("");
+                        tw = $('#modalIndikator #edit-tw').val("");
+                        target = $('#modalIndikator #edit-target').val("");
+                        satuan = $('#modalIndikator #edit-satuan').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });

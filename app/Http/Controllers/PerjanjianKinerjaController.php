@@ -203,4 +203,43 @@ class PerjanjianKinerjaController extends Controller
             'success' => 'Record deleted successfully!'
         ]);
     }
+
+    public function tambahIndikator(Request $request)
+    {
+        $perjanjian_kinerja = PerjanjianKinerjaLayout::with(
+            'data_sasaran.data_perjanjian_kinerja', 
+            'data_sasaran.data_perjanjian_kinerja.data_opd',
+            'data_sasaran'
+        )
+        ->where('id', $request->id)
+        ->first();  
+        
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $perjanjian_kinerja
+        ]);
+    }
+
+    public function masukkanIndikator(Request $request)
+    {
+        // perjanjian_kinerja indikator
+        $perjanjian_kinerja_indikator = PerjanjianKinerjaIndikator::create([
+            "sasaran_id" => $request->sasaran_id,
+            "deskripsi" => $request->indikator_text
+        ]);
+
+        // perjanjian_kinerja layout
+        $perjanjian_kinerja_layout = PerjanjianKinerjaLayout::create([
+            "sasaran_id" => $request->sasaran_id,
+            "indikator_id" => $perjanjian_kinerja_indikator->id,
+            "target_kinerja" => $request->target_kinerja,
+            "tw" => $request->tw,
+            "target" => $request->target,
+            "satuan" => $request->satuan
+        ]);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
+    }
 }
