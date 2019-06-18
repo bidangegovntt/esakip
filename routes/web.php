@@ -87,6 +87,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/tambahIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@tambahIndikator');
         Route::post('/masukkanIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@masukkanIndikator');
         Route::resource('perjanjianKinerja', 'PerjanjianKinerjaController');
+
+        Route::post('/cariPk3', 'Pk3Controller@cari');
+        Route::get('/getDataPk3', 'Pk3Controller@getDataPk3');
+        Route::post('/hapusPk3', 'Pk3Controller@hapus');
+        Route::get('/tambahIndikatorPk3', 'Pk3Controller@tambahIndikator');
+        Route::post('/masukkanIndikatorPk3', 'Pk3Controller@masukkanIndikator');
+        Route::resource('pk3', 'Pk3Controller');
     });
 });
 

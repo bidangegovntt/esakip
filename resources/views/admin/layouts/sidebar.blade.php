@@ -70,7 +70,7 @@
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Rencana Program dan Kegiatan </a></li>
                 <li class="{{ set_active(['input/perjanjianKinerja', 'input/perjanjianKinerja/*']) }}"><a href="{{ url('input/perjanjianKinerja') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Realisasi Kinerja </a></li>
-                <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Perjanjian Kinerja Eselon III </a></li>
+                <li class="{{ set_active(['input/pk3', 'input/pk3/*']) }}"><a href="{{ url('input/pk3') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja Eselon III </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Perjanjian Kinerja Eselon IV </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Perencanaan Anggaran </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Realisasi Anggaran </a></li>
