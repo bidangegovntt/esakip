@@ -360,7 +360,7 @@
                     bidang: bidang
                 },
                 success: function(response) {
-                    console.log(response);
+                    // console.log(response);
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
@@ -486,7 +486,7 @@
             var id = $(this).data('id');
             
             $.ajax({
-                    url: '{{ URL::route('perjanjianKinerja.edit', 'id') }}',
+                    url: '{{ URL::route('pk3.edit', 'id') }}',
                     type: 'GET',
                     data: {
                         _token: CSRF_TOKEN,
@@ -495,74 +495,72 @@
                     success: function(response) {
                         // console.log(response.renstra);
                         $('#modalEdit').modal();
-                        $('#edit-tahun-awal').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_awal);
+                        $('#edit-tahun-awal').val(response.data.data_program.data_pk3.tahun);
                         $('#edit-id').val(response.data.id);
-                        $('#edit-tahun-akhir').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_akhir);
-                        $('#edit-opd-text').val(response.data.data_sasaran.data_perjanjian_kinerja.data_opd.nama);
-                        $('#edit-opd-id').val(response.data.data_sasaran.data_perjanjian_kinerja.opd_id);
-                        $('#edit-sasaran-text').val(response.data.data_sasaran.deskripsi);
-                        $('#edit-sasaran-id').val(response.data.sasaran_id);
+                        $('#edit-opd-text').val(response.data.data_program.data_pk3.data_opd.nama);
+                        $('#edit-opd-id').val(response.data.data_program.data_pk3.opd_id);
+                        $('#edit-bidang-text').val(response.data.data_program.data_pk3.data_bidang.nama);
+                        $('#edit-bidang-id').val(response.data.data_program.data_pk3.bidang_id);
+                        $('#edit-program-text').val(response.data.data_program.deskripsi);
+                        $('#edit-program-id').val(response.data.program_id);
                         $('#edit-indikator-text').val(response.data.data_indikator.deskripsi);
                         $('#edit-indikator-id').val(response.data.indikator_id);
-                        $('#edit-target-kinerja').val(response.data.target_kinerja);
-                        $('#edit-tw').val(response.data.tw);
-                        $('#edit-target').val(response.data.target);
-                        $('#edit-satuan').val(response.data.satuan);
+                        $('#edit-target-program').val(response.data.target_program);
+                        $('#edit-sasaran-program').val(response.data.sasaran_program);
                     }
             });
+            var tahun_awal = $('#tahun_awal').val();
+            var opd = $('#opd').children("option:selected").val();
+            var bidang = $('#bidang').children("option:selected").val();
+
+            showData(tahun_awal, opd, bidang);
         });
 
         // update data
         $('.form-edit').on('submit', function(e) {
             e.preventDefault();
+            $('#tabeldata').empty();
 
             var id = $('#edit-id').val();
             var tahun_awal = $('#edit-tahun-awal').val();
-            var tahun_akhir = $('#edit-tahun-akhir').val();
             var opd_id = $('#edit-opd-id').val();
-            var sasaran_text = $('#edit-sasaran-text').val();
-            var sasaran_id = $('#edit-sasaran-id').val();
+            var bidang_id = $('#edit-bidang-id').val();
+            var program_text = $('#edit-program-text').val();
+            var program_id = $('#edit-program-id').val();
             var indikator_text = $('#edit-indikator-text').val();
             var indikator_id = $('#edit-indikator-id').val();
-            var target_kinerja = $('#edit-target-kinerja').val();
-            var tw = $('#edit-tw').val();
-            var target = $('#edit-target').val();
-            var satuan = $('#edit-satuan').val();
+            var target_program = $('#edit-target-program').val();
+            var sasaran_program = $('#edit-sasaran-program').val();
 
             $.ajax({
-                url: '{{ URL::route('perjanjianKinerja.update', 'id') }}',
+                url: '{{ URL::route('pk3.update', 'id') }}',
                 type: 'PUT',
                 data: {
                     _token: CSRF_TOKEN,
                     id: id,
                     tahun_awal: tahun_awal,
-                    tahun_akhir: tahun_akhir,
                     opd_id: opd_id,
-                    sasaran_text: sasaran_text,
-                    sasaran_id: sasaran_id,
+                    program_text: program_text,
+                    program_id: program_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
-                    target_kinerja: target_kinerja,
-                    tw: tw,
-                    target: target,
-                    satuan: satuan
+                    target_program: target_program,
+                    sasaran_program: sasaran_program
                 },
                 success: function(response) {
                     // console.log(response);
                     if(response.success) {
                         $('#modalEdit').modal('hide');
-                        sasaran = $('#edit-sasaran').val("");
+                        program = $('#edit-program').val("");
                         indikator = $('#edit-indikator').val("");
-                        target_kinerja = $('#edit-target-kinerja').val("");
-                        tw = $('#edit-tw').val("");
-                        target = $('#edit-target').val("");
-                        satuan = $('#edit-satuan').val("");
+                        target_program = $('#edit-target-program').val("");
+                        sasaran_program = $('#edit-sasaran-program').val("");
                     }
                     var tahun_awal = $('#tahun_awal').val();
-                    var tahun_akhir = $('#tahun_akhir').val();
                     var opd = $('#opd').children("option:selected").val();
+                    var bidang = $('#bidang').children("option:selected").val();
 
-                    showData(tahun_awal, tahun_akhir, opd);
+                    showData(tahun_awal, opd, bidang);
                 }
             });
         });
@@ -574,7 +572,7 @@
             var id = $(this).data('id');
             if (confirm("Yakin akan menghapus?")) {
                 $.ajax({
-                    url: 'hapusPerjanjianKinerja',
+                    url: 'hapusPk3',
                     type: 'POST',
                     data: {
                         _token: CSRF_TOKEN,
@@ -582,94 +580,94 @@
                     },
                     success: function(response) {
                         var tahun_awal = $('#tahun_awal').val();
-                        var tahun_akhir = $('#tahun_akhir').val();
                         var opd = $('#opd').children("option:selected").val();
+                        var bidang = $('#bidang').children("option:selected").val();
 
-                        showData(tahun_awal, tahun_akhir, opd);
+                        showData(tahun_awal, opd, bidang);
                     }
                 });
             } else {
                 var tahun_awal = $('#tahun_awal').val();
-                var tahun_akhir = $('#tahun_akhir').val();
                 var opd = $('#opd').children("option:selected").val();
+                var bidang = $('#bidang').children("option:selected").val();
 
-                showData(tahun_awal, tahun_akhir, opd);
+                showData(tahun_awal, opd, bidang);
             }            
         });
 
         // tambah indikator
-        $('#tabeldata').on('click', '.btn-indikator', function() {
-            $('#tabeldata').empty();
+        // $('#tabeldata').on('click', '.btn-indikator', function() {
+        //     $('#tabeldata').empty();
 
-            var id = $(this).data('id');
+        //     var id = $(this).data('id');
 
-            $.ajax({
-                url: 'tambahIndikatorPerjanjianKinerja',
-                type: 'GET',
-                data: {
-                    _token: CSRF_TOKEN,
-                    id:id
-                },
-                success: function(response) {
-                    // console.log(response.data.data_tujuan.data_renstra.data_opd.nama);
-                    $('#modalIndikator').modal();
-                    $('#modalIndikator #edit-tahun-awal').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_awal);
-                    $('#modalIndikator #edit-tahun-akhir').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_akhir);
-                    $('#modalIndikator #edit-opd-text').val(response.data.data_sasaran.data_perjanjian_kinerja.data_opd.nama);
-                    $('#modalIndikator #edit-sasaran-text').val(response.data.data_sasaran.deskripsi);
-                    $('#modalIndikator #edit-sasaran-id').val(response.data.data_sasaran.id);
-                }
-            });
-        });
+        //     $.ajax({
+        //         url: 'tambahIndikatorPerjanjianKinerja',
+        //         type: 'GET',
+        //         data: {
+        //             _token: CSRF_TOKEN,
+        //             id:id
+        //         },
+        //         success: function(response) {
+        //             // console.log(response.data.data_tujuan.data_renstra.data_opd.nama);
+        //             $('#modalIndikator').modal();
+        //             $('#modalIndikator #edit-tahun-awal').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_awal);
+        //             $('#modalIndikator #edit-tahun-akhir').val(response.data.data_sasaran.data_perjanjian_kinerja.tahun_akhir);
+        //             $('#modalIndikator #edit-opd-text').val(response.data.data_sasaran.data_perjanjian_kinerja.data_opd.nama);
+        //             $('#modalIndikator #edit-sasaran-text').val(response.data.data_sasaran.deskripsi);
+        //             $('#modalIndikator #edit-sasaran-id').val(response.data.data_sasaran.id);
+        //         }
+        //     });
+        // });
 
-        // simpan data indikator
-        $('.form-indikator').on('submit', function(e) {
-            e.preventDefault();
+        // // simpan data indikator
+        // $('.form-indikator').on('submit', function(e) {
+        //     e.preventDefault();
 
-            var id = $('#modalIndikator #edit-id').val();
-            var sasaran_text = $('#modalIndikator #edit-sasaran-text').val();
-            var sasaran_id = $('#modalIndikator #edit-sasaran-id').val();
-            var indikator_text = $('#modalIndikator #edit-indikator-text').val();
-            var indikator_id = $('#modalIndikator #edit-indikator-id').val();
-            var target_kinerja = $('#modalIndikator #edit-target-kinerja').val();
-            var tw = $('#modalIndikator #edit-tw').val();
-            var target = $('#modalIndikator #edit-target').val();
-            var satuan = $('#modalIndikator #edit-satuan').val();
+        //     var id = $('#modalIndikator #edit-id').val();
+        //     var sasaran_text = $('#modalIndikator #edit-sasaran-text').val();
+        //     var sasaran_id = $('#modalIndikator #edit-sasaran-id').val();
+        //     var indikator_text = $('#modalIndikator #edit-indikator-text').val();
+        //     var indikator_id = $('#modalIndikator #edit-indikator-id').val();
+        //     var target_kinerja = $('#modalIndikator #edit-target-kinerja').val();
+        //     var tw = $('#modalIndikator #edit-tw').val();
+        //     var target = $('#modalIndikator #edit-target').val();
+        //     var satuan = $('#modalIndikator #edit-satuan').val();
             
-            $.ajax({
-                url: 'masukkanIndikatorPerjanjianKinerja',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    sasaran_text: sasaran_text,
-                    sasaran_id: sasaran_id,
-                    indikator_text: indikator_text,
-                    indikator_id: indikator_id,
-                    target_kinerja: target_kinerja,
-                    tw: tw,
-                    target: target,
-                    satuan: satuan
-                },
-                success: function(response) {
-                    console.log(response);
-                    if(response.success) {
-                        $('#modalIndikator').modal('hide');
-                        tujuan = $('#modalIndikator #edit-tujuan-text').val("");
-                        sasaran = $('#modalIndikator #edit-sasaran-text').val("");
-                        indikator = $('#modalIndikator #edit-indikator-text').val("");
-                        target_kinerja = $('#modalIndikator #edit-target-kinerja').val("");
-                        tw = $('#modalIndikator #edit-tw').val("");
-                        target = $('#modalIndikator #edit-target').val("");
-                        satuan = $('#modalIndikator #edit-satuan').val("");
-                    }
-                    var tahun_awal = $('#tahun_awal').val();
-                    var tahun_akhir = $('#tahun_akhir').val();
-                    var opd = $('#opd').children("option:selected").val();
+        //     $.ajax({
+        //         url: 'masukkanIndikatorPerjanjianKinerja',
+        //         type: 'POST',
+        //         data: {
+        //             _token: CSRF_TOKEN,
+        //             sasaran_text: sasaran_text,
+        //             sasaran_id: sasaran_id,
+        //             indikator_text: indikator_text,
+        //             indikator_id: indikator_id,
+        //             target_kinerja: target_kinerja,
+        //             tw: tw,
+        //             target: target,
+        //             satuan: satuan
+        //         },
+        //         success: function(response) {
+        //             console.log(response);
+        //             if(response.success) {
+        //                 $('#modalIndikator').modal('hide');
+        //                 tujuan = $('#modalIndikator #edit-tujuan-text').val("");
+        //                 sasaran = $('#modalIndikator #edit-sasaran-text').val("");
+        //                 indikator = $('#modalIndikator #edit-indikator-text').val("");
+        //                 target_kinerja = $('#modalIndikator #edit-target-kinerja').val("");
+        //                 tw = $('#modalIndikator #edit-tw').val("");
+        //                 target = $('#modalIndikator #edit-target').val("");
+        //                 satuan = $('#modalIndikator #edit-satuan').val("");
+        //             }
+        //             var tahun_awal = $('#tahun_awal').val();
+        //             var tahun_akhir = $('#tahun_akhir').val();
+        //             var opd = $('#opd').children("option:selected").val();
 
-                    showData(tahun_awal, tahun_akhir, opd);
-                }
-            });
-        });
+        //             showData(tahun_awal, tahun_akhir, opd);
+        //         }
+        //     });
+        // });
     });
 </script>
 

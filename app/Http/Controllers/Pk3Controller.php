@@ -103,9 +103,21 @@ class Pk3Controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $pk3s = Pk3Layout::with(
+            'data_program',
+            'data_indikator',
+            'data_program.data_pk3',
+            'data_program.data_pk3.data_opd',
+            'data_program.data_pk3.data_bidang'
+        )
+        ->find($request->id);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan',
+            'data' => $pk3s
+        ]);
     }
 
     /**
@@ -117,7 +129,22 @@ class Pk3Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pk3_program = Pk3Program::find($request->program_id);
+        $pk3_program->deskripsi = $request->program_text;
+        $pk3_program->save();
+
+        $pk3_indikator = Pk3Indikator::find($request->indikator_id);
+        $pk3_indikator->deskripsi = $request->indikator_text;
+        $pk3_indikator->save();
+
+        $pk3_layout = Pk3Layout::find($request->id);
+        $pk3_layout->target_program = $request->target_program;
+        $pk3_layout->sasaran_program = $request->sasaran_program;
+        $pk3_layout->save();
+
+        return response()->json([
+            'success' => 'data berhasil diperbaharui'
+        ]);
     }
 
     /**
@@ -149,6 +176,17 @@ class Pk3Controller extends Controller
         return response()->json([
             'success' => 'Berhasil mengambil data',
             'data' => $pk3s
+        ]);
+    }
+
+    public function hapus(Request $request)
+    {
+        $pk3 = Pk3Layout::find($request->id);
+
+        $pk3->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
         ]);
     }
 }
