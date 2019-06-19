@@ -25,7 +25,7 @@
             <div class="box">
                     <div class="box-header header-tahun-hide">
                         <div class="form-group form-horizontal">
-                            <label for="tahun_awal" class="col-sm-1 control-label">Tahun</label>
+                            <label for="tahun_awal" class="col-sm-2 control-label">Tahun</label>
                             <div class="col-sm-2">
                                 <input type="text" class="form-control" id="tahun_awal" placeholder="Tahun">
                             </div>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="box-header header-opd-hide">
                         <div class="form-group form-horizontal">
-                            <label for="opd" class="col-sm-1 control-label">OPD</label>
+                            <label for="opd" class="col-sm-2 control-label">OPD</label>
                             <div class="col-sm-5">
                                 <select class="form-control" id="opd">
                                     <option value="">--Pilih OPD--</option>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="box-header header-opd-hide">
                         <div class="form-group form-horizontal">
-                            <label for="bidang" class="col-sm-1 control-label">Bidang</label>
+                            <label for="bidang" class="col-sm-2 control-label">Bidang</label>
                             <div class="col-sm-5">
                                 <select class="form-control" id="bidang">
                                     <option value="">--Pilih Bidang--</option>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="box-header header-opd-hide">
                         <div class="form-group form-horizontal">
-                            <label for="subbidang" class="col-sm-1 control-label">Sub Bidang</label>
+                            <label for="subbidang" class="col-sm-2 control-label">Sub Bidang</label>
                             <div class="col-sm-5">
                                 <select class="form-control" id="subbidang">
                                     <option value="">--Pilih Sub Bidang--</option>
@@ -116,7 +116,7 @@
         <div class="modal-content">
             <form class="form-horizontal form-create">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data PK III</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data PK IV</h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -140,27 +140,34 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="program" class="col-sm-3 control-label">Program</label>
+                        <label for="subbidang" class="col-sm-3 control-label">SubBidang</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="input-program" placeholder="Program">
+                            <input type="text" class="form-control" id="input-subbidang-text" placeholder="SubBidang" disabled>
+                            <input type="hidden" class="form-control" id="input-subbidang-id">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="indikator" class="col-sm-3 control-label">Indikator Program</label>
+                        <label for="kegiatan" class="col-sm-3 control-label">Kegiatan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-kegiatan" placeholder="Kegiatan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator Kegiatan</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-indikator" placeholder="Indikator">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="target-program" class="col-sm-3 control-label">Target Program</label>
+                        <label for="target" class="col-sm-3 control-label">Target</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="input-target-program" placeholder="Target Program">
+                            <input type="text" class="form-control" id="input-target" placeholder="Target">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sasaran-program" class="col-sm-3 control-label">Sasaran Program</label>
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="input-sasaran-program" placeholder="Sasaran Program">
+                            <input type="text" class="form-control" id="input-sasaran" placeholder="Sasaran">
                         </div>
                     </div>
                 </div>
@@ -179,7 +186,7 @@
         <div class="modal-content">
             <form class="form-horizontal form-edit">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data PK III</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Data PK IV</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" class="form-control" id="edit-id">
@@ -204,29 +211,36 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="program" class="col-sm-3 control-label">Program</label>
+                        <label for="subbidang" class="col-sm-3 control-label">SubBidang</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-program-text" placeholder="Program">
-                            <input type="hidden" class="form-control" id="edit-program-id">
+                            <input type="text" class="form-control" id="edit-subbidang-text" placeholder="SubBidang" disabled>
+                            <input type="hidden" class="form-control" id="edit-subbidang-id">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="indikator" class="col-sm-3 control-label">Indikator Program</label>
+                        <label for="kegiatan" class="col-sm-3 control-label">Kegiatan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-kegiatan-text" placeholder="Kegiatan">
+                            <input type="hidden" class="form-control" id="edit-kegiatan-id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator Kegiatan</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
                             <input type="hidden" class="form-control" id="edit-indikator-id">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="target-program" class="col-sm-3 control-label">Target Program</label>
+                        <label for="target" class="col-sm-3 control-label">Target</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="edit-target-program" placeholder="Target Program"></textarea>
+                            <textarea class="form-control" id="edit-target" placeholder="Target"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sasaran-program" class="col-sm-3 control-label">Sasaran Program</label>
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-sasaran-program" placeholder="Sasaran Program">
+                            <input type="text" class="form-control" id="edit-sasaran" placeholder="Sasaran">
                         </div>
                     </div>
                 </div>
@@ -245,7 +259,7 @@
         <div class="modal-content">
             <form class="form-horizontal form-indikator">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator PK III</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator PK IV</h5>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" class="form-control" id="edit-id">
@@ -270,29 +284,36 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="program" class="col-sm-3 control-label">Program</label>
+                        <label for="subbidang" class="col-sm-3 control-label">SubBidang</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-program-text" placeholder="Program">
-                            <input type="hidden" class="form-control" id="edit-program-id">
+                            <input type="text" class="form-control" id="edit-subbidang-text" placeholder="SubBidang" disabled>
+                            <input type="hidden" class="form-control" id="edit-subbidang-id">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="indikator" class="col-sm-3 control-label">Indikator Program</label>
+                        <label for="kegiatan" class="col-sm-3 control-label">Kegiatan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-kegiatan-text" placeholder="Kegiatan">
+                            <input type="hidden" class="form-control" id="edit-kegiatan-id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator Kegiatan</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
                             <input type="hidden" class="form-control" id="edit-indikator-id">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="target-program" class="col-sm-3 control-label">Target Program</label>
+                        <label for="target" class="col-sm-3 control-label">Target</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="edit-target-program" placeholder="Target Program"></textarea>
+                            <textarea class="form-control" id="edit-target" placeholder="Target"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sasaran-program" class="col-sm-3 control-label">Sasaran Program</label>
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-sasaran-program" placeholder="Sasaran Program">
+                            <input type="text" class="form-control" id="edit-sasaran" placeholder="Sasaran">
                         </div>
                     </div>
                 </div>
@@ -320,8 +341,9 @@
             var tahun_awal = $('#tahun_awal').val();
             var opd = $('#opd').children("option:selected").val();
             var bidang = $('#bidang').children("option:selected").val();
+            var subbidang = $('#subbidang').children("option:selected").val();
 
-            showData(tahun_awal, opd, bidang);
+            showData(tahun_awal, opd, bidang, subbidang);
         });
 
         $('#showAfterPrint').hide();
@@ -358,19 +380,21 @@
 
         // showData();
 
-        function showData(data_tahun_awal, data_opd, bidang) {
+        function showData(data_tahun_awal, data_opd, bidang, subbidang) {
             var tahun_awal = data_tahun_awal;
             var opd = data_opd;
             var bidang = bidang;
+            var subbidang = subbidang;
 
             $.ajax({
-                url: 'cariPk3',
+                url: 'cariPk4',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
                     tahun_awal: tahun_awal,
                     opd: opd,
-                    bidang: bidang
+                    bidang: bidang,
+                    subbidang: subbidang
                 },
                 success: function(response) {
                     // console.log(response);
@@ -388,8 +412,8 @@
                                 tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
                             }                          
                             
-                            tr += "<td>" + value_layout.target_program + "</td>";
-                            tr += "<td>" + value_layout.sasaran_program + "</td>";
+                            tr += "<td>" + value_layout.target + "</td>";
+                            tr += "<td>" + value_layout.sasaran + "</td>";
                             
                             var isLastElement = i == value.data_layout.length -1;
 
@@ -442,12 +466,16 @@
             var opd_id = $('#opd').children("option:selected").val();
             var bidang_text = $('#bidang').children("option:selected").text();
             var bidang_id = $('#bidang').children("option:selected").val();
+            var subbidang_text = $('#subbidang').children("option:selected").text();
+            var subbidang_id = $('#subbidang').children("option:selected").val();
 
             $('#input-tahun-awal').val(tahun_awal);
             $('#input-opd-text').val(opd_text);
             $('#input-opd-id').val(opd_id);
             $('#input-bidang-text').val(bidang_text);
             $('#input-bidang-id').val(bidang_id);
+            $('#input-subbidang-text').val(subbidang_text);
+            $('#input-subbidang-id').val(subbidang_id);
         });
 
         // simpan data renstra
@@ -456,38 +484,41 @@
             var tahun_awal = $('#input-tahun-awal').val();
             var opd_id = $('#input-opd-id').val();
             var bidang_id = $('#input-bidang-id').val();
-            var program = $('#input-program').val();
+            var subbidang_id = $('#input-subbidang-id').val();
+            var kegiatan = $('#input-kegiatan').val();
             var indikator = $('#input-indikator').val();
-            var target_program = $('#input-target-program').val();
-            var sasaran_program = $('#input-sasaran-program').val();
+            var target = $('#input-target').val();
+            var sasaran = $('#input-sasaran').val();
             
             $.ajax({
-                url: 'pk3',
+                url: 'pk4',
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
                     tahun_awal: tahun_awal,
                     opd_id: opd_id,
                     bidang_id: bidang_id,
-                    program: program,
+                    subbidang_id: subbidang_id,
+                    kegiatan: kegiatan,
                     indikator: indikator,
-                    target_program: target_program,
-                    sasaran_program: sasaran_program
+                    target: target,
+                    sasaran: sasaran
                 },
                 success: function(response) {
                     // console.log(response);
                     if(response.success) {
                         $('#modalCreate').modal('hide');
-                        program = $('#input-program').val("");
+                        kegiatan = $('#input-kegiatan').val("");
                         indikator = $('#input-indikator').val("");
-                        target_program = $('#input-target-program').val("");
-                        sasaran_program = $('#input-sasaran-program').val("");
+                        target = $('#input-target').val("");
+                        sasaran = $('#input-sasaran').val("");
                     }
                     var tahun_awal = $('#tahun_awal').val();
                     var opd = $('#opd').children("option:selected").val();
                     var bidang = $('#bidang').children("option:selected").val();
+                    var subbidang = $('#subbidang').children("option:selected").val();
 
-                    showData(tahun_awal, opd, bidang);
+                    showData(tahun_awal, opd, bidang, subbidang);
                 }
             });
         });
@@ -499,7 +530,7 @@
             var id = $(this).data('id');
             
             $.ajax({
-                    url: '{{ URL::route('pk3.edit', 'id') }}',
+                    url: '{{ URL::route('pk4.edit', 'id') }}',
                     type: 'GET',
                     data: {
                         _token: CSRF_TOKEN,
@@ -508,25 +539,28 @@
                     success: function(response) {
                         // console.log(response.renstra);
                         $('#modalEdit').modal();
-                        $('#edit-tahun-awal').val(response.data.data_program.data_pk3.tahun);
+                        $('#edit-tahun-awal').val(response.data.data_kegiatan.data_pk4.tahun);
                         $('#edit-id').val(response.data.id);
-                        $('#edit-opd-text').val(response.data.data_program.data_pk3.data_opd.nama);
-                        $('#edit-opd-id').val(response.data.data_program.data_pk3.opd_id);
-                        $('#edit-bidang-text').val(response.data.data_program.data_pk3.data_bidang.nama);
-                        $('#edit-bidang-id').val(response.data.data_program.data_pk3.bidang_id);
-                        $('#edit-program-text').val(response.data.data_program.deskripsi);
-                        $('#edit-program-id').val(response.data.program_id);
+                        $('#edit-opd-text').val(response.data.data_kegiatan.data_pk4.data_opd.nama);
+                        $('#edit-opd-id').val(response.data.data_kegiatan.data_pk4.opd_id);
+                        $('#edit-bidang-text').val(response.data.data_kegiatan.data_pk4.data_bidang.nama);
+                        $('#edit-bidang-id').val(response.data.data_kegiatan.data_pk4.bidang_id);
+                        $('#edit-subbidang-text').val(response.data.data_kegiatan.data_pk4.data_subbidang.nama);
+                        $('#edit-subbidang-id').val(response.data.data_kegiatan.data_pk4.subbidang_id);
+                        $('#edit-kegiatan-text').val(response.data.data_kegiatan.deskripsi);
+                        $('#edit-kegiatan-id').val(response.data.kegiatan_id);
                         $('#edit-indikator-text').val(response.data.data_indikator.deskripsi);
                         $('#edit-indikator-id').val(response.data.indikator_id);
-                        $('#edit-target-program').val(response.data.target_program);
-                        $('#edit-sasaran-program').val(response.data.sasaran_program);
+                        $('#edit-target').val(response.data.target);
+                        $('#edit-sasaran').val(response.data.sasaran);
                     }
             });
             var tahun_awal = $('#tahun_awal').val();
             var opd = $('#opd').children("option:selected").val();
             var bidang = $('#bidang').children("option:selected").val();
+            var subbidang = $('#subbidang').children("option:selected").val();
 
-            showData(tahun_awal, opd, bidang);
+            showData(tahun_awal, opd, bidang, subbidang);
         });
 
         // update data
@@ -535,45 +569,42 @@
             $('#tabeldata').empty();
 
             var id = $('#edit-id').val();
-            var tahun_awal = $('#edit-tahun-awal').val();
-            var opd_id = $('#edit-opd-id').val();
-            var bidang_id = $('#edit-bidang-id').val();
-            var program_text = $('#edit-program-text').val();
-            var program_id = $('#edit-program-id').val();
+            var subbidang_id = $('#edit-subbidang-id').val();
+            var kegiatan_text = $('#edit-kegiatan-text').val();
+            var kegiatan_id = $('#edit-kegiatan-id').val();
             var indikator_text = $('#edit-indikator-text').val();
             var indikator_id = $('#edit-indikator-id').val();
-            var target_program = $('#edit-target-program').val();
-            var sasaran_program = $('#edit-sasaran-program').val();
+            var target = $('#edit-target').val();
+            var sasaran = $('#edit-sasaran').val();
 
             $.ajax({
-                url: '{{ URL::route('pk3.update', 'id') }}',
+                url: '{{ URL::route('pk4.update', 'id') }}',
                 type: 'PUT',
                 data: {
                     _token: CSRF_TOKEN,
                     id: id,
-                    tahun_awal: tahun_awal,
-                    opd_id: opd_id,
-                    program_text: program_text,
-                    program_id: program_id,
+                    kegiatan_text: kegiatan_text,
+                    kegiatan_id: kegiatan_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
-                    target_program: target_program,
-                    sasaran_program: sasaran_program
+                    target: target,
+                    sasaran: sasaran
                 },
                 success: function(response) {
                     // console.log(response);
                     if(response.success) {
                         $('#modalEdit').modal('hide');
-                        program = $('#edit-program').val("");
+                        kegiatan = $('#edit-kegiatan').val("");
                         indikator = $('#edit-indikator').val("");
-                        target_program = $('#edit-target-program').val("");
-                        sasaran_program = $('#edit-sasaran-program').val("");
+                        target = $('#edit-target').val("");
+                        sasaran = $('#edit-sasaran').val("");
                     }
                     var tahun_awal = $('#tahun_awal').val();
                     var opd = $('#opd').children("option:selected").val();
                     var bidang = $('#bidang').children("option:selected").val();
+                    var subbidang = $('#subbidang').children("option:selected").val();
 
-                    showData(tahun_awal, opd, bidang);
+                    showData(tahun_awal, opd, bidang, subbidang);
                 }
             });
         });
@@ -585,7 +616,7 @@
             var id = $(this).data('id');
             if (confirm("Yakin akan menghapus?")) {
                 $.ajax({
-                    url: 'hapusPk3',
+                    url: 'hapusPk4',
                     type: 'POST',
                     data: {
                         _token: CSRF_TOKEN,
@@ -595,16 +626,18 @@
                         var tahun_awal = $('#tahun_awal').val();
                         var opd = $('#opd').children("option:selected").val();
                         var bidang = $('#bidang').children("option:selected").val();
+                        var subbidang = $('#subbidang').children("option:selected").val();
 
-                        showData(tahun_awal, opd, bidang);
+                        showData(tahun_awal, opd, bidang, subbidang);
                     }
                 });
             } else {
                 var tahun_awal = $('#tahun_awal').val();
                 var opd = $('#opd').children("option:selected").val();
                 var bidang = $('#bidang').children("option:selected").val();
+                var subbidang = $('#subbidang').children("option:selected").val();
 
-                showData(tahun_awal, opd, bidang);
+                showData(tahun_awal, opd, bidang, subbidang);
             }            
         });
     });
