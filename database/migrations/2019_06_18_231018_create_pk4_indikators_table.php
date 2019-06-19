@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePk3IndikatorsTable extends Migration
+class CreatePk4IndikatorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreatePk3IndikatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pk3_indikators', function (Blueprint $table) {
+        Schema::create('pk4_indikators', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('deskripsi')->nullable()->default('text');
             $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
         });
     }
 
@@ -26,6 +31,6 @@ class CreatePk3IndikatorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pk3_indikators');
+        Schema::dropIfExists('pk4_indikators');
     }
 }

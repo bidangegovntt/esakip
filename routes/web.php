@@ -94,6 +94,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/tambahIndikatorPk3', 'Pk3Controller@tambahIndikator');
         Route::post('/masukkanIndikatorPk3', 'Pk3Controller@masukkanIndikator');
         Route::resource('pk3', 'Pk3Controller');
+
+        Route::post('/cariPk4', 'Pk4Controller@cari');
+        Route::post('/hapusPk4', 'Pk4Controller@hapus');
+        Route::get('/tambahIndikatorPk4', 'Pk4Controller@tambahIndikator');
+        Route::post('/masukkanIndikatorPk4', 'Pk4Controller@masukkanIndikator');
+        Route::resource('pk4', 'Pk4Controller');
     });
 });
 
