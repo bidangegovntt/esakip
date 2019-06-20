@@ -108,6 +108,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/lakip/proses', 'LakipController@proses');
         Route::post('/lakip/upload', 'LakipController@proses')->name('lakip.upload');
         Route::resource('lakip', 'LakipController');
+
+        Route::post('/cariEvaluasi', 'EvaluasiController@cari');
+        Route::post('/hapusEvaluasi', 'EvaluasiController@hapus');
+        Route::post('/evaluasi/proses', 'EvaluasiController@proses');
+        Route::post('/evaluasi/upload', 'EvaluasiController@proses')->name('evaluasi.upload');
+        Route::resource('evaluasi', 'EvaluasiController');
     });
 });
 

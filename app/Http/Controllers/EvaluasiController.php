@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Opd;
-use App\Lakip;
+use App\Evaluasi;
 use Illuminate\Http\Request;
 
-class LakipController extends Controller
+class EvaluasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class LakipController extends Controller
     public function index()
     {
         $opds = Opd::get();
-        $lakips = Lakip::with('data_opd')->get();
+        $evaluasis = Evaluasi::with('data_opd')->get();
 
-        return view('admin.pages.lakip.index', ['opds' => $opds, 'lakips' => $lakips]);
+        return view('admin.pages.evaluasi.index', ['opds' => $opds, 'evaluasis' => $evaluasis]);
     }
 
     /**
@@ -41,12 +41,12 @@ class LakipController extends Controller
     {
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $file_name = 'lakip_' . time() . '.' . $file->getClientOriginalExtension();
+            $file_name = 'evalusi_' . time() . '.' . $file->getClientOriginalExtension();
             $path = public_path('/file');
             $file->move($path, $file_name);
         }
 
-        $lakip = Lakip::create([
+        $evaluasi = Evaluasi::create([
             'tahun' => $request->tahun,
             'opd_id' => $request->opd,
             'file' => $file_name
@@ -60,7 +60,7 @@ class LakipController extends Controller
             'opd' => $request->opd
         );
         
-        return redirect()->route('lakip.index', ['data' => $data, 'opds' => $opds]);
+        return redirect()->route('evaluasi.index', ['data' => $data, 'opds' => $opds]);
     }
 
     /**
@@ -105,20 +105,20 @@ class LakipController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $lakip = Lakip::find($id);
+        $evaluasi = Evaluasi::find($id);
 
-        $lakip->delete();
+        $evaluasi->delete();
 
         $request->session()->flash('status', 'Data berhasil dihapus');
         
-        return redirect()->route('lakip.index');
+        return redirect()->route('evaluasi.index');
     }
 
     public function proses(Request $request)
     {
         if($request->btn_cari) {
             $opds = Opd::get();
-            $lakips = Lakip::where('opd_id', $request->opd)->where('tahun', $request->tahun)
+            $evaluasis = Evaluasi::where('opd_id', $request->opd)->where('tahun', $request->tahun)
                 ->with('data_opd')
                 ->get();
             $data = array(
@@ -126,14 +126,14 @@ class LakipController extends Controller
                 'opd' => $request->opd
             );
 
-            return view('admin.pages.lakip.index', ['data' => $data, 'opds' => $opds, 'lakips' => $lakips]);
+            return view('admin.pages.evaluasi.index', ['data' => $data, 'opds' => $opds, 'evaluasis' => $evaluasis]);
         } else {
             $data = array(
                 'tahun'  => $request->tahun,
                 'opd' => $request->opd
             );
 
-            return view('admin.pages.lakip.upload', ['data' => $data]);
+            return view('admin.pages.evaluasi.upload', ['data' => $data]);
         }
     }
 }

@@ -85,7 +85,7 @@
             </a>
             <ul class="treeview-menu">
                 <li class="{{ set_active(['dokumen/lakip', 'dokumen/lakip/*']) }}"><a href="{{ url('dokumen/lakip') }}"><i class="fa fa-circle-o"></i> Lakip </a></li>
-                <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Evaluasi </a></li>
+                <li class="{{ set_active(['dokumen/evaluasi', 'dokumen/evaluasi/*']) }}"><a href="{{ url('dokumen/evaluasi') }}"><i class="fa fa-circle-o"></i> Evaluasi </a></li>
             </ul>
         </li>
 

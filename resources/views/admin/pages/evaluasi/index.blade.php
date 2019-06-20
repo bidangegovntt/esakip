@@ -5,11 +5,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        LAKIP
+        Evaluasi
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">LAKIP</a></li>
+        <li><a href="#">Evaluasi</a></li>
     </ol>
 </section>
 
@@ -23,7 +23,7 @@
                 </div>
             @endif
             <div class="box">
-                <form action="{{ url('/dokumen/lakip/proses') }}" method="POST">
+                <form action="{{ url('/dokumen/evaluasi/proses') }}" method="POST">
                     @csrf
                     <div class="box-header header-tahun-hide">
                         <div class="form-group form-horizontal">
@@ -69,22 +69,22 @@
                                 <th style="color: #ffffff; text-align: center;">No</th>
                                 <th style="color: #ffffff; text-align: center;">Tahun</th>
                                 <th style="color: #ffffff; text-align: center;">OPD</th>
-                                <th style="color: #ffffff; text-align: center;">LAKIP</th>
+                                <th style="color: #ffffff; text-align: center;">evaluasi</th>
                                 <th style="color: #ffffff; text-align: center;" id="action">Action</th>
                             </tr>
                         </thead>
                         <tbody id="tabeldata">
-                            @foreach ($lakips as $key => $lakip)
+                            @foreach ($evaluasis as $key => $evaluasi)
                             <tr>
                                 <td style="text-align: center;">{{ $key + 1 }}</td>
-                                <td>{{ $lakip->tahun }}</td>
-                                <td>{{ $lakip->data_opd->nama }}</td>
-                                <td style="text-align: center;"><a href="{{ asset('file/' . $lakip->file) }}" class="btn btn-success"><i class="fa fa-download"></i></a></td>
+                                <td>{{ $evaluasi->tahun }}</td>
+                                <td>{{ $evaluasi->data_opd->nama }}</td>
+                                <td style="text-align: center;"><a href="{{ asset('file/' . $evaluasi->file) }}" class="btn btn-success"><i class="fa fa-download"></i></a></td>
                                 <td style="text-align: center;">
                                     <div class="col-xs-6" style="padding-right: 5px; padding-left: 0;">
                                         <form
                                             onsubmit="return confirm('Delete this data permanently?')"
-                                            action="{{ route('lakip.destroy', ['id' => $lakip->id ]) }}"
+                                            action="{{ route('evaluasi.destroy', ['id' => $evaluasi->id ]) }}"
                                             method="POST">
                                             @csrf
                                             <input
