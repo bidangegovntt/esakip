@@ -76,7 +76,7 @@
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Realisasi Anggaran </a></li>
             </ul>
         </li>
-        <li class="treeview">
+        <li class="{{ set_active(['dokumen', 'dokumen/*']) }} treeview">
             <a href="#">
                 <i class="fa fa-file"></i> <span>Dokumen</span>
                 <span class="pull-right-container">
@@ -84,7 +84,7 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Lakip </a></li>
+                <li class="{{ set_active(['dokumen/lakip', 'dokumen/lakip/*']) }}"><a href="{{ url('dokumen/lakip') }}"><i class="fa fa-circle-o"></i> Lakip </a></li>
                 <li class=""><a href="index.html"><i class="fa fa-circle-o"></i> Evaluasi </a></li>
             </ul>
         </li>

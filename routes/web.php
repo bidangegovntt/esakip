@@ -101,6 +101,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/masukkanIndikatorPk4', 'Pk4Controller@masukkanIndikator');
         Route::resource('pk4', 'Pk4Controller');
     });
+
+    Route::group(['prefix' => '/dokumen'], function() {
+        Route::post('/cariLakip', 'LakipController@cari');
+        Route::post('/hapusLakip', 'LakipController@hapus');
+        Route::post('/lakip/proses', 'LakipController@proses');
+        Route::post('/lakip/upload', 'LakipController@proses')->name('lakip.upload');
+        Route::resource('lakip', 'LakipController');
+    });
 });
 
 
