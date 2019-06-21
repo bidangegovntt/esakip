@@ -81,6 +81,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/masukkanIndikatorIku', 'IkuController@masukkanIndikator');
         Route::resource('iku', 'IkuController');
 
+        Route::post('/cariPpk', 'PpkController@cari');
+        Route::post('/hapusPpk', 'PpkController@hapus');
+        Route::get('/tambahIndikatorPpk', 'PpkController@tambahIndikator');
+        Route::post('/masukkanIndikatorPpk', 'PpkController@masukkanIndikator');
+        Route::post('/ppk/proses', 'PpkController@proses');
+        Route::resource('ppk', 'PpkController');
+
         Route::post('/cariPerjanjianKinerja', 'PerjanjianKinerjaController@cari');
         Route::get('/getDataPerjanjianKinerja', 'PerjanjianKinerjaController@getDataPerjanjianKinerja');
         Route::post('/hapusPerjanjianKinerja', 'PerjanjianKinerjaController@hapus');
