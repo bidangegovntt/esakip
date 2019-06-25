@@ -9,7 +9,7 @@ class PpkProgram extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'ppk_layout_id', 'indikator_program', 'target_program'
+        'ppk_layout_id', 'target_kinerja', 'deskripsi', 'anggaran_program', 'indikator_program', 'target_program'
     ];
 
     public function data_indikator()

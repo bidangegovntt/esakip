@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePpkProgramsTable extends Migration
+class CreatePpkIndikatorKinerjasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreatePpkProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ppk_programs', function (Blueprint $table) {
+        Schema::create('ppk_indikator_kinerjas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->smallInteger('ppk_layout_id')->nullable()->default(12);
+            $table->string('deskripsi', 100)->nullable()->default('text');
             $table->string('target_kinerja', 100)->nullable()->default('text');
-            $table->text('deskripsi')->nullable()->default('text');
-            $table->string('anggaran_program', 100)->nullable()->default('text');
-            $table->string('indikator_program', 100)->nullable()->default('text');
-            $table->string('target_program', 100)->nullable()->default('text');
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->nullable();
@@ -36,6 +32,6 @@ class CreatePpkProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ppk_programs');
+        Schema::dropIfExists('ppk_indikator_kinerjas');
     }
 }

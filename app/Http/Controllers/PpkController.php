@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Opd;
 use App\Ppk;
+use App\PpkLayout;
+use App\PpkSasaran;
+use App\PpkIndikatorKinerja;
 use Illuminate\Http\Request;
+use App\PpkIndikatorKinerjaDetail;
 
 class PpkController extends Controller
 {
@@ -39,7 +43,44 @@ class PpkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ppkData = Ppk::first();
+        
+        if($ppkData != [] && $ppkData->opd_id == $request->opd_id && $ppkData->tahun == $request->tahun && $ppkData->tahun_awal == $request->tahun_awal) {
+            $ppk = Ppk::where([
+                'tahun' => $request->tahun,
+                'tahun_awal' => $request->tahun_awal,
+                'tahun_akhir' => $request->tahun_akhir,
+                'opd_id' => $request->opd_id 
+            ])
+            ->first();
+        } else {   
+            $ppk = Ppk::create([
+                "tahun" => $request->tahun,
+                'tahun_awal' => $request->tahun_awal,
+                'tahun_akhir' => $request->tahun_akhir,
+                'opd_id' => $request->opd_id
+            ]);
+        }
+
+        $ppk_sasaran = PpkSasaran::create([
+            "deskripsi" => $request->sasaran
+        ]);
+
+        $ppk_indikator = PpkIndikatorKinerja::create([
+            "deskripsi" => $request->indikator_kinerja_text,
+            "target_kinerja" => $request->target_kinerja
+        ]);
+
+        $ppk_layout = PpkLayout::create([
+            "ppk_id" => $ppk->id,
+            "sasaran_id" => $ppk_sasaran->id,
+            "indikator_id" => $ppk_indikator->id,
+            "pagu_anggaran" => $request->pagu_anggaran
+        ]);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
     }
 
     /**
@@ -115,5 +156,67 @@ class PpkController extends Controller
 
             return view('admin.pages.ppk.create', ['data' => $data]);
         }
+    }
+
+    public function cari(Request $request)
+    {
+        // return $request;
+        $tahun_awal = $request->tahun_awal;
+        $tahun = $request->tahun;
+        $opd = $request->opd;
+
+        $ppks = PpkLayout::whereHas('data_ppk', function($query) use ($tahun, $tahun_awal, $opd) {
+            $query->where('tahun', $tahun)->where('tahun_awal', $tahun_awal)->where('opd_id', $opd);
+        })
+        ->where('deleted_at', null)
+        ->with(
+            'data_ppk', 
+            'data_sasaran', 
+            'data_indikator_kinerja',
+            'data_indikator_kinerja.data_indikator'
+        )
+        ->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $ppks
+        ]);
+    }
+
+    public function tambahIndikator(Request $request)
+    {
+        $ppk_indikator_kinerja = PpkIndikatorKinerja::where('id', $request->id)
+        ->first();  
+        
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $ppk_indikator_kinerja
+        ]);
+    }
+
+    public function masukkanIndikator(Request $request)
+    {
+        $ppk_indikator_detail = PpkIndikatorKinerjaDetail::create([
+            "indikator_kinerja_id" => $request->indikator_kinerja_id,
+            "program" => $request->program,
+            "anggaran_program" => $request->anggaran_program,
+            "indikator_program" => $request->indikator_program,
+            "target_program" => $request->target_program
+        ]);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
+    }
+
+    public function hapus(Request $request)
+    {
+        $ppk = PpkIndikatorKinerjaDetail::find($request->id);
+
+        $ppk->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 }

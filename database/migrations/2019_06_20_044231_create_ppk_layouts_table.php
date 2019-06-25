@@ -18,7 +18,7 @@ class CreatePpkLayoutsTable extends Migration
             $table->smallInteger('ppk_id')->nullable()->default(12);
             $table->smallInteger('sasaran_id')->nullable()->default(12);
             $table->smallInteger('indikator_id')->nullable()->default(12);
-            $table->smallInteger('target_kinerja_id')->nullable()->default(12);
+            $table->string('pagu_anggaran', 100)->nullable()->default('text');
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->nullable();

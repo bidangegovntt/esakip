@@ -10,11 +10,21 @@ class PpkLayout extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'ppk_id', 'sasaran_id', 'indikator_id', 'target_kinerja_id'
+        'ppk_id', 'sasaran_id', 'indikator_id', 'pagu_anggaran'
     ];
 
-    public function data_program()
+    public function data_ppk()
     {
-        return $this->hasMany('App\PpkProgram', 'ppk_layout_id', 'id');
+        return $this->belongsTo('App\Ppk', 'ppk_id', 'id');
+    }
+
+    public function data_sasaran()
+    {
+        return $this->belongsTo('App\PpkSasaran', 'sasaran_id', 'id');
+    }
+
+    public function data_indikator_kinerja()
+    {
+        return $this->belongsTo('App\PpkIndikatorKinerja', 'indikator_id', 'id');
     }
 }
