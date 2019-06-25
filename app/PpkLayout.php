@@ -27,4 +27,9 @@ class PpkLayout extends Model
     {
         return $this->belongsTo('App\PpkIndikatorKinerja', 'indikator_id', 'id');
     }
+
+    public function data_realisasi_kinerja()
+    {
+        return $this->hasMany('App\RealisasiKinerja', 'indikator_kinerja_id', 'indikator_id');
+    }
 }

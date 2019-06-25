@@ -88,6 +88,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/ppk/proses', 'PpkController@proses');
         Route::resource('ppk', 'PpkController');
 
+        Route::post('/cariRealisasiKinerja', 'RealisasiKinerjaController@cari');
+        Route::post('/hapusRealisasiKinerja', 'RealisasiKinerjaController@hapus');
+        Route::get('/tambahIndikatorRealisasiKinerja', 'RealisasiKinerjaController@tambahIndikator');
+        Route::post('/masukkanIndikatorRealisasiKinerja', 'RealisasiKinerjaController@masukkanIndikator');
+        Route::post('/RealisasiKinerja/proses', 'RealisasiKinerjaController@proses');
+        Route::resource('realisasiKinerja', 'RealisasiKinerjaController');
+
         Route::post('/cariPerjanjianKinerja', 'PerjanjianKinerjaController@cari');
         Route::get('/getDataPerjanjianKinerja', 'PerjanjianKinerjaController@getDataPerjanjianKinerja');
         Route::post('/hapusPerjanjianKinerja', 'PerjanjianKinerjaController@hapus');
