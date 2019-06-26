@@ -114,6 +114,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/tambahIndikatorPk4', 'Pk4Controller@tambahIndikator');
         Route::post('/masukkanIndikatorPk4', 'Pk4Controller@masukkanIndikator');
         Route::resource('pk4', 'Pk4Controller');
+
+        Route::post('/cariRencanaAnggaran', 'RencanaAnggaranController@cari');
+        Route::post('/hapusRencanaAnggaran', 'RencanaAnggaranController@hapus');
+        Route::get('/tambahIndikatorRencanaAnggaran', 'RencanaAnggaranController@tambahIndikator');
+        Route::post('/masukkanIndikatorRencanaAnggaran', 'RencanaAnggaranController@masukkanIndikator');
+        Route::post('/RencanaAnggaran/proses', 'RencanaAnggaranController@proses');
+        Route::resource('rencanaAnggaran', 'RencanaAnggaranController');
     });
 
     Route::group(['prefix' => '/dokumen'], function() {
