@@ -128,6 +128,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="target-kinerja" class="col-sm-3 control-label">Target Kinerja</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-target-kinerja" placeholder="target kinerja">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="program" class="col-sm-3 control-label">Program</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-program" placeholder="program">
@@ -182,12 +188,18 @@
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Indikator</h5>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" class="form-control" id="edit-id">
+                    <input type="text" class="form-control" id="edit-id">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Indikator Kinerja</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-indikator-kinerja" placeholder="Indikator Kinerja">
                             <input type="hidden" class="form-control" id="edit-indikator-kinerja-id">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="target-kinerja" class="col-sm-3 control-label">Target Kinerja</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-target-kinerja" placeholder="target kinerja">
                         </div>
                     </div>
                     <div class="form-group">
@@ -304,36 +316,40 @@
                 success: function(response) {
                     // console.log(response);
                     $.each(response.data, function(i, value){
+                        // console.log(value);
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
                             tr += "<td>" + value.data_sasaran.deskripsi + "</td>";
-                            tr += "<td>" + value.data_indikator_kinerja.deskripsi + "<br><br>" +
+                            tr += "<td>" + value.data_indikator_kinerja.deskripsi + "</td>";
+                            tr += "<td>" + value.data_indikator_kinerja.target_kinerja + "<br><br>" +
                                         "<button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value.id + "\"><i class=\"fa fa-plus\"></i></button>" +
                                     "</td>";
 
                         // var indikator = '';
                         
-                        $.each(value.data_indikator_kinerja.data_indikator, function(i, value_indikator) {
-                            // if(indikator == value_indikator.indikator_kinerja_id) {
+                        $.each(value.data_detail, function(i, value_detail) {
+                            // if(indikator == value_detail.indikator_kinerja_id) {
                             //     tr += "<td></td>";
                             // } else {
-                            //     tr += "<td>" + value_indikator.indikator_kinerja_id + "</td>";
+                            //     tr += "<td>" + value_detail.indikator_kinerja_id + "</td>";
                             // }                          
-                            // tr += "<td>" + value_indikator.indikator_kinerja_id + "</td>";
-                            tr += "<td>" + value_indikator.program + "</td>";
-                            tr += "<td>" + value_indikator.anggaran_program + "</td>";
-                            tr += "<td>" + value_indikator.indikator_program + "</td>";
-                            tr += "<td>" + value_indikator.target_program + "</td>";
+                            // tr += "<td>" + value_detail.indikator_kinerja_id + "</td>";
+                            tr += "<td>" + value_detail.program + "</td>";
+                            tr += "<td>" + value_detail.kegiatan + "</td>";
+                            tr += "<td>" + value_detail.target_kegiatan + "</td>";
+                            tr += "<td>" + value_detail.target + "</td>";
+                            tr += "<td>" + value_detail.satuan + "</td>";
+                            tr += "<td>" + value_detail.anggaran + "</td>";
                             
-                            var isLastElement = i == value.data_indikator_kinerja.data_indikator.length -1;
+                            var isLastElement = i == value.data_detail.length -1;
 
                             if (isLastElement) {
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             // "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                            //     "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-edit\"></i></button>" +
+                                            //     "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_detail.id + "\"><i class=\"fa fa-edit\"></i></button>" +
                                             // "</div>" +
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-trash\"></i></button>" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_detail.id + "\"><i class=\"fa fa-trash\"></i></button>" +
                                             "</div>" +
                                         "</td>";
                                 tr +=   "</tr>";
@@ -346,10 +362,10 @@
                             } else {
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             // "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                            //     "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-edit\"></i></button>" +
+                                            //     "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_detail.id + "\"><i class=\"fa fa-edit\"></i></button>" +
                                             // "</div>" +
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-trash\"></i></button>" +
+                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_detail.id + "\"><i class=\"fa fa-trash\"></i></button>" +
                                             "</div>" +
                                         "</td>";
                                 tr +=   "</tr>" +
@@ -390,6 +406,7 @@
             var sasaran = $('#input-sasaran-text').val();
             var indikator_kinerja_text = $('#input-indikator-kinerja-text').val();
             var indikator_kinerja_id = $('#input-indikator-kinerja-id').val();
+            var target_kinerja = $('#input-target-kinerja').val();
             var program = $('#input-program').val();
             var kegiatan = $('#input-kegiatan').val();
             var indikator_kegiatan = $('#input-indikator-kegiatan').val();
@@ -407,6 +424,7 @@
                     sasaran: sasaran,
                     indikator_kinerja_text: indikator_kinerja_text,
                     indikator_kinerja_id: indikator_kinerja_id,
+                    target_kinerja: target_kinerja,
                     program: program,
                     kegiatan: kegiatan,
                     indikator_kegiatan: indikator_kegiatan,
@@ -420,6 +438,7 @@
                         $('#modalCreate').modal('hide');
                         sasaran = $('#input-sasaran').val("");
                         indikator_kinerja_text = $('#input-indikator-kinerja-text').val("");
+                        target_kinerja = $('#input-target-kinerja').val("");
                         program = $('#input-program').val("");
                         kegiatan = $('#input-kegiatan').val("");
                         indikator_kegiatan = $('#input-indikator-kegiatan').val("");
@@ -449,16 +468,12 @@
                     id:id
                 },
                 success: function(response) {
-                    // console.log(response.data);
+                    console.log(response.data);
                     $('#modalIndikator').modal();
-                    $('#modalIndikator #edit-indikator-kinerja').val(response.data.deskripsi);
+                    $('#modalIndikator #edit-indikator-kinerja').val(response.data.data_layout.data_indikator_kinerja.deskripsi);
                     $('#modalIndikator #edit-indikator-kinerja-id').val(response.data.id);
-                    $('#modalIndikator #edit-program').val(response.data.program);
-                    $('#modalIndikator #edit-kegiatan').val(response.data.kegiatan);
-                    $('#modalIndikator #edit-indikator-kegiatan').val(response.data.indikator_kegiatan);
-                    $('#modalIndikator #edit-target').val(response.data.target);
-                    $('#modalIndikator #edit-satuan').val(response.data.satuan);
-                    $('#modalIndikator #edit-anggaran').val(response.data.anggaran);
+                    $('#modalIndikator #edit-target-kinerja').val(response.data.data_layout.data_indikator_kinerja.target_kinerja);
+                    $('#modalIndikator #edit-id').val(response.data.data_layout.id);
                 }
             });
             var tahun = $('#tahun').val();
@@ -486,6 +501,7 @@
                 type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
+                    id: id,
                     indikator_kinerja_id: indikator_kinerja_id,
                     program: program,
                     kegiatan: kegiatan,
@@ -495,20 +511,20 @@
                     anggaran: anggaran
                 },
                 success: function(response) {
-                    // console.log(response);
-                    if(response.success) {
-                        $('#modalIndikator').modal('hide');
-                        program = $('#edit-program').val("");
-                        kegiatan = $('#edit-kegiatan').val("");
-                        indikator_kegiatan = $('#edit-indikator-kegiatan').val("");
-                        target = $('#edit-target').val("");
-                        satuan = $('#edit-satuan').val("");
-                        anggaran = $('#edit-anggaran').val("");
-                    }
-                    var tahun = $('#tahun').val();
-                    var opd = $('#opd').children("option:selected").val();
+                    console.log(response);
+                    // if(response.success) {
+                    //     $('#modalIndikator').modal('hide');
+                    //     program = $('#edit-program').val("");
+                    //     kegiatan = $('#edit-kegiatan').val("");
+                    //     indikator_kegiatan = $('#edit-indikator-kegiatan').val("");
+                    //     target = $('#edit-target').val("");
+                    //     satuan = $('#edit-satuan').val("");
+                    //     anggaran = $('#edit-anggaran').val("");
+                    // }
+                    // var tahun = $('#tahun').val();
+                    // var opd = $('#opd').children("option:selected").val();
 
-                    showData(tahun, opd);
+                    // showData(tahun, opd);
                 }
             });
         });

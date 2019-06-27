@@ -17,13 +17,7 @@ class CreateRencanaAnggaranLayoutsTable extends Migration
             $table->bigIncrements('id');  
             $table->smallInteger('rencana_anggaran_id')->nullable()->default(12);
             $table->smallInteger('sasaran_id')->nullable()->default(12);   
-            $table->smallInteger('indikator_kinerja_id')->nullable()->default(12);       
-            $table->string('program', 100)->nullable();
-            $table->string('kegiatan', 100)->nullable();
-            $table->string('indikator_kegiatan', 100)->nullable();
-            $table->smallInteger('target')->nullable()->default(12);
-            $table->string('satuan', 100)->nullable();
-            $table->string('anggaran', 100);
+            $table->smallInteger('indikator_kinerja_id')->nullable()->default(12);
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->nullable();

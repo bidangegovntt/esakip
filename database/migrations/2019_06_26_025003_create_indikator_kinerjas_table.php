@@ -16,6 +16,7 @@ class CreateIndikatorKinerjasTable extends Migration
         Schema::create('indikator_kinerjas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('deskripsi', 100)->nullable();
+            $table->string('target_kinerja', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->nullable();
