@@ -65,6 +65,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                    <button id="showAfterPrint">Load</button>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead style="background-color: #428bca;" id="thead">
                             <tr>
