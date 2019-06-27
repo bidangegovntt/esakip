@@ -17,4 +17,9 @@ class RencanaAnggaranDetail extends Model
     {
         return $this->belongsTo('App\RencanaAnggaranLayout', 'rencana_anggaran_layout_id', 'id');
     }
+
+    public function data_realisasi_anggaran()
+    {
+        return $this->hasMany('App\RealisasiAnggaran', 'rencana_anggaran_detail_id', 'id');
+    }
 }

@@ -121,6 +121,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/masukkanIndikatorRencanaAnggaran', 'RencanaAnggaranController@masukkanIndikator');
         Route::post('/RencanaAnggaran/proses', 'RencanaAnggaranController@proses');
         Route::resource('rencanaAnggaran', 'RencanaAnggaranController');
+
+        Route::post('/cariRealisasiAnggaran', 'RealisasiAnggaranController@cari');
+        Route::post('/hapusRealisasiAnggaran', 'RealisasiAnggaranController@hapus');
+        Route::get('/tambahIndikatorRealisasiAnggaran', 'RealisasiAnggaranController@tambahIndikator');
+        Route::post('/masukkanIndikatorRealisasiAnggaran', 'RealisasiAnggaranController@masukkanIndikator');
+        Route::post('/RealisasiAnggaran/proses', 'RealisasiAnggaranController@proses');
+        Route::resource('realisasiAnggaran', 'RealisasiAnggaranController');
     });
 
     Route::group(['prefix' => '/dokumen'], function() {
