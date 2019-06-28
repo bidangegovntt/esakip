@@ -39,6 +39,7 @@ Route::group(['prefix' => '/c'], function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home/chart', 'HomeController@chart')->name('home');
 
     Route::group(['prefix' => '/master'], function() {
         Route::get('users/{id}/privilege', 'UserController@privilege')->name('users.privilege');
