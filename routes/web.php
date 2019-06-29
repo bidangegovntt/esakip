@@ -23,6 +23,8 @@ Route::group(['prefix' => '/c'], function() {
 
     Route::group(['prefix' => '/sakip'], function() {
         Route::get('/rencana-strategi', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi');
+        Route::post('/rencana-strategi/cari', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi_cari');
+
         Route::get('/rencana-kinerja-tahunan', 'ClientSakipController@rencana_kinerja_tahunan')->name('sakip.rencana_kinerja_tahunan');
         Route::get('/indikator-kinerja-utama', 'ClientSakipController@indikator_kinerja_utama')->name('sakip.indikator_kinerja_utama');
         Route::get('/perjanjian-kinerja', 'ClientSakipController@perjanjian_kinerja')->name('sakip.perjanjian_kinerja');
