@@ -53,7 +53,9 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li class="{{ set_active(['master/users', 'master/users/*']) }}"><a href="{{ url('master/users') }}"><i class="fa fa-circle-o"></i> Manage User </a></li>
+                @if (Auth::user()->roles == 'admin')
+                    <li class="{{ set_active(['master/users', 'master/users/*']) }}"><a href="{{ url('master/users') }}"><i class="fa fa-circle-o"></i> Manage User </a></li>
+                @endif
                 {{-- <li class="{{ set_active(['master/blok', 'master/blok/*']) }}"><a href="{{ url('master/blok') }}"><i class="fa fa-circle-o"></i> Blok </a></li>
                 <li class="{{ set_active(['master/menu', 'master/menu/*']) }}"><a href="{{ url('master/menu') }}"><i class="fa fa-circle-o"></i> Menu </a></li> --}}
                 <li class="{{ set_active(['master/opd', 'master/opd/*']) }}"><a href="{{ url('master/opd') }}"><i class="fa fa-circle-o"></i> OPD </a></li>
