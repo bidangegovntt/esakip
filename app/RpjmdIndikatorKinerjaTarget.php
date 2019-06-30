@@ -10,7 +10,7 @@ class RpjmdIndikatorKinerjaTarget extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'rpjmd_id', 'tahun', 'nilai'
+        'rpjmd_indikator_id', 'tahun', 'nilai'
     ];
     
     public function data_rpjmd()

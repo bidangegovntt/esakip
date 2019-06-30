@@ -380,9 +380,10 @@
             $('table #action').hide();
             $('table #tdAction').hide();
             $('hr').hide();
-            $('#showAfterPrint').show();
             
             window.print();
+
+            $('#showAfterPrint').show();
         });
 
         $('#tahun_awal').keyup(function() {

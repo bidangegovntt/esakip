@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Rpjmd;
+use App\RpjmdLayout;
+use App\RpjmdTujuan;
+use App\RpjmdSasaran;
 use Illuminate\Http\Request;
+use App\RpjmdIndikatorKinerja;
 use App\RpjmdIndikatorKinerjaTarget;
 
 class RpjmdController extends Controller
@@ -41,25 +45,56 @@ class RpjmdController extends Controller
      */
     public function store(Request $request)
     {
-        $rpjmd = Rpjmd::create([
-            'tahun_awal' => $request->tahun_awal,
-            'tahun_akhir' => $request->tahun_akhir,
-            'tujuan' => $request->tujuan,
-            'sasaran' => $request->sasaran,
-            'indikator_kinerja' => $request->indikator_kinerja
-        ]);
-
-        foreach ($request->target as $key => $targete) {
-            $data_insert = RpjmdIndikatorKinerjaTarget::create([
-                'rpjmd_id' => $rpjmd->id,
-                'tahun' => $request->tahun[$key],
-                'nilai' => $targete
+        $rpjmdData = Rpjmd::first();
+        
+        if($rpjmdData != [] && $rpjmdData->opd_id == $request->opd_id) {
+            $rpjmd = Rpjmd::where([
+                'tahun_awal' => $request->tahun_awal
+            ])
+            ->first();
+        } else {   
+            $rpjmd = Rpjmd::create([
+                "tahun_awal" => $request->tahun_awal,
+                "tahun_akhir" => $request->tahun_akhir
             ]);
         }
 
-        $request->session()->flash('status', 'Data berhasil disimpan');
-        
-        return redirect()->route('rpjmd.index');
+        // rpjmd tujuan
+        $rpjmd_tujuan = RpjmdTujuan::create([
+            "rpjmd_id" => $rpjmd->id,
+            "deskripsi" => $request->tujuan
+        ]);
+
+        // rpjmd sasaran
+        $rpjmd_sasaran = RpjmdSasaran::create([
+            "rpjmd_tujuan_id" => $rpjmd_tujuan->id,
+            "deskripsi" => $request->sasaran
+        ]);
+
+        // rpjmd indikator
+        $rpjmd_indikator = RpjmdIndikatorKinerja::create([
+            "rpjmd_sasaran_id" => $rpjmd_sasaran->id,
+            "deskripsi" => $request->indikator
+        ]);
+
+        foreach($request->target as $key => $targete) {
+            $rpjmd_target = RpjmdIndikatorKinerjaTarget::create([
+                "rpjmd_indikator_id" => $rpjmd_indikator->id,
+                "tahun" => $targete['tahun'],
+                "nilai" => $targete['nilai']
+            ]);
+        }
+
+        // rpjmd layout
+        $rpjmd_layout = RpjmdLayout::create([
+            "tujuan_id" => $rpjmd_tujuan->id,
+            "sasaran_id" => $rpjmd_sasaran->id,
+            "indikator_id" => $rpjmd_indikator->id
+        ]);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
     }
 
     /**
@@ -83,12 +118,21 @@ class RpjmdController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $rpjmd = Rpjmd::find($id);
-        $rpjmd_targets = RpjmdIndikatorKinerjaTarget::where('rpjmd_id', $rpjmd->id)->get();
+        $rpjmd = RpjmdLayout::with(
+            'data_tujuan',
+            'data_sasaran',
+            'data_indikator',
+            'data_indikator.data_rpjmd_target',
+            'data_tujuan.data_rpjmd'
+        )
+        ->find($request->id);
 
-        return view('admin.pages.rpjmd.edit', ['rpjmd' => $rpjmd, 'rpjmd_targets' => $rpjmd_targets]);
+        return response()->json([
+            'success' => 'data berhasil disimpan',
+            'rpjmd' => $rpjmd
+        ]);
     }
 
     /**
@@ -100,23 +144,29 @@ class RpjmdController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rpjmd = Rpjmd::find($id);
-        $rpjmd->tujuan = $request->tujuan;
-        $rpjmd->sasaran = $request->sasaran;
-        $rpjmd->indikator_kinerja = $request->indikator_kinerja;
-        $rpjmd->save();
+        $rpjmd_tujuan = RpjmdTujuan::find($request->tujuan_id);
+        $rpjmd_tujuan->deskripsi = $request->tujuan_text;
+        $rpjmd_tujuan->save();
 
-        foreach ($request->target as $key => $targete) {
-            $data_update = RpjmdIndikatorKinerjaTarget::where([
-                    'rpjmd_id' => $rpjmd->id,
-                    'tahun' => $request->tahun[$key]
-                ])
-                ->update(['nilai' => $request->target[$key]]);
+        $rpjmd_sasaran = RpjmdSasaran::find($request->sasaran_id);
+        $rpjmd_sasaran->deskripsi = $request->sasaran_text;
+        $rpjmd_sasaran->save();
+
+        $rpjmd_indikator = RpjmdIndikatorKinerja::find($request->indikator_id);
+        $rpjmd_indikator->deskripsi = $request->indikator_text;
+        $rpjmd_indikator->save();
+        
+        foreach($request->target as $key => $targete) {
+            RpjmdIndikatorKinerjaTarget::where([
+                'rpjmd_indikator_id' => $request->indikator_id,
+                'tahun' => $request->target[$key]['tahun']
+            ])
+            ->update(['nilai' => $request->target[$key]['nilai']]);
         }
 
-        $request->session()->flash('status', 'Data berhasil diubah');
-        
-        return redirect()->route('rpjmd.index');
+        return response()->json([
+            'success' => 'data berhasil diperbaharui'
+        ]);
     }
 
     /**
@@ -133,6 +183,127 @@ class RpjmdController extends Controller
 
         return response()->json([
             'success' => 'Record deleted successfully!'
+        ]);
+    }
+
+    public function cari(Request $request)
+    {
+        // return $request;
+        $tahun_awal = $request->tahun_awal;
+        $tahun_akhir = $request->tahun_akhir;
+
+        $rpjmds = RpjmdTujuan::whereHas('data_layout', function($query) {
+            $query->where('deleted_at', null);
+        })
+        ->whereHas('data_rpjmd', function($query) use ($tahun_awal, $tahun_akhir) {
+            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir);
+        })
+        ->with('data_rpjmd','data_layout.data_target', 'data_layout.data_sasaran', 'data_layout.data_indikator')->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $rpjmds
+        ]);
+    }
+
+    public function hapus(Request $request)
+    {
+        $rpjmd = RpjmdLayout::find($request->id);
+
+        $rpjmd->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+    }
+
+    public function tambahSasaran(Request $request)
+    {
+        $rpjmds = RpjmdLayout::with('data_tujuan', 'data_tujuan.data_rpjmd')
+        ->where('id', $request->id)
+        ->first();  
+        
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $rpjmds
+        ]);
+    }
+
+    public function masukkanSasaran(Request $request)
+    {
+        // renstra sasaran
+        $rpjmd_sasaran = RpjmdSasaran::create([
+            "rpjmd_tujuan_id" => $request->tujuan_id,
+            "deskripsi" => $request->sasaran_text
+        ]);
+
+        // rpjmd indikator
+        $rpjmd_indikator = RpjmdIndikatorKinerja::create([
+            "rpjmd_sasaran_id" => $rpjmd_sasaran->id,
+            "deskripsi" => $request->indikator_text
+        ]);
+
+        foreach($request->target as $key => $targete) {
+            $rpjmd_target = RpjmdIndikatorKinerjaTarget::create([
+                "rpjmd_indikator_id" => $rpjmd_indikator->id,
+                "tahun" => $targete['tahun'],
+                "nilai" => $targete['nilai']
+            ]);
+        }
+
+        // rpjmd layout
+        $rpjmd_layout = RpjmdLayout::create([
+            "tujuan_id" => $request->tujuan_id,
+            "sasaran_id" => $rpjmd_sasaran->id,
+            "indikator_id" => $rpjmd_indikator->id
+        ]);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
+    }
+
+    public function tambahIndikator(Request $request)
+    {
+        $rpjmds = RpjmdLayout::with(
+            'data_tujuan', 
+            'data_tujuan.data_rpjmd',
+            'data_sasaran'
+        )
+        ->where('id', $request->id)
+        ->first();  
+        
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $rpjmds
+        ]);
+    }
+
+    public function masukkanIndikator(Request $request)
+    {
+        // renstra indikator
+        $rpjmd_indikator = RpjmdIndikatorKinerja::create([
+            "rpjmd_sasaran_id" => $request->sasaran_id,
+            "deskripsi" => $request->indikator_text
+        ]);
+
+        foreach($request->target as $key => $targete) {
+            $rpjmd_target = RpjmdIndikatorKinerjaTarget::create([
+                "rpjmd_indikator_id" => $rpjmd_indikator->id,
+                "tahun" => $targete['tahun'],
+                "nilai" => $targete['nilai']
+            ]);
+        }
+
+        // rpjmd layout
+        $rpjmd_layout = RpjmdLayout::create([
+            "tujuan_id" => $request->tujuan_id,
+            "sasaran_id" => $request->sasaran_id,
+            "indikator_id" => $rpjmd_indikator->id
+        ]);
+
+        return response()->json([
+            'success' => 'data berhasil disimpan'
         ]);
     }
 }

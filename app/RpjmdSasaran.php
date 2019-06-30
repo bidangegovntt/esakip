@@ -10,7 +10,7 @@ class RpjmdSasaran extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'rpjmd_id', 'sasaran'
+        'rpjmd_tujuan_id', 'deskripsi'
     ];
 
     public function data_rpjmd()

@@ -71,6 +71,12 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['prefix' => '/input'], function() {
+        Route::post('/cariRpjmd', 'RpjmdController@cari');
+        Route::post('/hapusRpjmd', 'RpjmdController@hapus');
+        Route::get('/tambahSasaranRpjmd', 'RpjmdController@tambahSasaran');
+        Route::post('/masukkanSasaranRpjmd', 'RpjmdController@masukkanSasaran');
+        Route::get('/tambahIndikatorRpjmd', 'RpjmdController@tambahIndikator');
+        Route::post('/masukkanIndikatorRpjmd', 'RpjmdController@masukkanIndikator');
         Route::resource('rpjmd', 'RpjmdController');
 
         Route::post('/cariRenstra', 'RenstraController@cari');
