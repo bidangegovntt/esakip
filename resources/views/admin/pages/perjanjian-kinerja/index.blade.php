@@ -363,7 +363,11 @@
         });
 
         $('.btn-secondary').on('click', function() {
-            showData();
+            var tahun_awal = $('#tahun_awal').val();
+            var tahun_akhir = $('#tahun_akhir').val();
+            var opd = $('#opd').children("option:selected").val();
+
+            showData(tahun_awal, tahun_akhir, opd);
         });
 
         // showData();

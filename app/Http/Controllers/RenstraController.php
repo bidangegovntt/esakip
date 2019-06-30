@@ -49,20 +49,18 @@ class RenstraController extends Controller
         // renstra
         $renstraData = Renstra::first();
         
-        if($renstraData == []) {
-            $renstra = Renstra::create([
-                "tahun_awal" => $request->tahun_awal,
-                "tahun_akhir" => $request->tahun_akhir,
-                "opd_id" => $request->opd_id
-            ]); 
-        } else {
-            
+        if($renstraData != [] && $renstraData->opd_id == $request->opd_id) {
             $renstra = Renstra::where([
                 'tahun_awal' => $request->tahun_awal,
                 'opd_id' => $request->opd_id, 
             ])
             ->first();
-            
+        } else {   
+            $renstra = Renstra::create([
+                "tahun_awal" => $request->tahun_awal,
+                "tahun_akhir" => $request->tahun_akhir,
+                "opd_id" => $request->opd_id
+            ]);
         }
 
         // renstra tujuan
@@ -312,12 +310,13 @@ class RenstraController extends Controller
         // return $request;
         $tahun_awal = $request->tahun_awal;
         $tahun_akhir = $request->tahun_akhir;
+        $opd = $request->opd;
 
         $renstras = RenstraTujuan::whereHas('data_layout', function($query) {
             $query->where('deleted_at', null);
         })
-        ->whereHas('data_renstra', function($query) use ($tahun_awal, $tahun_akhir) {
-            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir);
+        ->whereHas('data_renstra', function($query) use ($tahun_awal, $tahun_akhir, $opd) {
+            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir)->where('opd_id', $opd);
         })
         ->with('data_renstra','data_layout.data_target', 'data_layout.data_sasaran', 'data_layout.data_indikator')->get();
 

@@ -357,24 +357,13 @@
 
         $('.btn-cari').on('click', function(e) {
             e.preventDefault();
+            $('#tabeldata').empty();
 
             var tahun_awal = $('#tahun_awal').val();
             var tahun_akhir = $('#tahun_akhir').val();
             var opd = $('#opd').children("option:selected").val();
 
-            $.ajax({
-                url: 'cariRenstra',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    tahun_awal: tahun_awal,
-                    tahun_akhir: tahun_akhir,
-                    opd: opd
-                },
-                success: function(response) {
-                    showData();
-                }
-            });
+            showData(tahun_awal, tahun_akhir, opd);
         });
 
         $('#showAfterPrint').hide();
@@ -394,27 +383,6 @@
             $('#showAfterPrint').show();
             
             window.print();
-
-            // var tahun_awal = $('#tahun_awal').val();
-            // var tahun_akhir = $('#tahun_akhir').val();
-            // var opd = $('#opd').children("option:selected").val();
-
-            // window.location = "cetakRenstra/?tahun_awal=" + tahun_awal + "&tahun_akhir=" + tahun_akhir + "&opd=" + opd;
-
-            // var tahun_awal = $('#tahun_awal').val();
-            // var tahun_akhir = $('#tahun_akhir').val();
-            // var opd = $('#opd').children("option:selected").val();
-
-            // $.ajax({
-            //     url: 'cetakRenstra',
-            //     type: 'POST',
-            //     data: {
-            //         _token: CSRF_TOKEN,
-            //         tahun_awal: tahun_awal,
-            //         tahun_akhir: tahun_akhir,
-            //         opd: opd
-            //     }
-            // });
         });
 
         $('#tahun_awal').keyup(function() {
@@ -438,17 +406,29 @@
         });
 
         $('.btn-secondary').on('click', function() {
-            showData();
+            var tahun_awal = $('#tahun_awal').val();
+            var tahun_akhir = $('#tahun_akhir').val();
+            var opd = $('#opd').children("option:selected").val();
+
+            showData(tahun_awal, tahun_akhir, opd);
         });
 
-        showData();
+        function showData(data_tahun_awal, data_tahun_akhir, data_opd) {
+            var tahun_awal = data_tahun_awal;
+            var tahun_akhir = data_tahun_akhir;
+            var opd = data_opd;
 
-        function showData() {
             $.ajax({
-                url: 'getDataRenstra',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {                    
+                url: 'cariRenstra',
+                type: 'POST',
+                data: {
+                    _token: CSRF_TOKEN,
+                    tahun_awal: tahun_awal,
+                    tahun_akhir: tahun_akhir,
+                    opd: opd
+                },
+                success: function(response) {
+                    console.log(response);                    
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
@@ -589,7 +569,11 @@
                         sasaran = $('#input-sasaran').val("");
                         indikator = $('#input-indikator').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
@@ -688,7 +672,11 @@
                         sasaran = $('#input-sasaran').val("");
                         indikator = $('#input-indikator').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
@@ -707,11 +695,19 @@
                         id: id
                     },
                     success: function(response) {
-                        showData();
+                        var tahun_awal = $('#tahun_awal').val();
+                        var tahun_akhir = $('#tahun_akhir').val();
+                        var opd = $('#opd').children("option:selected").val();
+
+                        showData(tahun_awal, tahun_akhir, opd);
                     }
                 });
             } else {
-                showData();
+                var tahun_awal = $('#tahun_awal').val();
+                var tahun_akhir = $('#tahun_akhir').val();
+                var opd = $('#opd').children("option:selected").val();
+
+                showData(tahun_awal, tahun_akhir, opd);
             }            
         });
 
@@ -798,7 +794,11 @@
                         sasaran = $('#modalSasaran #edit-sasaran-text').val("");
                         indikator = $('#modalSasaran #edit-indikator-text').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
@@ -888,7 +888,11 @@
                         sasaran = $('#modalIndikator #edit-sasaran-text').val("");
                         indikator = $('#modalIndikator #edit-indikator-text').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
