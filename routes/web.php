@@ -47,8 +47,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('users/{id}/privilege', 'UserController@privilege')->name('users.privilege');
         Route::resource('users', 'UserController');
 
-        Route::resource('menu', 'MenuController');
-        Route::resource('blok', 'BlokController');
+        // Route::resource('menu', 'MenuController');
+        // Route::resource('blok', 'BlokController');
         Route::resource('berita', 'BeritaController');
         Route::resource('gallery', 'GalleryController');
         Route::resource('opd', 'OpdController');

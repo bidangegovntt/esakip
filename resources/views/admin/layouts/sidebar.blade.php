@@ -46,8 +46,9 @@
             </a>
             <ul class="treeview-menu">
                 <li class="{{ set_active(['master/users', 'master/users/*']) }}"><a href="{{ url('master/users') }}"><i class="fa fa-circle-o"></i> Manage User </a></li>
-                <li class="{{ set_active(['master/blok', 'master/blok/*']) }}"><a href="{{ url('master/blok') }}"><i class="fa fa-circle-o"></i> Blok </a></li>
-                <li class="{{ set_active(['master/menu', 'master/menu/*']) }}"><a href="{{ url('master/menu') }}"><i class="fa fa-circle-o"></i> Menu </a></li>
+                {{-- <li class="{{ set_active(['master/blok', 'master/blok/*']) }}"><a href="{{ url('master/blok') }}"><i class="fa fa-circle-o"></i> Blok </a></li>
+                <li class="{{ set_active(['master/menu', 'master/menu/*']) }}"><a href="{{ url('master/menu') }}"><i class="fa fa-circle-o"></i> Menu </a></li> --}}
+                <li class="{{ set_active(['master/opd', 'master/opd/*']) }}"><a href="{{ url('master/opd') }}"><i class="fa fa-circle-o"></i> OPD </a></li>
                 <li class="{{ set_active(['master/bidang', 'master/bidang/*']) }}"><a href="{{ url('master/bidang') }}"><i class="fa fa-circle-o"></i> Bidang </a></li>
                 <li class="{{ set_active(['master/subbidang', 'master/subbidang/*']) }}"><a href="{{ url('master/subbidang') }}"><i class="fa fa-circle-o"></i> Subbidang </a></li>
                 <li class="{{ set_active(['master/jabatan-opd', 'master/jabatan-opd/*']) }}"><a href="{{ url('master/jabatan-opd') }}"><i class="fa fa-circle-o"></i> Jabatan </a></li>
