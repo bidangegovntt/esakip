@@ -5,7 +5,11 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
         <div class="pull-left image">
-        <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+        @if (Auth::user()->roles == 'admin')
+            <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" class="img-circle" alt="User Image">
+        @else
+            <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" class="img-circle" alt="User Image">
+        @endif 
         </div>
         <div class="pull-left info">
         <p>{{ Auth::user()->name }}</p>
