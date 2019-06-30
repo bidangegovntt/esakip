@@ -25,9 +25,14 @@ Route::group(['prefix' => '/c'], function() {
         Route::get('/rencana-strategi', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi');
         Route::post('/rencana-strategi/cari', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi_cari');
 
-        Route::get('/rencana-kinerja-tahunan', 'ClientSakipController@rencana_kinerja_tahunan')->name('sakip.rencana_kinerja_tahunan');
+        Route::get('/rencana-program', 'ClientSakipController@rencana_program_kegiatan')->name('sakip.rencana_program_kegiatan');
+        Route::get('/rencana-program/cari', 'ClientSakipController@rencana_program_kegiatan_cari')->name('sakip.rencana_program_kegiatan.cari');
+
         Route::get('/indikator-kinerja-utama', 'ClientSakipController@indikator_kinerja_utama')->name('sakip.indikator_kinerja_utama');
+
         Route::get('/perjanjian-kinerja', 'ClientSakipController@perjanjian_kinerja')->name('sakip.perjanjian_kinerja');
+        Route::get('/perjanjian-kinerja/cari', 'ClientSakipController@perjanjian_kinerja_cari')->name('sakip.perjanjian_kinerja.cari');
+
         Route::get('/capaian-kinerja', 'ClientSakipController@capaian_kinerja')->name('sakip.capaian_kinerja');
         Route::get('/rpjmd', 'ClientSakipController@rpjmd')->name('sakip.rpjmd');
         Route::get('/lkjlp', 'ClientSakipController@lkjlp')->name('sakip.lkjlp');

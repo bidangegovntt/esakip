@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Opd;
 use App\RenstraTujuan;
 use Illuminate\Http\Request;
+use App\PerjanjianKinerjaSasaran;
 
 class ClientSakipController extends Controller
 {
@@ -36,7 +37,12 @@ class ClientSakipController extends Controller
             'data' => $renstras
         ]);
     }
-    public function rencana_kinerja_tahunan()
+    public function rencana_program_kegiatan()
+    {
+        $opds = Opd::get();
+        return view('pages.rencanaProgramKegiatan', ['opds' => $opds]);
+    }
+    public function rencana_program_kegiatan_cari()
     {
         return view('pages.rencanaKinerjaTahunan');
     }
@@ -46,7 +52,27 @@ class ClientSakipController extends Controller
     }
     public function perjanjian_kinerja()
     {
-        return view('pages.perjanjianKinerja');
+        $opds = Opd::get();
+        return view('pages.perjanjianKinerja', ['opds' => $opds]);
+    }
+    public function perjanjian_kinerja_cari(Request $request)
+    {
+        $tahun_awal = $request->tahun_awal;
+        $tahun_akhir = $request->tahun_akhir;
+        $opd = $request->opd;
+
+        $perjanjianKinerjas = PerjanjianKinerjaSasaran::whereHas('data_layout', function($query) {
+            $query->where('deleted_at', null);
+        })
+        ->whereHas('data_perjanjian_kinerja', function($query) use ($tahun_awal, $tahun_akhir, $opd) {
+            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir)->where('opd_id', $opd);
+        })
+        ->with('data_perjanjian_kinerja', 'data_layout.data_sasaran', 'data_layout.data_indikator')->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $perjanjianKinerjas
+        ]);
     }
     public function capaian_kenerja()
     {

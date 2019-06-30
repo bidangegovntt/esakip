@@ -63,9 +63,9 @@
                 </div>
         
                 <div id="change" class="col-md-3">
-                    <a href="{{ url('c/sakip/rencana-kinerja-tahunan') }}">
+                    <a href="{{ url('c/sakip/rencana-program') }}">
                         <img src="{{ asset('template/images/iconbox/icon2.png') }}" alt="">
-                        <h5>Rencana Kinerja Tahunan</h5>
+                        <h5>Rencana Program dan Kegiatan</h5>
                     </a>
                 </div>
         

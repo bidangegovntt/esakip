@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h5 class="section-heading text-uppercase">Perjanjian Kinerja</h5>
+            <h5 class="section-heading text-uppercase">Rencana Program dan Kegiatan</h5>
             <h3 class="section-subheading text-muted"></h3>
         </div>
     </div>
@@ -19,6 +19,12 @@
         <div class="col-sm-4">
             <label>Sampai</label>
             <input type="text" class="form-control" id="tahun_akhir" placeholder="Selesai" disabled>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <label>Tahun</label>
+            <input type="text" class="form-control" id="tahun" placeholder="tahun">
         </div>
     </div>
     <div class="row">
