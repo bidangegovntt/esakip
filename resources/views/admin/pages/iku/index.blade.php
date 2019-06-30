@@ -284,24 +284,13 @@
 
         $('.btn-cari').on('click', function(e) {
             e.preventDefault();
+            $('#tabeldata').empty();
 
             var tahun_awal = $('#tahun_awal').val();
             var tahun_akhir = $('#tahun_akhir').val();
             var opd = $('#opd').children("option:selected").val();
 
-            $.ajax({
-                url: 'cariIku',
-                type: 'POST',
-                data: {
-                    _token: CSRF_TOKEN,
-                    tahun_awal: tahun_awal,
-                    tahun_akhir: tahun_akhir,
-                    opd: opd
-                },
-                success: function(response) {
-                    showData();
-                }
-            });
+            showData(tahun_awal, tahun_akhir, opd);
         });
 
         $('#showAfterPrint').hide();
@@ -338,12 +327,21 @@
 
         // showData();
 
-        function showData() {
+        function showData(data_tahun_awal, data_tahun_akhir, data_opd) {
+            var tahun_awal = data_tahun_awal;
+            var tahun_akhir = data_tahun_akhir;
+            var opd = data_opd;
+
             $.ajax({
-                url: 'getDataIku',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {      
+                url: 'cariIku',
+                type: 'POST',
+                data: {
+                    _token: CSRF_TOKEN,
+                    tahun_awal: tahun_awal,
+                    tahun_akhir: tahun_akhir,
+                    opd: opd
+                },
+                success: function(response) {     
                     // console.log(response);              
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
@@ -450,7 +448,11 @@
                         penjelasan = $('#input-penjelasan').val("");
                         penanggung_jawab = $('#input-penanggung-jawab').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
@@ -526,7 +528,11 @@
                         penjelasan = $('#edit-penjelasan').val("");
                         penanggung_jawab = $('#edit-penanggung-jawab').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
@@ -545,11 +551,19 @@
                         id: id
                     },
                     success: function(response) {
-                        showData();
+                        var tahun_awal = $('#tahun_awal').val();
+                        var tahun_akhir = $('#tahun_akhir').val();
+                        var opd = $('#opd').children("option:selected").val();
+
+                        showData(tahun_awal, tahun_akhir, opd);
                     }
                 });
             } else {
-                showData();
+                var tahun_awal = $('#tahun_awal').val();
+                var tahun_akhir = $('#tahun_akhir').val();
+                var opd = $('#opd').children("option:selected").val();
+
+                showData(tahun_awal, tahun_akhir, opd);
             }            
         });
 
@@ -612,7 +626,11 @@
                         penjelasan = $('#modalIndikator #edit-penjelasan').val("");
                         penanggung_jawab = $('#modalIndikator #edit-penanggung-jawab').val("");
                     }
-                    showData();
+                    var tahun_awal = $('#tahun_awal').val();
+                    var tahun_akhir = $('#tahun_akhir').val();
+                    var opd = $('#opd').children("option:selected").val();
+
+                    showData(tahun_awal, tahun_akhir, opd);
                 }
             });
         });
