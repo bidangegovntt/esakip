@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/chart', 'HomeController@chart')->name('home');
 
+    Route::resource('profile', 'ProfileController');
+
     Route::group(['prefix' => '/master'], function() {
         Route::get('users/{id}/privilege', 'UserController@privilege')->name('users.privilege');
         Route::resource('users', 'UserController');
