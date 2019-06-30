@@ -33,7 +33,12 @@
                         @if (Auth::user()->roles == 'admin')
                             <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" style="max-width: 200px;" class="img-circle" alt="User Image">
                         @else
-                            <img src="{{ asset('adminlte/dist/img/profile/' . $user->avatar) }}" style="max-width: 200px;" class="img-circle" alt="User Image">
+                            @if (Auth::user()->avatar == null)
+                                <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" style="max-width: 200px;" class="img-circle" alt="User Image">
+                            @else
+                                <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" style="max-width: 200px;" class="img-circle" alt="User Image">
+                
+                            @endif
                         @endif 
                     </div>
                     <div class="form-group col-sm-12">
@@ -45,7 +50,7 @@
                         <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}">
                     </div>
 
-                    @if (!Auth::user()->roles == 'admin')
+                    @if (Auth::user()->roles != 'admin')
                         <div class="form-group col-sm-12">
                             <label for="avatar">Ganti Foto</label>
                             <input type="file" class="form-control" name="avatar" value="{{ Auth::user()->avatar }}">

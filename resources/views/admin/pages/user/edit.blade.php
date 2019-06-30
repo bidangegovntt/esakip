@@ -36,7 +36,7 @@
 
                     <div class="box-body">
                         <div class="form-group">
-                            <label>Username</label><br>
+                            <label>Nama</label><br>
                             <input
                                 type="text"
                                 class="form-control {{ $errors->first('name') ? "is-invalid" : "" }}"
@@ -65,7 +65,6 @@
                             <label>Level</label><br>
                             <select class="form-control {{ $errors->first('roles') ? "is-invalid" : "" }}" name="roles" id="roles">
                                 <option value="">--Pilih Level--</option>
-                                <option {{ $user->roles == 'administrator' ? 'selected' : '' }} value="administrator">Administrator</option>
                                 <option {{ $user->roles == 'monitoring tingkat pusat' ? 'selected' : '' }} value="monitoring tingkat pusat">Monitoring Tingkat Pusat</option>
                                 <option {{ $user->roles == 'monitoring tingkat unit' ? 'selected' : '' }} value="monitoring tingkat unit">Monitoring Tingkat Unit</option>
                                 <option {{ $user->roles == 'unit kerja' ? 'selected' : '' }} value="unit kerja">Unit Kerja</option>

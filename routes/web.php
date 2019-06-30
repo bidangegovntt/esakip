@@ -48,6 +48,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/home/chart', 'HomeController@chart')->name('home');
 
+    Route::get('profile/ubah-password', 'ProfileController@ubah_password')->name('profile.ubah_password');
+    Route::put('profile/ubah-password/{id}/store', 'ProfileController@ubah_password_store')->name('profile.ubah_password_store');
     Route::resource('profile', 'ProfileController');
 
     Route::group(['prefix' => '/master'], function() {

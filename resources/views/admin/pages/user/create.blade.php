@@ -35,13 +35,13 @@
 
                     <div class="box-body">
                         <div class="form-group">
-                            <label>Username</label><br>
+                            <label>Nama</label><br>
                             <input
                                 type="text"
                                 class="form-control {{ $errors->first('name') ? "is-invalid" : "" }}" 
                                 value="{{ old('name') }}"
                                 name="name"
-                                placeholder="Username"/>
+                                placeholder="Nama"/>
                             <div class="invalid-feedback">
                                 {{$errors->first('name')}}
                             </div>

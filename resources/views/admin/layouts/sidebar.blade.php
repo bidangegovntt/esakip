@@ -8,7 +8,11 @@
         @if (Auth::user()->roles == 'admin')
             <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" class="img-circle" alt="User Image">
         @else
-            <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" class="img-circle" alt="User Image">
+            @if (Auth::user()->avatar == null)
+                <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" class="img-circle" alt="User Image">
+            @else
+                <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" class="img-circle" alt="User Image">
+            @endif
         @endif 
         </div>
         <div class="pull-left info">

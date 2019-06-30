@@ -21,7 +21,11 @@
                         @if (Auth::user()->roles == 'admin')
                             <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" class="user-image" alt="User Image">
                         @else
-                            <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" class="user-image" alt="User Image">
+                            @if (Auth::user()->avatar == null)
+                                <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" class="user-image" alt="User Image">
+                            @else
+                                <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" class="user-image" alt="User Image">
+                            @endif
                         @endif 
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
                     </a>
@@ -31,8 +35,12 @@
                             @if (Auth::user()->roles == 'admin')
                                 <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}" class="img-circle" alt="User Image">
                             @else
-                                <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" class="img-circle" alt="User Image">
-                            @endif    
+                                @if (Auth::user()->avatar == null)
+                                    <img src="{{ asset('adminlte/dist/img/profile/profile.png') }}"class="img-circle" alt="User Image">
+                                @else
+                                    <img src="{{ asset('adminlte/dist/img/profile/' . Auth::user()->avatar) }}" class="img-circle" alt="User Image">
+                                @endif
+                            @endif   
 
                             <p>
                             {{ Auth::user()->name }}

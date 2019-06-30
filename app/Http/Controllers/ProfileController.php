@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -74,6 +75,19 @@ class ProfileController extends Controller
         $user = User::find($id);
         $user->name = $request->nama;
         $user->email = $request->email;
+
+        if ($request->hasFile('avatar')) {
+            $destinationPath = public_path('/adminlte/dist/img/profile');
+            File::delete($destinationPath . '/' . $user->avatar);
+
+            $image = $request->file('avatar');
+            $image_name = 'user_' . time() . '.' . $image->getClientOriginalExtension();
+            $path = public_path('/adminlte/dist/img/profile');
+            $image->move($path, $image_name);
+
+            $user->avatar = $image_name;
+        }
+
         $user->save();
 
         $request->session()->flash('status', 'Data berhasil diubah');
@@ -90,5 +104,21 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ubah_password()
+    {
+        return view('admin.pages.profile.ubah_password');
+    }
+
+    public function ubah_password_store(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        $request->session()->flash('status', 'Data berhasil diubah');
+        
+        return redirect()->route('profile.ubah_password', ['id' => $id]);
     }
 }
