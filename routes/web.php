@@ -53,7 +53,7 @@ Route::group(['prefix' => '/c'], function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/home/chart', 'HomeController@chart')->name('home');
+    Route::post('/home/chart', 'HomeController@chart')->name('home.chart');
 
     Route::get('profile/ubah-password', 'ProfileController@ubah_password')->name('profile.ubah_password');
     Route::put('profile/ubah-password/{id}/store', 'ProfileController@ubah_password_store')->name('profile.ubah_password_store');

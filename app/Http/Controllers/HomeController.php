@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Opd;
 use App\Renstra;
+use App\RencanaAnggaran;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,13 +26,31 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $opds = Opd::get();
+        return view('admin.home', ['opds' => $opds]);
     }
 
-    public function chart()
+    public function chart(Request $request)
     {
-        $renstra = Renstra::get();
+        $data = [];
+        $renstras = Renstra::first();
+        $rencana_anggaran = RencanaAnggaran::where('tahun', $request->tahun)
+        ->with(
+            'data_layout',
+            'data_layout.data_detail'
+        )
+        ->first();
+        // foreach ($renstras as $key => $renstra) {
+        //     $data[$key] = $renstra->tahun_awal;
+        // }
+        $count = $renstras->tahun_akhir - $renstras->tahun_awal;
+        for ($i = 0; $i <= $count; $i++) { 
+            $data[$i] = $renstras->tahun_awal + $i;
+        }
         
-        return [1,2,3];
+        return response()->json([
+            'data' => $data,
+            'rencana_anggaran' => $rencana_anggaran
+        ]);
     }
 }

@@ -17,4 +17,9 @@ class RencanaAnggaran extends Model
     {
         return $this->belongsTo('App\Opd', 'opd_id', 'id');
     }
+
+    public function data_layout()
+    {
+        return $this->hasMany('App\RencanaAnggaranLayout', 'rencana_anggaran_id', 'id');
+    }
 }
