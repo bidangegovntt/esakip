@@ -23,10 +23,10 @@ Route::group(['prefix' => '/c'], function() {
 
     Route::group(['prefix' => '/sakip'], function() {
         Route::get('/rencana-strategi', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi');
-        Route::post('/rencana-strategi/cari', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi_cari');
+        Route::post('/rencana-strategi/cari', 'ClientSakipController@rencana_strategi_cari')->name('sakip.rencana_strategi_cari');
 
         Route::get('/rencana-program', 'ClientSakipController@rencana_program_kegiatan')->name('sakip.rencana_program_kegiatan');
-        Route::get('/rencana-program/cari', 'ClientSakipController@rencana_program_kegiatan_cari')->name('sakip.rencana_program_kegiatan.cari');
+        Route::post('/rencana-program/cari', 'ClientSakipController@rencana_program_kegiatan_cari')->name('sakip.rencana_program_kegiatan.cari');
 
         Route::get('/indikator-kinerja-utama', 'ClientSakipController@indikator_kinerja_utama')->name('sakip.indikator_kinerja_utama');
 

@@ -57,16 +57,14 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead style="background-color: #428bca;" id="thead">
                     <tr>
-                        <th style="color: #ffffff; text-align: center;" rowspan="2">No</th>
-                        <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
-                        <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator</th>
-                        <th style="color: #ffffff; text-align: center;" rowspan="2">Target Kinerja</th>
-                        <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="3">Target</th>
-                    </tr>
-                    <tr id="head-target">
-                        <th style="color: #ffffff; text-align: center;">Tw</th>
-                        <th style="color: #ffffff; text-align: center;">Target</th>
-                        <th style="color: #ffffff; text-align: center;">Satuan</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">No</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">Sasaran</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">Indikator Kinerja</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">Target Kinerja</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">Program</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">Anggaran Program</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">Indikator Program</th>
+                        <th style="color: #ffffff; text-align: center; font-size: 12px;">Target Program</th>
                     </tr>
                 </thead>
                 <tbody id="tabeldata">
@@ -89,63 +87,68 @@
             e.preventDefault();
             $('#tabeldata').empty();
 
+            var tahun = $('#tahun').val();
             var tahun_awal = $('#tahun_awal').val();
-            var tahun_akhir = $('#tahun_akhir').val();
             var opd = $('#opd').children("option:selected").val();
 
-            showData(tahun_awal, tahun_akhir, opd);
+            showData(tahun, tahun_awal, opd);
         });
 
         $('#tahun_awal').keyup(function() {
             $('#tahun_akhir').val(parseInt($('#tahun_awal').val()) + 4);
         });
 
-        function showData(data_tahun_awal, data_tahun_akhir, data_opd) {
+        function showData(data_tahun, data_tahun_awal, data_opd) {
+            var tahun = data_tahun;
             var tahun_awal = data_tahun_awal;
-            var tahun_akhir = data_tahun_akhir;
             var opd = data_opd;
 
             $.ajax({
-                url: 'perjanjian-kinerja/cari',
-                type: 'get',
+                url: 'rencana-program/cari',
+                type: 'POST',
                 data: {
                     _token: CSRF_TOKEN,
+                    tahun: tahun,
                     tahun_awal: tahun_awal,
-                    tahun_akhir: tahun_akhir,
                     opd: opd
                 },
-                success: function(response) { 
-                    console.log(response);                  
+                success: function(response) {
+                    // console.log(response.data);
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
-                            tr += "<td>" + value.deskripsi + "</td>";
+                            tr += "<td>" + value.data_sasaran.deskripsi + "</td>";
+                            tr += "<td>" + value.data_indikator_kinerja.deskripsi + "</td>";
+                            tr +=   "<td>" + value.data_indikator_kinerja.target_kinerja + "</td>";
 
-                        var indikator = '';
+                        // var indikator = '';
                         
-                        $.each(value.data_layout, function(i, value_layout) {
-                            if(indikator == value_layout.indikator_id) {
-                                tr += "<td></td>";
-                            } else {
-                                tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
-                                tr += "<td>" + value_layout.target_kinerja + "</td>";
-                            }                          
+                        $.each(value.data_indikator_kinerja.data_indikator, function(i, value_indikator) {
+                            // if(indikator == value_indikator.indikator_kinerja_id) {
+                            //     tr += "<td></td>";
+                            // } else {
+                            //     tr += "<td>" + value_indikator.indikator_kinerja_id + "</td>";
+                            // }                          
+                            // tr += "<td>" + value_indikator.indikator_kinerja_id + "</td>";
+                            tr += "<td>" + value_indikator.program + "</td>";
+                            tr += "<td>" + value_indikator.anggaran_program + "</td>";
+                            tr += "<td>" + value_indikator.indikator_program + "</td>";
+                            tr += "<td>" + value_indikator.target_program + "</td>";
                             
-                            tr += "<td>" + value_layout.tw + "</td>";
-                            tr += "<td>" + value_layout.target + "</td>";
-                            tr += "<td>" + value_layout.satuan + "</td>";
-                            
-                            var isLastElement = i == value.data_layout.length -1;
+                            var isLastElement = i == value.data_indikator_kinerja.data_indikator.length -1;
 
                             if (isLastElement) {
                                 
-                                tr +=   "</tr>";
                             } else {
                                 
-                                tr +=   "</tr><td></td><td></td>";
+                                tr +=   "</tr>" +
+                                            "<td></td>" +
+                                            "<td></td>" +
+                                            "<td></td>" +
+                                            "<td></td>";
                             }
 
-                            indikator = value_layout.sasaran_id;
+                            // indikator = value_indikator.indikator_kinerja_id;
                         });
 
                         $('#tabeldata').append(tr);

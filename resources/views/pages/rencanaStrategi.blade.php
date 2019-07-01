@@ -39,16 +39,11 @@
                 href="#"
                 class="btn btn-info btn-cari"
                 ><i class="fa fa-search"></i> Cari</a>
-            {{-- <a
-                href="#"
-                class="btn btn-info btn-cetak"
-                ><i class="fa fa-file-pdf-o"></i> Cetak</a> --}}
         </div>
     </div>
     <br><br>
     <div class="row">
         <div class="col-sm-12">
-            <button id="showAfterPrint">Load</button>
             <table id="example1" class="table table-bordered table-striped">
                 <thead style="background-color: #428bca;" id="thead">
                     <tr>
@@ -57,7 +52,6 @@
                         <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
                         <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator Kinerja</th>
                         <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="5">Target</th>
-                        <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2" id="action">Action</th>
                     </tr>
                     <tr id="head-target">
                         
@@ -90,11 +84,6 @@
             showData(tahun_awal, tahun_akhir, opd);
         });
 
-        $('#showAfterPrint').hide();
-        $('#showAfterPrint').on('click', function() {
-            location.reload();
-        });
-
         $('.btn-cetak').on('click', function(e) {
             e.preventDefault();
             $('.header-tahun-hide').hide();
@@ -125,10 +114,6 @@
             $('#head-target').append(head_target);
         });
 
-        $('.btn-secondary').on('click', function() {
-            showData();
-        });
-
         function showData(data_tahun_awal, data_tahun_akhir, data_opd) {
             var tahun_awal = data_tahun_awal;
             var tahun_akhir = data_tahun_akhir;
@@ -144,57 +129,39 @@
                     opd: opd
                 },
                 success: function(response) { 
-                    console.log(response);                  
+                    // console.log(response.data);                  
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
                             tr += "<td>" + value.deskripsi + "</td>";
 
-                        var indikator = '';
+                        var sasaran = '';
                         
                         $.each(value.data_layout, function(i, value_layout) {
-                            if(indikator == value_layout.indikator_id) {
+                            if(sasaran == value_layout.sasaran_id) {
                                 tr += "<td></td>";
                             } else {
-                                tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
-                                tr += "<td>" + value_layout.target_kinerja + "</td>";
+                                tr += "<td>" + value_layout.data_sasaran.deskripsi + "</td>";
                             }                          
                             
-                            tr += "<td>" + value_layout.tw + "</td>";
-                            tr += "<td>" + value_layout.target + "</td>";
-                            tr += "<td>" + value_layout.satuan + "</td>";
+                            tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
                             
                             var isLastElement = i == value.data_layout.length -1;
 
-                            if (isLastElement) {
-                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
-                                            "</div>" +
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
-                                            "</div>" +
-                                        "</td>";
-                                tr +=   "</tr>";
-                                tr +=   "<tr id=\"trLast\">" +
-                                            "<td></td>" +
-                                            "<td></td>" +
-                                            "<td><button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
-                                            "<td colspan=\"6\"></td>" +
-                                        "</tr>";
+                            if (isLastElement) {                                
+                                for(a = 0; a < value_layout.data_target.length; a++) {
+                                    var b = value_layout.data_target[a];
+                                    tr += "<td>" + b.nilai + "</td>";
+                                }
                             } else {
-                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
-                                            "</div>" +
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
-                                            "</div>" +
-                                        "</td>";
+                                for(a = 0; a < value_layout.data_target.length; a++) {
+                                    var b = value_layout.data_target[a];
+                                    tr += "<td>" + b.nilai + "</td>";
+                                }
                                 tr +=   "</tr><td></td><td></td>";
                             }
 
-                            indikator = value_layout.sasaran_id;
+                            sasaran = value_layout.sasaran_id;
                         });
 
                         $('#tabeldata').append(tr);
