@@ -29,6 +29,7 @@ Route::group(['prefix' => '/c'], function() {
         Route::post('/rencana-program/cari', 'ClientSakipController@rencana_program_kegiatan_cari')->name('sakip.rencana_program_kegiatan.cari');
 
         Route::get('/indikator-kinerja-utama', 'ClientSakipController@indikator_kinerja_utama')->name('sakip.indikator_kinerja_utama');
+        Route::post('/indikator-kinerja-utama/cari', 'ClientSakipController@indikator_kinerja_utama_cari')->name('sakip.indikator_kinerja_utama.cari');
 
         Route::get('/perjanjian-kinerja', 'ClientSakipController@perjanjian_kinerja')->name('sakip.perjanjian_kinerja');
         Route::get('/perjanjian-kinerja/cari', 'ClientSakipController@perjanjian_kinerja_cari')->name('sakip.perjanjian_kinerja.cari');

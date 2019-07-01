@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Opd;
 use App\PpkLayout;
+use App\IkuSasaran;
 use App\RenstraTujuan;
 use Illuminate\Http\Request;
 use App\PerjanjianKinerjaSasaran;
@@ -68,7 +69,27 @@ class ClientSakipController extends Controller
     }
     public function indikator_kinerja_utama() 
     {
-        return view('pages.indikatorKinerjaUtama');
+        $opds = Opd::get();
+        return view('pages.indikatorKinerjaUtama', ['opds' => $opds]);
+    }
+    public function indikator_kinerja_utama_cari(Request $request) 
+    {
+        $tahun_awal = $request->tahun_awal;
+        $tahun_akhir = $request->tahun_akhir;
+        $opd = $request->opd;
+
+        $ikus = IkuSasaran::whereHas('data_layout', function($query) {
+            $query->where('deleted_at', null);
+        })
+        ->whereHas('data_iku', function($query) use ($tahun_awal, $tahun_akhir, $opd) {
+            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir)->where('opd_id', $opd);
+        })
+        ->with('data_iku', 'data_layout.data_sasaran', 'data_layout.data_indikator')->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $ikus
+        ]);
     }
     public function perjanjian_kinerja()
     {
