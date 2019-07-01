@@ -136,9 +136,7 @@
                             tr += "<td>" + parseInt(i + 1) + "</td>";
                             tr += "<td>" + value.data_sasaran.deskripsi + "</td>";
                             tr += "<td>" + value.data_indikator_kinerja.deskripsi + "</td>";
-                            tr +=   "<td>" + value.data_indikator_kinerja.target_kinerja + "<br><br>" +
-                                        "<button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value.id + "\"><i class=\"fa fa-plus\"></i></button>" +
-                                    "</td>";
+                            tr +=   "<td>" + value.data_indikator_kinerja.target_kinerja + "</td>";
 
                         // var indikator = '';
                         
@@ -156,24 +154,10 @@
                             var isLastElement = i == value.data_realisasi_kinerja.length -1;
 
                             if (isLastElement) {
-                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
-                                            // "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                            //     "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-edit\"></i></button>" +
-                                            // "</div>" +
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-trash\"></i></button>" +
-                                            "</div>" +
-                                        "</td>";
+                                
                                 tr +=   "</tr>";
                             } else {
-                                tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
-                                            // "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                            //     "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-edit\"></i></button>" +
-                                            // "</div>" +
-                                            "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
-                                                "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_indikator.id + "\"><i class=\"fa fa-trash\"></i></button>" +
-                                            "</div>" +
-                                        "</td>";
+                                
                                 tr +=   "</tr>" +
                                             "<td></td>" +
                                             "<td></td>" +

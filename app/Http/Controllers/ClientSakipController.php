@@ -117,13 +117,32 @@ class ClientSakipController extends Controller
             'data' => $perjanjianKinerjas
         ]);
     }
-    public function realisasi_kenerja()
+    public function realisasi_kinerja()
     {
-        return view('pages.realisasiKinerja');
+        $opds = Opd::get();
+        return view('pages.realisasiKinerja', ['opds' => $opds]);
     }
-    public function realisasi_kenerja_cari()
+    public function realisasi_kinerja_cari(Request $request)
     {
-        return view('pages.realisasiKinerja');
+        $tahun = $request->tahun;
+        $opd = $request->opd;
+
+        $ppk_Layout = PpkLayout::whereHas('data_ppk', function($query) use ($tahun, $opd) {
+            $query->where('tahun', $tahun)->where('opd_id', $opd);
+        })
+        ->where('deleted_at', null)
+        ->with(
+            'data_ppk',
+            'data_realisasi_kinerja',
+            'data_sasaran',
+            'data_indikator_kinerja'
+        )
+        ->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $ppk_Layout
+        ]);
     }
     public function rpjmd()
     {

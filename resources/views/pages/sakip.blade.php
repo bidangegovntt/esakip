@@ -90,7 +90,7 @@
         <div class="col-md-12">
             <center>
                 <div id="change" class="col-md-4">
-                    <a href="{{ url('c/sakip/capaian-kinerja') }}">
+                    <a href="{{ url('c/sakip/realisasi-kinerja') }}">
                         <img src="{{ asset('template/images/iconbox/icon5.png') }}" alt="">
                         <h5>Capaian Kinerja</h5>
                     </a>
