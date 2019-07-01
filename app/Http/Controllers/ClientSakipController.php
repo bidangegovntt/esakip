@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Opd;
+use App\Lakip;
 use App\PpkLayout;
 use App\IkuSasaran;
+use App\RpjmdTujuan;
 use App\RenstraTujuan;
 use Illuminate\Http\Request;
 use App\PerjanjianKinerjaSasaran;
@@ -115,17 +117,57 @@ class ClientSakipController extends Controller
             'data' => $perjanjianKinerjas
         ]);
     }
-    public function capaian_kenerja()
+    public function realisasi_kenerja()
     {
-        return view('pages.capaianKinerja');
+        return view('pages.realisasiKinerja');
+    }
+    public function realisasi_kenerja_cari()
+    {
+        return view('pages.realisasiKinerja');
     }
     public function rpjmd()
     {
-        return view('pages.rpjmd');
+        $opds = Opd::get();
+        return view('pages.rpjmd', ['opds' => $opds]);
     }
-    public function lkjlp()
+    public function rpjmd_cari(Request $request)
     {
-        return view('pages.lkjlp');
+        $tahun_awal = $request->tahun_awal;
+        $tahun_akhir = $request->tahun_akhir;
+
+        $rpjmds = RpjmdTujuan::whereHas('data_layout', function($query) {
+            $query->where('deleted_at', null);
+        })
+        ->whereHas('data_rpjmd', function($query) use ($tahun_awal, $tahun_akhir) {
+            $query->where('tahun_awal', $tahun_awal)->where('tahun_akhir', $tahun_akhir);
+        })
+        ->with('data_rpjmd','data_layout.data_target', 'data_layout.data_sasaran', 'data_layout.data_indikator')->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $rpjmds
+        ]);
+    }
+    public function lakip()
+    {
+        $opds = Opd::get();
+        $lakips = Lakip::with('data_opd')
+        ->get();
+        return view('pages.lakip', ['opds' => $opds, 'lakips' => $lakips]);
+    }
+    public function lakip_cari(Request $request)
+    {
+        $opds = Opd::get();
+        $lakips = Lakip::where('opd_id', $request->opd)->where('tahun', $request->tahun)
+        ->with('data_opd')
+        ->get();
+        
+        $data = array(
+            'tahun'  => $request->tahun,
+            'opd' => $request->opd
+        );
+
+        return view('pages.lakip', ['data' => $data, 'opds' => $opds, 'lakips' => $lakips]);
     }
     public function grafik()
     {

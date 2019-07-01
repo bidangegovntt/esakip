@@ -104,9 +104,9 @@
                 </div>
         
                 <div id="change" class="col-md-4">
-                    <a href="{{ url('c/sakip/lkjlp') }}lkjlp.php">
+                    <a href="{{ url('c/sakip/lakip') }}">
                         <img src="{{ asset('template/images/iconbox/icon7.png') }}" alt="">
-                        <h5>LKjIP</h5>
+                        <h5>LAKIP</h5>
                     </a>
                 </div>
                 <div id="change" class="col-md-4">

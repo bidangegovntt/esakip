@@ -34,9 +34,15 @@ Route::group(['prefix' => '/c'], function() {
         Route::get('/perjanjian-kinerja', 'ClientSakipController@perjanjian_kinerja')->name('sakip.perjanjian_kinerja');
         Route::get('/perjanjian-kinerja/cari', 'ClientSakipController@perjanjian_kinerja_cari')->name('sakip.perjanjian_kinerja.cari');
 
-        Route::get('/capaian-kinerja', 'ClientSakipController@capaian_kinerja')->name('sakip.capaian_kinerja');
+        Route::get('/realisasi-kinerja', 'ClientSakipController@realisasi_kinerja')->name('sakip.realisasi_kinerja');
+        Route::get('/realisasi-kinerja/cari', 'ClientSakipController@realisasi_kinerja_cari')->name('sakip.realisasi_kinerja.cari');
+
         Route::get('/rpjmd', 'ClientSakipController@rpjmd')->name('sakip.rpjmd');
-        Route::get('/lkjlp', 'ClientSakipController@lkjlp')->name('sakip.lkjlp');
+        Route::post('/rpjmd/cari', 'ClientSakipController@rpjmd_cari')->name('sakip.rpjmd.cari');
+
+        Route::get('/lakip', 'ClientSakipController@lakip')->name('sakip.lakip');
+        Route::post('/lakip/cari', 'ClientSakipController@lakip_cari')->name('sakip.lakip.cari');
+
         Route::get('/grafik', 'ClientSakipController@grafik')->name('sakip.grafik');
     });
 
