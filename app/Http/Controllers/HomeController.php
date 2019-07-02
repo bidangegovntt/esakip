@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Opd;
 use App\Renstra;
 use App\RencanaAnggaran;
+use App\RealisasiAnggaran;
 use Illuminate\Http\Request;
+use App\RencanaAnggaranDetail;
+use App\RencanaAnggaranLayout;
 
 class HomeController extends Controller
 {
@@ -32,25 +35,58 @@ class HomeController extends Controller
 
     public function chart(Request $request)
     {
+        $tahun = $request->tahun;
+        $opd = $request->opd;
+
         $data = [];
+        $tw = [];
+        $anggaran = [];
+        $realisasi = [];
         $renstras = Renstra::first();
-        $rencana_anggaran = RencanaAnggaran::where('tahun', $request->tahun)
-        ->with(
-            'data_layout',
-            'data_layout.data_detail'
-        )
-        ->first();
-        // foreach ($renstras as $key => $renstra) {
-        //     $data[$key] = $renstra->tahun_awal;
-        // }
+
+        $ra_layout = RencanaAnggaranLayout::whereHas('data_rencana_anggaran', function($query) use ($tahun, $opd) {
+            $query->where('tahun', $tahun)->where('opd_id', $opd);
+        })
+        ->count();
+
+        $ra = RencanaAnggaranDetail::whereHas('data_layout.data_rencana_anggaran', function($query) use ($tahun, $opd) {
+            $query->where('tahun', $tahun)->where('opd_id', $opd);
+        })
+        ->groupBy('rencana_anggaran_layout_id')
+        ->selectRaw('*, sum(anggaran) as sum')
+        ->get();
+        // ->sum('anggaran');
+
+        $realisasi_anggarans = RealisasiAnggaran::whereHas('data_rencana_anggaran_detail.data_layout.data_rencana_anggaran', function($query) use ($tahun, $opd) {
+            $query->where('tahun', $tahun)->where('opd_id', $opd);
+        })
+        ->groupBy('rencana_anggaran_detail_id')
+        ->selectRaw('*, sum(anggaran) as sum')
+        ->get();
+        
         $count = $renstras->tahun_akhir - $renstras->tahun_awal;
         for ($i = 0; $i <= $count; $i++) { 
             $data[$i] = $renstras->tahun_awal + $i;
         }
         
+        $count_layout = $ra_layout;
+        for ($i = 0; $i < $count_layout; $i++) { 
+            $tw[$i] = "tw" . ($i + 1);
+        }
+
+        foreach ($ra as $key => $ras) {
+            $anggaran[$key] = $ras->sum;
+        }
+
+        foreach ($realisasi_anggarans as $key => $realisasi_anggaran) {
+            $realisasi[$key] = $realisasi_anggaran->sum;
+        }
+        
         return response()->json([
             'data' => $data,
-            'rencana_anggaran' => $rencana_anggaran
+            'tw' => $tw,
+            'anggaran' => $anggaran,
+            'realisasi' => $realisasi
         ]);
     }
 }

@@ -17,45 +17,40 @@
 
 <section class="content">
     <div class="row">
-        <div class="col-xs-12"> 
-            @if(session('status'))
-                <div class="alert alert-success">
-                    {{session('status')}}
-                </div>
-            @endif
+        <div class="col-xs-12">
             <div class="box">
-                    <div class="box-header header-tahun-hide">
-                        <div class="form-group form-horizontal">
-                            <label for="tahun_awal" class="col-sm-1 control-label">Tahun</label>
-                            <div class="col-sm-5">
-                                <input type="text" class="form-control" id="tahun" placeholder="Tahun">
-                            </div>
+                <div class="box-header header-tahun-hide">
+                    <div class="form-group form-horizontal">
+                        <label for="tahun_awal" class="col-sm-1 control-label">Tahun</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="tahun" placeholder="Tahun">
                         </div>
                     </div>
-                    <div class="box-header header-opd-hide">
-                        <div class="form-group form-horizontal">
-                            <label for="opd" class="col-sm-1 control-label">OPD</label>
-                            <div class="col-sm-5">
-                                <select class="form-control" id="opd">
-                                    <option value="">--Pilih OPD--</option>
-                                    @foreach ($opds as $opd)
-                                        <option value="{{ $opd->id }}">{{ $opd->nama }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                </div>
+                <div class="box-header header-opd-hide">
+                    <div class="form-group form-horizontal">
+                        <label for="opd" class="col-sm-1 control-label">OPD</label>
+                        <div class="col-sm-5">
+                            <select class="form-control" id="opd">
+                                <option value="">--Pilih OPD--</option>
+                                @foreach ($opds as $opd)
+                                    <option value="{{ $opd->id }}">{{ $opd->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="box-header header-opd-hide">
-                        <div class="form-group form-horizontal">
-                            <label for="opd" class="col-sm-1 control-label"></label>
-                            <div class="col-sm-5">
-                                <a
-                                href="#"
-                                class="btn btn-info btn-cari"
-                                ><i class="fa fa-search"></i> Cari</a>
-                            </div>
+                </div>
+                <div class="box-header header-opd-hide">
+                    <div class="form-group form-horizontal">
+                        <label for="opd" class="col-sm-1 control-label"></label>
+                        <div class="col-sm-5">
+                            <a
+                            href="#"
+                            class="btn btn-info btn-cari"
+                            ><i class="fa fa-search"></i> Cari</a>
                         </div>
                     </div>
+                </div>
                 <!-- /.box-header -->
                 <hr>
                 <!-- /.box-header -->
@@ -80,8 +75,19 @@
                         </div>
                             <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
-                    <div style="height: 400px;"></div>
+                </div>
+
+                <div class="box-header">
+                    <div class="col-sm-4">
+                        <div style="width: 20px; height: 20px; background-color:gainsboro; float: left;"></div>
+                        <div style="float: left;"><p style="padding-left: 10px;">Anggaran</p></div>
+                    </div>
+                </div>
+                <div class="box-header">
+                    <div class="col-sm-4">
+                        <div style="width: 20px; height: 20px; background-color:palegreen; float: left;"></div>
+                        <div style="float: left;"><p style="padding-left: 10px;">Realisasi</p></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,7 +128,7 @@
                 success: function(response) {
                     console.log(response);
                     var areaChartData = {
-                        labels  : response.data,
+                        labels  : response.tw,
                         datasets: [
                             {
                                 label               : 'Electronics',
@@ -132,7 +138,7 @@
                                 pointStrokeColor    : '#c1c7d1',
                                 pointHighlightFill  : '#fff',
                                 pointHighlightStroke: 'rgba(220,220,220,1)',
-                                data                : [625000, 75000, 150000]
+                                data                : response.anggaran
                             },
                             {
                                 label               : 'Digital Goods',
@@ -142,7 +148,7 @@
                                 pointStrokeColor    : 'rgba(60,141,188,1)',
                                 pointHighlightFill  : '#fff',
                                 pointHighlightStroke: 'rgba(60,141,188,1)',
-                                data                : [850000, 230000, 265000]
+                                data                : response.realisasi
                             }
                         ]
                     }
