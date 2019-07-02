@@ -101,9 +101,11 @@
         </li>
 
         <li class="header">KRITERIA</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-blue"></i> <span>a = Sangat Baik (90-100)</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-green"></i> <span>b = Baik (75-89)</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>c = Kurang Baik (51-74)</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>d = Tidak Baik (< 51)</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-grey"></i> <span>e = Tidak Ada Target</span></a></li>
     </ul>
     </section>
     <!-- /.sidebar -->
