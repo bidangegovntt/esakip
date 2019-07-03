@@ -31,8 +31,11 @@ Route::group(['prefix' => '/c'], function() {
         Route::get('/indikator-kinerja-utama', 'ClientSakipController@indikator_kinerja_utama')->name('sakip.indikator_kinerja_utama');
         Route::post('/indikator-kinerja-utama/cari', 'ClientSakipController@indikator_kinerja_utama_cari')->name('sakip.indikator_kinerja_utama.cari');
 
-        Route::get('/perjanjian-kinerja', 'ClientSakipController@perjanjian_kinerja')->name('sakip.perjanjian_kinerja');
-        Route::post('/perjanjian-kinerja/cari', 'ClientSakipController@perjanjian_kinerja_cari')->name('sakip.perjanjian_kinerja.cari');
+        // Route::get('/perjanjian-kinerja', 'ClientSakipController@perjanjian_kinerja')->name('sakip.perjanjian_kinerja');
+        // Route::post('/perjanjian-kinerja/cari', 'ClientSakipController@perjanjian_kinerja_cari')->name('sakip.perjanjian_kinerja.cari');
+
+        Route::get('/perjanjian-kinerja2', 'ClientSakipController@perjanjian_kinerja2')->name('sakip.perjanjian_kinerja2');
+        Route::post('/perjanjian-kinerja2/cari', 'ClientSakipController@perjanjian_kinerja2_cari')->name('sakip.perjanjian_kinerja2.cari');
 
         Route::get('/realisasi-kinerja', 'ClientSakipController@realisasi_kinerja')->name('sakip.realisasi_kinerja');
         Route::post('/realisasi-kinerja/cari', 'ClientSakipController@realisasi_kinerja_cari')->name('sakip.realisasi_kinerja.cari');

@@ -77,7 +77,7 @@
                 </div>
         
                 <div id="change" class="col-md-3">
-                    <a href="{{ url('c/sakip/perjanjian-kinerja') }}">
+                    <a href="{{ url('c/sakip/perjanjian-kinerja2') }}">
                         <img src="{{ asset('template/images/iconbox/icon4.png') }}" alt="">
                         <h5>Perjanjian Kinerja</h5>
                     </a>
@@ -92,7 +92,7 @@
                 <div id="change" class="col-md-4">
                     <a href="{{ url('c/sakip/realisasi-kinerja') }}">
                         <img src="{{ asset('template/images/iconbox/icon5.png') }}" alt="">
-                        <h5>Capaian Kinerja</h5>
+                        <h5>Realisasi Kinerja</h5>
                     </a>
                 </div>
                 
@@ -107,12 +107,6 @@
                     <a href="{{ url('c/sakip/lakip') }}">
                         <img src="{{ asset('template/images/iconbox/icon7.png') }}" alt="">
                         <h5>LAKIP</h5>
-                    </a>
-                </div>
-                <div id="change" class="col-md-4">
-                    <a href="{{ url('c/sakip/grafik') }}">
-                        <img src="{{ asset('template/images/iconbox/icon8.png') }}" alt="">
-                        <h5>Realisasi kuangan Grafik Dan Fisik</h5>
                     </a>
                 </div>
             </center>

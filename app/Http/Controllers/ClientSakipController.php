@@ -8,6 +8,7 @@ use App\PpkLayout;
 use App\IkuSasaran;
 use App\RpjmdTujuan;
 use App\RenstraTujuan;
+use App\PerjanjianKinerja2;
 use Illuminate\Http\Request;
 use App\PerjanjianKinerjaSasaran;
 
@@ -116,6 +117,27 @@ class ClientSakipController extends Controller
             'success' => 'Berhasil mengambil data',
             'data' => $perjanjianKinerjas
         ]);
+    }
+    public function perjanjian_kinerja2()
+    {
+        $opds = Opd::get();
+        $perjanjianKinerja2s = PerjanjianKinerja2::with('data_opd')
+        ->get();
+        return view('pages.perjanjianKinerja', ['opds' => $opds, 'perjanjianKinerja2s' => $perjanjianKinerja2s]);
+    }
+    public function perjanjian_kinerja2_cari(Request $request)
+    {
+        $opds = Opd::get();
+        $perjanjianKinerja2s = perjanjianKinerja2::where('opd_id', $request->opd)->where('tahun', $request->tahun)
+        ->with('data_opd')
+        ->get();
+        
+        $data = array(
+            'tahun'  => $request->tahun,
+            'opd' => $request->opd
+        );
+
+        return view('pages.perjanjianKinerja', ['data' => $data, 'opds' => $opds, 'perjanjianKinerja2s' => $perjanjianKinerja2s]);
     }
     public function realisasi_kinerja()
     {
