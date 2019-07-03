@@ -81,7 +81,7 @@
                 <li class="{{ set_active(['input/renstra', 'input/renstra/*']) }}"><a href="{{ url('input/renstra') }}"><i class="fa fa-circle-o"></i> RENSTRA </a></li>
                 <li class="{{ set_active(['input/iku', 'input/iku/*']) }}"><a href="{{ url('input/iku') }}"><i class="fa fa-circle-o"></i> Indikator Kinerja Utama </a></li>
                 <li class="{{ set_active(['input/ppk', 'input/ppk/*']) }}"><a href="{{ url('input/ppk') }}"><i class="fa fa-circle-o"></i> Rencana Program dan Kegiatan </a></li>
-                <li class="{{ set_active(['input/perjanjianKinerja', 'input/perjanjianKinerja/*']) }}"><a href="{{ url('input/perjanjianKinerja') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja </a></li>
+                <li class="{{ set_active(['input/perjanjianKinerja2', 'input/perjanjianKinerja2/*']) }}"><a href="{{ url('input/perjanjianKinerja2') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja </a></li>
                 <li class="{{ set_active(['input/realisasiKinerja', 'input/realisasiKinerja/*']) }}"><a href="{{ url('input/realisasiKinerja') }}"><i class="fa fa-circle-o"></i> Realisasi Kinerja </a></li>
                 <li class="{{ set_active(['input/pk3', 'input/pk3/*']) }}"><a href="{{ url('input/pk3') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja Eselon III </a></li>
                 <li class="{{ set_active(['input/pk4', 'input/pk4/*']) }}"><a href="{{ url('input/pk4') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja Eselon IV </a></li>

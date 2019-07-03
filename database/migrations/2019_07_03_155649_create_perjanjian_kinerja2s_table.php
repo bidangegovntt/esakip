@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLakipsTable extends Migration
+class CreatePerjanjianKinerja2sTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLakipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lakips', function (Blueprint $table) {
+        Schema::create('perjanjian_kinerja2s', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tahun', 10)->nullable();
             $table->tinyInteger('opd_id');
@@ -33,6 +33,6 @@ class CreateLakipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lakips');
+        Schema::dropIfExists('perjanjian_kinerja2s');
     }
 }
