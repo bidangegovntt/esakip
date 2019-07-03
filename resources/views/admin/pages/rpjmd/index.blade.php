@@ -396,7 +396,7 @@
                             if (isLastElement) {                                
                                 for(a = 0; a < value_layout.data_target.length; a++) {
                                     var b = value_layout.data_target[a];
-                                    tr += "<td>" + b.nilai + "</td>";
+                                    tr += "<td>" + b.nilai + " %</td>";
                                 }
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
@@ -417,7 +417,7 @@
                             } else {
                                 for(a = 0; a < value_layout.data_target.length; a++) {
                                     var b = value_layout.data_target[a];
-                                    tr += "<td>" + b.nilai + "</td>";
+                                    tr += "<td>" + b.nilai + " %</td>";
                                 }
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
