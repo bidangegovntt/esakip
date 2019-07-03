@@ -58,7 +58,7 @@
                         <td style="text-align: center;">{{ $key + 1 }}</td>
                         <td>{{ $lakip->tahun }}</td>
                         <td>{{ $lakip->data_opd->nama }}</td>
-                        <td style="text-align: center;"><a href="{{ asset('file/' . $lakip->file) }}" class="btn btn-success"><i class="fa fa-download"></i></a></td>
+                        <td style="text-align: center;"><a href="{{ asset('file/' . $lakip->file) }}" class="btn btn-success"><i class="fa fa-download"></i> Unduh</a></td>
                     </tr>
                     @endforeach
                 </tbody>
