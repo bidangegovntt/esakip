@@ -62,6 +62,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('profile/ubah-password/{id}/store', 'ProfileController@ubah_password_store')->name('profile.ubah_password_store');
     Route::resource('profile', 'ProfileController');
 
+    Route::get('/kriteria/{id}', 'KriteriaController@index')->name('kriteria.index');
+
     Route::group(['prefix' => '/master'], function() {
         Route::get('users/{id}/privilege', 'UserController@privilege')->name('users.privilege');
         Route::resource('users', 'UserController');
