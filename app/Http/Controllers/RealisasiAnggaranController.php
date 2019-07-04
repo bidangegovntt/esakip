@@ -126,11 +126,16 @@ class RealisasiAnggaranController extends Controller
 
     public function masukkanIndikator(Request $request)
     {
+        $program_anggaran = $request->program_anggaran;
+        $anggaran = $request->anggaran;
+        $persentase = round(($anggaran / $program_anggaran) * 100);
+
         $realisasi_anggaran_detail = RealisasiAnggaran::create([
             "rencana_anggaran_detail_id" => $request->id,
             "capaian" => $request->capaian,
             "hasil" => $request->hasil,
-            "anggaran" => $request->anggaran
+            "anggaran" => $request->anggaran,
+            "persentase" => $persentase
         ]);
 
         return response()->json([

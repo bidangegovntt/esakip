@@ -10,7 +10,7 @@ class RealisasiAnggaran extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'rencana_anggaran_detail_id', 'capaian', 'hasil', 'anggaran'
+        'rencana_anggaran_detail_id', 'capaian', 'hasil', 'anggaran', 'persentase'
     ];
 
     public function data_rencana_anggaran_detail()

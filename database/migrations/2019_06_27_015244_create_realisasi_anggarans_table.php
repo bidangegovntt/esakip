@@ -19,6 +19,7 @@ class CreateRealisasiAnggaransTable extends Migration
             $table->string('capaian', 100)->nullable();
             $table->string('hasil', 100)->nullable();
             $table->string('anggaran', 100)->nullable();
+            $table->smallInteger('persentase')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->integer('created_by')->nullable();

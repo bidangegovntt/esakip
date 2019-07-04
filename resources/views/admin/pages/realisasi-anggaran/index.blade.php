@@ -60,7 +60,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <button id="showAfterPrint">Load</button>
+                    {{-- <button id="showAfterPrint">Load</button> --}}
                     <table id="example1" class="table table-bordered table-striped">
                         <thead style="background-color: #428bca;" id="thead">
                             <tr>
@@ -73,6 +73,7 @@
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Capaian</th>
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Hasil</th>
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Anggaran</th>
+                                <th style="color: #ffffff; text-align: center; font-size: 12px;">Persentase</th>
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;" id="action">Action</th>
                             </tr>
                         </thead>
@@ -113,6 +114,12 @@
                         <label for="program" class="col-sm-3 control-label">Program</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-program" placeholder="Program">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="program-anggaran" class="col-sm-3 control-label">Program Anggaran</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-program-anggaran" placeholder="Program Anggaran">
                         </div>
                     </div>
                     <div class="form-group">
@@ -228,6 +235,7 @@
                             tr += "<td>" + value_detail.capaian + "</td>";
                             tr += "<td>" + value_detail.hasil + "</td>";
                             tr += "<td>" + value_detail.anggaran + "</td>";
+                            tr += "<td>" + value_detail.persentase + " %</td>";
                                 
                             var isLastElement = i == value.data_realisasi_anggaran.length -1;
 
@@ -287,6 +295,7 @@
                     $('#modalIndikator #edit-indikator-kinerja-id').val(response.data.id);
                     $('#modalIndikator #edit-target-kinerja').val(response.data.data_layout.data_indikator_kinerja.target_kinerja);
                     $('#modalIndikator #edit-program').val(response.data.program);
+                    $('#modalIndikator #edit-program-anggaran').val(response.data.anggaran);
                     $('#modalIndikator #edit-id').val(response.data.id);
                 }
             });
@@ -302,6 +311,7 @@
             $('#tabeldata').empty();
 
             var id = $('#modalIndikator #edit-id').val();
+            var program_anggaran = $('#edit-program-anggaran').val();
             var indikator_kinerja_id = $('#modalIndikator #edit-indikator-kinerja-id').val();
             var capaian = $('#edit-capaian').val();
             var hasil = $('#edit-hasil').val();
@@ -313,6 +323,7 @@
                 data: {
                     _token: CSRF_TOKEN,
                     id: id,
+                    program_anggaran: program_anggaran,
                     indikator_kinerja_id: indikator_kinerja_id,
                     capaian: capaian,
                     hasil: hasil,
@@ -325,8 +336,8 @@
                         program = $('#edit-program').val("");
                         kegiatan = $('#edit-kegiatan').val("");
                         indikator_kegiatan = $('#edit-indikator-kegiatan').val("");
-                        target = $('#edit-target').val("");
-                        satuan = $('#edit-satuan').val("");
+                        capaian = $('#edit-capaian').val("");
+                        hasil = $('#edit-hasil').val("");
                         anggaran = $('#edit-anggaran').val("");
                     }
                     var tahun = $('#tahun').val();
