@@ -87,9 +87,10 @@
                         <thead style="background-color: #428bca;" id="thead">
                             <tr>
                                 <th style="color: #ffffff; text-align: center;" rowspan="2">No</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Tujuan</th>
                                 <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
                                 <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator Kinerja</th>
+                                <th style="color: #ffffff; text-align: center;" rowspan="2">Satuan</th>
+                                <th style="color: #ffffff; text-align: center;" rowspan="2">Kinerja Eksiting</th>
                                 <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="5">Target</th>
                                 <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2" id="action">Action</th>
                             </tr>
@@ -134,12 +135,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="input-tujuan" placeholder="Tujuan">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-sasaran" placeholder="Sasaran">
@@ -149,6 +144,18 @@
                         <label for="indikator" class="col-sm-3 control-label">Indikator</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-indikator" placeholder="Indikator">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="satuan" class="col-sm-3 control-label">Satuan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-satuan" placeholder="satuan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kinerja-eksiting" class="col-sm-3 control-label">Kinerja Eksiting</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-kinerja-eksiting" placeholder="kinerja ksiting">
                         </div>
                     </div>
                     <div id="input-target">
@@ -191,13 +198,13 @@
                             <input type="hidden" class="form-control" id="edit-opd-id" placeholder="OPD">
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="tujuan" class="col-sm-3 control-label">Tujuan</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-tujuan-text" placeholder="Tujuan">
                             <input type="hidden" class="form-control" id="edit-tujuan-id">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
@@ -210,6 +217,18 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
                             <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="satuan" class="col-sm-3 control-label">satuan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-satuan" placeholder="satuan">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kinerja_eksiting" class="col-sm-3 control-label">kinerja_eksiting</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-kinerja-eksiting" placeholder="kinerja_eksiting">
                         </div>
                     </div>
                     <div id="edit-target">
@@ -433,7 +452,7 @@
                     $.each(response.data, function(i, value){
                         var tr = "<tr></tr>";
                             tr += "<td>" + parseInt(i + 1) + "</td>";
-                            tr += "<td>" + value.deskripsi + "</td>";
+                            // tr += "<td>" + value.deskripsi + "</td>";
 
                         var sasaran = '';
                         
@@ -446,6 +465,8 @@
                             }                          
                             
                             tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                            tr += "<td>" + value_layout.satuan + "</td>";
+                            tr += "<td>" + value_layout.kinerja_eksiting + "</td>";
                             
                             var isLastElement = i == value.data_layout.length -1;
 
@@ -465,7 +486,6 @@
                                 tr +=   "</tr>";
                                 tr +=   "<tr id=\"trLast\">" +
                                             "<td></td>" +
-                                            "<td></td>" +
                                             "<td><button class=\"btn btn-success btn-sasaran\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
                                             "<td><button class=\"btn btn-success btn-indikator\" style=\"padding: 3px 8px 3px 8px;\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-plus\"></i></button></td>" +
                                             "<td colspan=\"6\"></td>" +
@@ -483,7 +503,7 @@
                                                 "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-trash\"></i></button>" +
                                             "</div>" +
                                         "</td>";
-                                tr +=   "</tr><td></td><td></td>";
+                                tr +=   "</tr><td></td>";
                             }
 
                             sasaran = value_layout.sasaran_id;
@@ -532,9 +552,11 @@
             var tahun_awal = $('#input-tahun-awal').val();
             var tahun_akhir = $('#input-tahun-akhir').val();
             var opd_id = $('#input-opd-id').val();
-            var tujuan = $('#input-tujuan').val();
+            // var tujuan = $('#input-tujuan').val();
             var sasaran = $('#input-sasaran').val();
             var indikator = $('#input-indikator').val();
+            var satuan = $('#input-satuan').val();
+            var kinerja_eksiting = $('#input-kinerja-eksiting').val();
             var target = [];
 
             for(i = 0; i < 5; i++) {
@@ -557,9 +579,11 @@
                     tahun_awal: tahun_awal,
                     tahun_akhir: tahun_akhir,
                     opd_id: opd_id,
-                    tujuan: tujuan,
+                    // tujuan: tujuan,
                     sasaran: sasaran,
                     indikator: indikator,
+                    satuan: satuan,
+                    kinerja_eksiting: kinerja_eksiting,
                     target: target
                 },
                 success: function(response) {
@@ -601,12 +625,14 @@
                         $('#edit-tahun-akhir').val(response.renstra.data_tujuan.data_renstra.tahun_akhir);
                         $('#edit-opd-text').val(response.renstra.data_tujuan.data_renstra.data_opd.nama);
                         $('#edit-opd-id').val(response.renstra.data_tujuan.data_renstra.opd_id);
-                        $('#edit-tujuan-text').val(response.renstra.data_tujuan.deskripsi);
-                        $('#edit-tujuan-id').val(response.renstra.tujuan_id);
+                        // $('#edit-tujuan-text').val(response.renstra.data_tujuan.deskripsi);
+                        // $('#edit-tujuan-id').val(response.renstra.tujuan_id);
                         $('#edit-sasaran-text').val(response.renstra.data_sasaran.deskripsi);
                         $('#edit-sasaran-id').val(response.renstra.sasaran_id);
                         $('#edit-indikator-text').val(response.renstra.data_indikator.deskripsi);
                         $('#edit-indikator-id').val(response.renstra.indikator_id);
+                        $('#edit-satuan').val(response.renstra.satuan);
+                        $('#edit-kinerja-eksiting').val(response.renstra.kinerja_eksiting);
 
                         for(i = 0; i < response.renstra.data_indikator.data_renstra_target.length; i++) {
                             // console.log(i);
@@ -631,12 +657,14 @@
             var tahun_awal = $('#edit-tahun-awal').val();
             var tahun_akhir = $('#edit-tahun-akhir').val();
             var opd_id = $('#edit-opd-id').val();
-            var tujuan_text = $('#edit-tujuan-text').val();
-            var tujuan_id = $('#edit-tujuan-id').val();
+            // var tujuan_text = $('#edit-tujuan-text').val();
+            // var tujuan_id = $('#edit-tujuan-id').val();
             var sasaran_text = $('#edit-sasaran-text').val();
             var sasaran_id = $('#edit-sasaran-id').val();
             var indikator_text = $('#edit-indikator-text').val();
             var indikator_id = $('#edit-indikator-id').val();
+            var satuan = $('#edit-satuan').val();
+            var kinerja_eksiting = $('#edit-kinerja-eksiting').val();
             var target = [];
 
             for(i = 0; i < 5; i++) {
@@ -654,15 +682,18 @@
                 type: 'PUT',
                 data: {
                     _token: CSRF_TOKEN,
+                    id: id,
                     tahun_awal: tahun_awal,
                     tahun_akhir: tahun_akhir,
                     opd_id: opd_id,
-                    tujuan_text: tujuan_text,
-                    tujuan_id: tujuan_id,
+                    // tujuan_text: tujuan_text,
+                    // tujuan_id: tujuan_id,
                     sasaran_text: sasaran_text,
                     sasaran_id: sasaran_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
+                    satuan: satuan,
+                    kinerja_eksiting: kinerja_eksiting,
                     target: target
                 },
                 success: function(response) {

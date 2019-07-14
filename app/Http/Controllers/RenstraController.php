@@ -93,7 +93,9 @@ class RenstraController extends Controller
         $renstra_layout = RenstraLayout::create([
             "tujuan_id" => $renstra_tujuan->id,
             "sasaran_id" => $renstra_sasaran->id,
-            "indikator_id" => $renstra_indikator->id
+            "indikator_id" => $renstra_indikator->id,
+            "satuan" => $request->satuan,
+            "kinerja_eksiting" => $request->kinerja_eksiting
         ]);
 
         return response()->json([
@@ -146,9 +148,9 @@ class RenstraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $renstra_tujuan = RenstraTujuan::find($request->tujuan_id);
-        $renstra_tujuan->deskripsi = $request->tujuan_text;
-        $renstra_tujuan->save();
+        // $renstra_tujuan = RenstraTujuan::find($request->tujuan_id);
+        // $renstra_tujuan->deskripsi = $request->tujuan_text;
+        // $renstra_tujuan->save();
 
         $renstra_sasaran = RenstraSasaran::find($request->sasaran_id);
         $renstra_sasaran->deskripsi = $request->sasaran_text;
@@ -157,6 +159,11 @@ class RenstraController extends Controller
         $renstra_indikator = RenstraIndikator::find($request->indikator_id);
         $renstra_indikator->deskripsi = $request->indikator_text;
         $renstra_indikator->save();
+
+        $renstra_layout = RenstraLayout::find($request->id);
+        $renstra_layout->satuan = $request->satuan;
+        $renstra_layout->kinerja_eksiting = $request->kinerja_eksiting;
+        $renstra_layout->save();
         
         foreach($request->target as $key => $targete) {
             RenstraTarget::where([
@@ -250,9 +257,11 @@ class RenstraController extends Controller
 
         // renstra layout
         $renstra_layout = RenstraLayout::create([
-            "tujuan_id" => $request->tujuan_id,
+            // "tujuan_id" => $request->tujuan_id,
             "sasaran_id" => $renstra_sasaran->id,
-            "indikator_id" => $renstra_indikator->id
+            "indikator_id" => $renstra_indikator->id,
+            "satuan" => $request->satuan,
+            "kinerja_eksiting" => $request->kinerja_eksiting
         ]);
 
         return response()->json([
@@ -297,7 +306,9 @@ class RenstraController extends Controller
         $renstra_layout = RenstraLayout::create([
             "tujuan_id" => $request->tujuan_id,
             "sasaran_id" => $request->sasaran_id,
-            "indikator_id" => $renstra_indikator->id
+            "indikator_id" => $renstra_indikator->id,
+            "satuan" => $request->satuan,
+            "kinerja_eksiting" => $request->kinerja_eksiting
         ]);
 
         return response()->json([

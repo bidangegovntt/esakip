@@ -61,12 +61,13 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead style="background-color: #428bca;" id="thead">
                             <tr>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">No</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Tujuan</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator Kinerja</th>
-                                <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="5">Target</th>
-                                <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2" id="action">Action</th>
+                                <th style="color: #ffffff; text-align: center;">No</th>
+                                <th style="color: #ffffff; text-align: center;">Tujuan</th>
+                                <th style="color: #ffffff; text-align: center;">Sasaran</th>
+                                <th style="color: #ffffff; text-align: center;">Indikator Kinerja</th>
+                                <th style="color: #ffffff; text-align: center;">Strategi</th>
+                                <th style="color: #ffffff; text-align: center;">Kebijakan</th>
+                                <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" id="action">Action</th>
                             </tr>
                             <tr id="head-target">
                                 
@@ -119,8 +120,20 @@
                             <input type="text" class="form-control" id="input-indikator" placeholder="Indikator">
                         </div>
                     </div>
-                    <div id="input-target">
+                    {{-- <div id="input-target">
                         
+                    </div> --}}
+                    <div class="form-group">
+                        <label for="strategi" class="col-sm-3 control-label">Strategi</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-strategi" placeholder="strategi">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kebijakan" class="col-sm-3 control-label">Kebijakan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-kebijakan" placeholder="kebijakan">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -173,8 +186,20 @@
                             <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
                         </div>
                     </div>
-                    <div id="edit-target">
+                    {{-- <div id="edit-target">
                         
+                    </div> --}}
+                    <div class="form-group">
+                        <label for="strategi" class="col-sm-3 control-label">Strategi</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-strategi" placeholder="strategi">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kebijakan" class="col-sm-3 control-label">Kebijakan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit-kebijakan" placeholder="kebijakan">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -335,17 +360,17 @@
         $('#tahun_awal').keyup(function() {
             $('#head-target').empty();
             $('#tahun_akhir').val(parseInt($('#tahun_awal').val()) + 4);
-            var tahun = $('#tahun_awal').val();
+            // var tahun = $('#tahun_awal').val();
 
-            if(tahun == null) {
-                tahun = 1;
-            }
-            var head_target = [];
-            for(i = 0; i < 5; i++) {
-                var th = parseInt(tahun) + parseInt(i);
-                head_target +=   "<th style=\"color: #ffffff; text-align: center;\">" + th + "</th>";
-            }
-            $('#head-target').append(head_target);
+            // if(tahun == null) {
+            //     tahun = 1;
+            // }
+            // var head_target = [];
+            // for(i = 0; i < 5; i++) {
+            //     var th = parseInt(tahun) + parseInt(i);
+            //     head_target +=   "<th style=\"color: #ffffff; text-align: center;\">" + th + "</th>";
+            // }
+            // $('#head-target').append(head_target);
         });
 
         $('.btn-tambah').on('click', function() {
@@ -390,14 +415,16 @@
                             }                          
                             
                             tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                            tr += "<td>" + value_layout.strategi + "</td>";
+                            tr += "<td>" + value_layout.kebijakan + "</td>";
                             
                             var isLastElement = i == value.data_layout.length -1;
 
                             if (isLastElement) {                                
-                                for(a = 0; a < value_layout.data_target.length; a++) {
-                                    var b = value_layout.data_target[a];
-                                    tr += "<td>" + b.nilai + " %</td>";
-                                }
+                                // for(a = 0; a < value_layout.data_target.length; a++) {
+                                //     var b = value_layout.data_target[a];
+                                //     tr += "<td>" + b.nilai + " %</td>";
+                                // }
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
                                                 "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
@@ -415,10 +442,10 @@
                                             "<td colspan=\"6\"></td>" +
                                         "</tr>";
                             } else {
-                                for(a = 0; a < value_layout.data_target.length; a++) {
-                                    var b = value_layout.data_target[a];
-                                    tr += "<td>" + b.nilai + " %</td>";
-                                }
+                                // for(a = 0; a < value_layout.data_target.length; a++) {
+                                //     var b = value_layout.data_target[a];
+                                //     tr += "<td>" + b.nilai + " %</td>";
+                                // }
                                 tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                             "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
                                                 "<button class=\"btn btn-info btn-sm btn-block btn-edit\" data-id=\"" + value_layout.id + "\"><i class=\"fa fa-edit\"></i></button>" +
@@ -450,20 +477,20 @@
             $('#input-tahun-awal').val(tahun_awal);
             $('#input-tahun-akhir').val(tahun_akhir);
 
-            $('#input-target').append().empty();
+            // $('#input-target').append().empty();
 
-            var form_target_index = parseInt($('#tahun_akhir').val()) - parseInt($('#tahun_awal').val());
-            // console.log(form_target_index);
-            for(i = 0; i <= form_target_index; i++) {
-                var label = parseInt(tahun_awal) + parseInt(i);
-                $('#input-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
-                                                "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
-                                                "<div class=\"col-sm-9\">" +
-                                                    "<input type=\"number\" class=\"form-control\" id=\"input-target-" + i + "\" name=\"\" placeholder=0>" +
-                                                    "<input type=\"hidden\" class=\"form-control\" id=\"input-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
-                                                "</div>" +
-                                            "</div>");
-            }            
+            // var form_target_index = parseInt($('#tahun_akhir').val()) - parseInt($('#tahun_awal').val());
+            // // console.log(form_target_index);
+            // for(i = 0; i <= form_target_index; i++) {
+            //     var label = parseInt(tahun_awal) + parseInt(i);
+            //     $('#input-target').append(  "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
+            //                                     "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
+            //                                     "<div class=\"col-sm-9\">" +
+            //                                         "<input type=\"number\" class=\"form-control\" id=\"input-target-" + i + "\" name=\"\" placeholder=0>" +
+            //                                         "<input type=\"hidden\" class=\"form-control\" id=\"input-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
+            //                                     "</div>" +
+            //                                 "</div>");
+            // }            
         });
 
         // simpan data renstra
@@ -474,17 +501,19 @@
             var tujuan = $('#input-tujuan').val();
             var sasaran = $('#input-sasaran').val();
             var indikator = $('#input-indikator').val();
-            var target = [];
+            var strategi = $('#input-strategi').val();
+            var kebijakan = $('#input-kebijakan').val();
+            // var target = [];
 
-            for(i = 0; i < 5; i++) {
-                var nilai = $("#input-target-" + i).val();
-                var tahun = $("#input-target-tahun-" + i).val();
-                // console.log(text);
-                target.push({
-                    tahun: tahun,
-                    nilai: nilai
-                });
-            }
+            // for(i = 0; i < 5; i++) {
+            //     var nilai = $("#input-target-" + i).val();
+            //     var tahun = $("#input-target-tahun-" + i).val();
+            //     // console.log(text);
+            //     target.push({
+            //         tahun: tahun,
+            //         nilai: nilai
+            //     });
+            // }
 
             // console.log(target);
             
@@ -498,7 +527,9 @@
                     tujuan: tujuan,
                     sasaran: sasaran,
                     indikator: indikator,
-                    target: target
+                    // target: target
+                    strategi: strategi,
+                    kebijakan: kebijakan
                 },
                 success: function(response) {
                     // console.log(response);
@@ -542,18 +573,20 @@
                         $('#edit-sasaran-id').val(response.rpjmd.sasaran_id);
                         $('#edit-indikator-text').val(response.rpjmd.data_indikator.deskripsi);
                         $('#edit-indikator-id').val(response.rpjmd.indikator_id);
+                        $('#edit-strategi').val(response.rpjmd.strategi);
+                        $('#edit-kebijakan').val(response.rpjmd.kebijakan);
 
-                        for(i = 0; i < response.rpjmd.data_indikator.data_rpjmd_target.length; i++) {
-                            // console.log(i);
-                            var label = parseInt(response.rpjmd.data_tujuan.data_rpjmd.tahun_awal) + parseInt(i);
-                            $('#edit-target').append(   "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
-                                                            "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
-                                                            "<div class=\"col-sm-9\">" +
-                                                                "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" value=\"" + response.rpjmd.data_indikator.data_rpjmd_target[i].nilai + "\" placeholder=0>" +
-                                                                "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
-                                                            "</div>" +
-                                                        "</div>");
-                        }
+                        // for(i = 0; i < response.rpjmd.data_indikator.data_rpjmd_target.length; i++) {
+                        //     // console.log(i);
+                        //     var label = parseInt(response.rpjmd.data_tujuan.data_rpjmd.tahun_awal) + parseInt(i);
+                        //     $('#edit-target').append(   "<div class=\"form-group form-horizontal\" name=\"form-target\">" +
+                        //                                     "<label for=\"indikator\" class=\"col-sm-3 control-label\" style=\"text-align: right;\">" + label + "</label>" +
+                        //                                     "<div class=\"col-sm-9\">" +
+                        //                                         "<input type=\"number\" class=\"form-control\" id=\"edit-target-" + i + "\" name=\"\" value=\"" + response.rpjmd.data_indikator.data_rpjmd_target[i].nilai + "\" placeholder=0>" +
+                        //                                         "<input type=\"hidden\" class=\"form-control\" id=\"edit-target-tahun-" + i + "\" name=\"\" value=\"" + label + "\">" +
+                        //                                     "</div>" +
+                        //                                 "</div>");
+                        // }
                     }
             });
         });
@@ -571,23 +604,26 @@
             var sasaran_id = $('#edit-sasaran-id').val();
             var indikator_text = $('#edit-indikator-text').val();
             var indikator_id = $('#edit-indikator-id').val();
-            var target = [];
+            var strategi = $('#edit-strategi').val();
+            var kebijakan = $('#edit-kebijakan').val();
+            // var target = [];
 
-            for(i = 0; i < 5; i++) {
-                var nilai = $("#edit-target-" + i).val();
-                var tahun = $("#edit-target-tahun-" + i).val();
-                // console.log(text);
-                target.push({
-                    tahun: tahun,
-                    nilai: nilai
-                });
-            }
+            // for(i = 0; i < 5; i++) {
+            //     var nilai = $("#edit-target-" + i).val();
+            //     var tahun = $("#edit-target-tahun-" + i).val();
+            //     // console.log(text);
+            //     target.push({
+            //         tahun: tahun,
+            //         nilai: nilai
+            //     });
+            // }
 
             $.ajax({
                 url: '{{ URL::route('rpjmd.update', 'id') }}',
                 type: 'PUT',
                 data: {
                     _token: CSRF_TOKEN,
+                    id: id,
                     tahun_awal: tahun_awal,
                     tahun_akhir: tahun_akhir,
                     tujuan_text: tujuan_text,
@@ -596,7 +632,9 @@
                     sasaran_id: sasaran_id,
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
-                    target: target
+                    // target: target
+                    strategi: strategi,
+                    kebijakan: kebijakan
                 },
                 success: function(response) {
                     // console.log(response);

@@ -77,19 +77,21 @@ class RpjmdController extends Controller
             "deskripsi" => $request->indikator
         ]);
 
-        foreach($request->target as $key => $targete) {
-            $rpjmd_target = RpjmdIndikatorKinerjaTarget::create([
-                "rpjmd_indikator_id" => $rpjmd_indikator->id,
-                "tahun" => $targete['tahun'],
-                "nilai" => $targete['nilai']
-            ]);
-        }
+        // foreach($request->target as $key => $targete) {
+        //     $rpjmd_target = RpjmdIndikatorKinerjaTarget::create([
+        //         "rpjmd_indikator_id" => $rpjmd_indikator->id,
+        //         "tahun" => $targete['tahun'],
+        //         "nilai" => $targete['nilai']
+        //     ]);
+        // }
 
         // rpjmd layout
         $rpjmd_layout = RpjmdLayout::create([
             "tujuan_id" => $rpjmd_tujuan->id,
             "sasaran_id" => $rpjmd_sasaran->id,
-            "indikator_id" => $rpjmd_indikator->id
+            "indikator_id" => $rpjmd_indikator->id,
+            "strategi" => $request->strategi,
+            "kebijakan" => $request->kebijakan
         ]);
 
         return response()->json([
@@ -155,14 +157,19 @@ class RpjmdController extends Controller
         $rpjmd_indikator = RpjmdIndikatorKinerja::find($request->indikator_id);
         $rpjmd_indikator->deskripsi = $request->indikator_text;
         $rpjmd_indikator->save();
+
+        $rpjmd_layout = RpjmdLayout::find($request->id);
+        $rpjmd_layout->strategi = $request->strategi;
+        $rpjmd_layout->kebijakan = $request->kebijakan;
+        $rpjmd_layout->save();
         
-        foreach($request->target as $key => $targete) {
-            RpjmdIndikatorKinerjaTarget::where([
-                'rpjmd_indikator_id' => $request->indikator_id,
-                'tahun' => $request->target[$key]['tahun']
-            ])
-            ->update(['nilai' => $request->target[$key]['nilai']]);
-        }
+        // foreach($request->target as $key => $targete) {
+        //     RpjmdIndikatorKinerjaTarget::where([
+        //         'rpjmd_indikator_id' => $request->indikator_id,
+        //         'tahun' => $request->target[$key]['tahun']
+        //     ])
+        //     ->update(['nilai' => $request->target[$key]['nilai']]);
+        // }
 
         return response()->json([
             'success' => 'data berhasil diperbaharui'

@@ -10,7 +10,7 @@ class RenstraLayout extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'tujuan_id', 'sasaran_id', 'indikator_id'
+        'tujuan_id', 'sasaran_id', 'indikator_id', 'satuan', 'kinerja_eksiting'
     ];
 
     public function data_target()

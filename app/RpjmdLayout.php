@@ -10,7 +10,7 @@ class RpjmdLayout extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'tujuan_id', 'sasaran_id', 'indikator_id'
+        'tujuan_id', 'sasaran_id', 'indikator_id', 'strategi', 'kebijakan'
     ];
 
     public function data_target()
