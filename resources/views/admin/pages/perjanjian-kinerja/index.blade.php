@@ -70,18 +70,18 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead style="background-color: #428bca;" id="thead">
                             <tr>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">No</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Sasaran</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Indikator</th>
-                                <th style="color: #ffffff; text-align: center;" rowspan="2">Target Kinerja</th>
-                                <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="3">Target</th>
+                                <th style="color: #ffffff; text-align: center;">No</th>
+                                <th style="color: #ffffff; text-align: center;">Sasaran</th>
+                                <th style="color: #ffffff; text-align: center;">Indikator</th>
+                                <th style="color: #ffffff; text-align: center;">Target Kinerja</th>
+                                {{-- <th style="color: #ffffff; text-align: center; border-bottom: solid #fff 0px; border-right: solid #fff 0px;" colspan="3">Target</th> --}}
                                 <th style="color: #ffffff; text-align: center; border-left: solid #fff 1px;" rowspan="2" id="action">Action</th>
                             </tr>
-                            <tr id="head-target">
+                            {{-- <tr id="head-target">
                                 <th style="color: #ffffff; text-align: center;">Tw</th>
                                 <th style="color: #ffffff; text-align: center;">Target</th>
                                 <th style="color: #ffffff; text-align: center;">Satuan</th>
-                            </tr>
+                            </tr> --}}
                         </thead>
                         <tbody id="tabeldata">
 
@@ -137,7 +137,7 @@
                             <input type="text" class="form-control" id="input-target-kinerja" placeholder="Target Kinerja">
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="tw" class="col-sm-3 control-label">Tw</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-tw" placeholder="Tw">
@@ -154,7 +154,7 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-satuan" placeholder="Satuan">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -212,7 +212,7 @@
                             <textarea class="form-control" id="edit-target-kinerja" placeholder="Target Kinerja"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="tw" class="col-sm-3 control-label">tw</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-tw" placeholder="tw">
@@ -229,7 +229,7 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-satuan" placeholder="Satuan">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -287,7 +287,7 @@
                             <textarea class="form-control" id="edit-target-kinerja" placeholder="Target Kinerja"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="tw" class="col-sm-3 control-label">tw</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-tw" placeholder="tw">
@@ -304,7 +304,7 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-satuan" placeholder="Satuan">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -403,9 +403,9 @@
                                 tr += "<td>" + value_layout.target_kinerja + "</td>";
                             }                          
                             
-                            tr += "<td>" + value_layout.tw + "</td>";
-                            tr += "<td>" + value_layout.target + "</td>";
-                            tr += "<td>" + value_layout.satuan + "</td>";
+                            // tr += "<td>" + value_layout.tw + "</td>";
+                            // tr += "<td>" + value_layout.target + "</td>";
+                            // tr += "<td>" + value_layout.satuan + "</td>";
                             
                             var isLastElement = i == value.data_layout.length -1;
 
@@ -471,9 +471,9 @@
             var sasaran = $('#input-sasaran').val();
             var indikator = $('#input-indikator').val();
             var target_kinerja = $('#input-target-kinerja').val();
-            var tw = $('#input-tw').val();
-            var target = $('#input-target').val();
-            var satuan = $('#input-satuan').val();
+            // var tw = $('#input-tw').val();
+            // var target = $('#input-target').val();
+            // var satuan = $('#input-satuan').val();
             
             $.ajax({
                 url: 'perjanjianKinerja',
@@ -486,9 +486,9 @@
                     sasaran: sasaran,
                     indikator: indikator,
                     target_kinerja: target_kinerja,
-                    tw: tw,
-                    target: target,
-                    satuan: satuan
+                    // tw: tw,
+                    // target: target,
+                    // satuan: satuan
                 },
                 success: function(response) {
                     // console.log(response);
@@ -497,9 +497,9 @@
                         sasaran = $('#input-sasaran').val("");
                         indikator = $('#input-indikator').val("");
                         target_kinerja = $('#input-target-kinerja').val("");
-                        tw = $('#input-tw').val("");
-                        target = $('#input-target').val("");
-                        satuan = $('#input-satuan').val("");
+                        // tw = $('#input-tw').val("");
+                        // target = $('#input-target').val("");
+                        // satuan = $('#input-satuan').val("");
                     }
                     var tahun_awal = $('#tahun_awal').val();
                     var tahun_akhir = $('#tahun_akhir').val();
@@ -536,9 +536,9 @@
                         $('#edit-indikator-text').val(response.data.data_indikator.deskripsi);
                         $('#edit-indikator-id').val(response.data.indikator_id);
                         $('#edit-target-kinerja').val(response.data.target_kinerja);
-                        $('#edit-tw').val(response.data.tw);
-                        $('#edit-target').val(response.data.target);
-                        $('#edit-satuan').val(response.data.satuan);
+                        // $('#edit-tw').val(response.data.tw);
+                        // $('#edit-target').val(response.data.target);
+                        // $('#edit-satuan').val(response.data.satuan);
                     }
             });
         });
@@ -556,9 +556,9 @@
             var indikator_text = $('#edit-indikator-text').val();
             var indikator_id = $('#edit-indikator-id').val();
             var target_kinerja = $('#edit-target-kinerja').val();
-            var tw = $('#edit-tw').val();
-            var target = $('#edit-target').val();
-            var satuan = $('#edit-satuan').val();
+            // var tw = $('#edit-tw').val();
+            // var target = $('#edit-target').val();
+            // var satuan = $('#edit-satuan').val();
 
             $.ajax({
                 url: '{{ URL::route('perjanjianKinerja.update', 'id') }}',
@@ -574,9 +574,9 @@
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
                     target_kinerja: target_kinerja,
-                    tw: tw,
-                    target: target,
-                    satuan: satuan
+                    // tw: tw,
+                    // target: target,
+                    // satuan: satuan
                 },
                 success: function(response) {
                     // console.log(response);
@@ -585,9 +585,9 @@
                         sasaran = $('#edit-sasaran').val("");
                         indikator = $('#edit-indikator').val("");
                         target_kinerja = $('#edit-target-kinerja').val("");
-                        tw = $('#edit-tw').val("");
-                        target = $('#edit-target').val("");
-                        satuan = $('#edit-satuan').val("");
+                        // tw = $('#edit-tw').val("");
+                        // target = $('#edit-target').val("");
+                        // satuan = $('#edit-satuan').val("");
                     }
                     var tahun_awal = $('#tahun_awal').val();
                     var tahun_akhir = $('#tahun_akhir').val();
@@ -663,9 +663,9 @@
             var indikator_text = $('#modalIndikator #edit-indikator-text').val();
             var indikator_id = $('#modalIndikator #edit-indikator-id').val();
             var target_kinerja = $('#modalIndikator #edit-target-kinerja').val();
-            var tw = $('#modalIndikator #edit-tw').val();
-            var target = $('#modalIndikator #edit-target').val();
-            var satuan = $('#modalIndikator #edit-satuan').val();
+            // var tw = $('#modalIndikator #edit-tw').val();
+            // var target = $('#modalIndikator #edit-target').val();
+            // var satuan = $('#modalIndikator #edit-satuan').val();
             
             $.ajax({
                 url: 'masukkanIndikatorPerjanjianKinerja',
@@ -677,9 +677,9 @@
                     indikator_text: indikator_text,
                     indikator_id: indikator_id,
                     target_kinerja: target_kinerja,
-                    tw: tw,
-                    target: target,
-                    satuan: satuan
+                    // tw: tw,
+                    // target: target,
+                    // satuan: satuan
                 },
                 success: function(response) {
                     console.log(response);
@@ -689,9 +689,9 @@
                         sasaran = $('#modalIndikator #edit-sasaran-text').val("");
                         indikator = $('#modalIndikator #edit-indikator-text').val("");
                         target_kinerja = $('#modalIndikator #edit-target-kinerja').val("");
-                        tw = $('#modalIndikator #edit-tw').val("");
-                        target = $('#modalIndikator #edit-target').val("");
-                        satuan = $('#modalIndikator #edit-satuan').val("");
+                        // tw = $('#modalIndikator #edit-tw').val("");
+                        // target = $('#modalIndikator #edit-target').val("");
+                        // satuan = $('#modalIndikator #edit-satuan').val("");
                     }
                     var tahun_awal = $('#tahun_awal').val();
                     var tahun_akhir = $('#tahun_akhir').val();

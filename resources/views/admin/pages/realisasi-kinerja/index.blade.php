@@ -67,9 +67,8 @@
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Sasaran</th>
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Indikator Kinerja</th>
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Target Kinerja</th>
-                                <th style="color: #ffffff; text-align: center; font-size: 12px;">Tw</th>
-                                <th style="color: #ffffff; text-align: center; font-size: 12px;">Target</th>
-                                <th style="color: #ffffff; text-align: center; font-size: 12px;">Keterangan</th>
+                                {{-- <th style="color: #ffffff; text-align: center; font-size: 12px;">Keterangan</th> --}}
+                                <th style="color: #ffffff; text-align: center; font-size: 12px;">Realisasi</th>
                                 <th style="color: #ffffff; text-align: center;" id="action">Action</th>
                             </tr>
                         </thead>
@@ -100,7 +99,7 @@
                             <input type="hidden" class="form-control" id="edit-indikator-kinerja-id">
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="tw" class="col-sm-3 control-label">Tw</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-tw" placeholder="Tw">
@@ -111,11 +110,11 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-target" placeholder="target">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
-                        <label for="keterangan" class="col-sm-3 control-label">Keterangan</label>
+                        <label for="keterangan" class="col-sm-3 control-label">Realisasi</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit-keterangan" placeholder="keterangan">
+                            <input type="text" class="form-control" id="edit-keterangan" placeholder="Realisasi">
                         </div>
                     </div>
                 </div>
@@ -213,8 +212,8 @@
                             //     tr += "<td>" + value_indikator.indikator_kinerja_id + "</td>";
                             // }                          
                             // tr += "<td>" + value_indikator.indikator_kinerja_id + "</td>";
-                            tr += "<td>" + value_indikator.tw + "</td>";
-                            tr += "<td>" + value_indikator.target + "</td>";
+                            // tr += "<td>" + value_indikator.tw + "</td>";
+                            // tr += "<td>" + value_indikator.target + "</td>";
                             tr += "<td>" + value_indikator.keterangan + "</td>";
                             
                             var isLastElement = i == value.data_realisasi_kinerja.length -1;
@@ -287,8 +286,8 @@
 
             var id = $('#modalIndikator #edit-id').val();
             var indikator_kinerja_id = $('#modalIndikator #edit-indikator-kinerja-id').val();
-            var tw = $('#modalIndikator #edit-tw').val();
-            var target = $('#modalIndikator #edit-target').val();
+            // var tw = $('#modalIndikator #edit-tw').val();
+            // var target = $('#modalIndikator #edit-target').val();
             var keterangan = $('#modalIndikator #edit-keterangan').val();
             
             $.ajax({
@@ -297,16 +296,16 @@
                 data: {
                     _token: CSRF_TOKEN,
                     indikator_kinerja_id: indikator_kinerja_id,
-                    tw: tw,
-                    target: target,
+                    // tw: tw,
+                    // target: target,
                     keterangan: keterangan
                 },
                 success: function(response) {
                     // console.log(response);
                     if(response.success) {
                         $('#modalIndikator').modal('hide');
-                        tw = $('#modalIndikator #edit-tw').val("");
-                        target = $('#modalIndikator #edit-target').val("");
+                        // tw = $('#modalIndikator #edit-tw').val("");
+                        // target = $('#modalIndikator #edit-target').val("");
                         keterangan = $('#modalIndikator #edit-keterangan').val("");
                     }
                     var tahun = $('#tahun').val();

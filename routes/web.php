@@ -126,19 +126,19 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/RealisasiKinerja/proses', 'RealisasiKinerjaController@proses');
         Route::resource('realisasiKinerja', 'RealisasiKinerjaController');
 
-        // Route::post('/cariPerjanjianKinerja', 'PerjanjianKinerjaController@cari');
-        // Route::get('/getDataPerjanjianKinerja', 'PerjanjianKinerjaController@getDataPerjanjianKinerja');
-        // Route::post('/hapusPerjanjianKinerja', 'PerjanjianKinerjaController@hapus');
-        // Route::get('/tambahIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@tambahIndikator');
-        // Route::post('/masukkanIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@masukkanIndikator');
-        // Route::resource('perjanjianKinerja', 'PerjanjianKinerjaController');
+        Route::post('/cariPerjanjianKinerja', 'PerjanjianKinerjaController@cari');
+        Route::get('/getDataPerjanjianKinerja', 'PerjanjianKinerjaController@getDataPerjanjianKinerja');
+        Route::post('/hapusPerjanjianKinerja', 'PerjanjianKinerjaController@hapus');
+        Route::get('/tambahIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@tambahIndikator');
+        Route::post('/masukkanIndikatorPerjanjianKinerja', 'PerjanjianKinerjaController@masukkanIndikator');
+        Route::resource('perjanjianKinerja', 'PerjanjianKinerjaController');
 
 
-        Route::post('/cariPerjanjianKinerja2', 'PerjanjianKinerja2Controller@cari');
-        Route::post('/hapusPerjanjianKinerja2', 'PerjanjianKinerja2Controller@hapus');
-        Route::post('/perjanjianKinerja2/proses', 'PerjanjianKinerja2Controller@proses');
-        Route::post('/perjanjianKinerja2/upload', 'PerjanjianKinerja2Controller@proses')->name('PerjanjianKinerja2.upload');
-        Route::resource('perjanjianKinerja2', 'PerjanjianKinerja2Controller');
+        // Route::post('/cariPerjanjianKinerja2', 'PerjanjianKinerja2Controller@cari');
+        // Route::post('/hapusPerjanjianKinerja2', 'PerjanjianKinerja2Controller@hapus');
+        // Route::post('/perjanjianKinerja2/proses', 'PerjanjianKinerja2Controller@proses');
+        // Route::post('/perjanjianKinerja2/upload', 'PerjanjianKinerja2Controller@proses')->name('PerjanjianKinerja2.upload');
+        // Route::resource('perjanjianKinerja2', 'PerjanjianKinerja2Controller');
 
         Route::post('/cariPk3', 'Pk3Controller@cari');
         Route::get('/getDataPk3', 'Pk3Controller@getDataPk3');

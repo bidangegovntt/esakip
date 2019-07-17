@@ -127,8 +127,8 @@ class RealisasiKinerjaController extends Controller
     {
         $realisasiKinerja = RealisasiKinerja::create([
             "indikator_kinerja_id" => $request->indikator_kinerja_id,
-            "tw" => $request->tw,
-            "target" => $request->target,
+            // "tw" => $request->tw,
+            // "target" => $request->target,
             "keterangan" => $request->keterangan
         ]);
 
