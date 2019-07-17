@@ -166,6 +166,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/masukkanIndikatorRealisasiAnggaran', 'RealisasiAnggaranController@masukkanIndikator');
         Route::post('/RealisasiAnggaran/proses', 'RealisasiAnggaranController@proses');
         Route::resource('realisasiAnggaran', 'RealisasiAnggaranController');
+
+        Route::post('/cariCapaian', 'CapaianController@cari');
+        Route::post('/hapusCapaian', 'CapaianController@hapus');
+        // Route::get('/tambahIndikatorCapaian', 'CapaianController@tambahIndikator');
+        // Route::post('/masukkanIndikatorCapaian', 'CapaianController@masukkanIndikator');
+        Route::post('/capaian/proses', 'CapaianController@proses');
+        Route::resource('capaian', 'CapaianController');
     });
 
     Route::group(['prefix' => '/dokumen'], function() {
