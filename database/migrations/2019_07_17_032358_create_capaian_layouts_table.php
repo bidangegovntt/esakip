@@ -16,7 +16,6 @@ class CreateCapaianLayoutsTable extends Migration
         Schema::create('capaian_layouts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('capaian_id')->unsigned()->nullable();
-            $table->integer('tahun')->unsigned()->nullable();
             $table->string('sasaran', 100)->nullable();
             $table->string('iku', 100)->nullable();
             $table->string('satuan', 100)->nullable();
@@ -25,6 +24,7 @@ class CreateCapaianLayoutsTable extends Migration
             $table->integer('rencana_anggaran')->unsigned()->nullable();
             $table->integer('realisasi_anggaran')->unsigned()->nullable();
             $table->integer('capaian')->unsigned()->nullable();
+            $table->string('triwulan', 50)->nullable();
             $table->timestamps();
         });
     }

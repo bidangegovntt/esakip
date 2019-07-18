@@ -90,6 +90,7 @@
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Rencana Anggaran</th>
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Realisasi Anggaran</th>
                                 <th style="color: #ffffff; text-align: center; font-size: 12px;">Capaian</th>
+                                <th style="color: #ffffff; text-align: center; font-size: 12px;">Triwulan</th>
                                 <th style="color: #ffffff; text-align: center;" id="action">Action</th>
                             </tr>
                         </thead>
@@ -169,6 +170,12 @@
                         <label for="rencana-anggaran" class="col-sm-3 control-label">rencana anggaran</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-rencana-anggaran" placeholder="rencana-anggaran">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="triwulan" class="col-sm-3 control-label">Triwulan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="input-triwulan" placeholder="Triwulan">
                         </div>
                     </div>
                 </div>
@@ -313,6 +320,7 @@
                             tr += "<td>" + value.rencana_anggaran + "</td>";
                             tr += "<td>" + value.realisasi_anggaran + "</td>";
                             tr += "<td>" + value.capaian + " %</td>";
+                            tr += "<td>" + value.triwulan + "</td>";
                             tr +=   "<td style=\"width: 90px;\" id=\"tdAction\">" + 
                                         "<div class=\"col-xs-6\" style=\"padding-right: 5px; padding-left: 0;\">" +
                                             "<button class=\"btn btn-danger btn-sm btn-block btn-delete\" data-id=\"" + value.id + "\"><i class=\"fa fa-trash\"></i></button>" +
@@ -410,6 +418,7 @@
             var target = $('#input-target').val();
             var realisasi = $('#input-realisasi').val();
             var rencana_anggaran = $('#input-rencana-anggaran').val();
+            var triwulan = $('#input-triwulan').val();
             
             $.ajax({
                 url: 'capaian',
@@ -425,10 +434,11 @@
                     satuan: satuan,
                     target: target,
                     realisasi: realisasi,
-                    rencana_anggaran: rencana_anggaran
+                    rencana_anggaran: rencana_anggaran,
+                    triwulan: triwulan
                 },
                 success: function(response) {
-                    // console.log(response);
+                    console.log(response);
                     if(response.success) {
                         $('#modalCreate').modal('hide');
                         sasaran = $('#input-sasaran').val("");

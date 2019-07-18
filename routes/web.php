@@ -171,8 +171,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/hapusCapaian', 'CapaianController@hapus');
         // Route::get('/tambahIndikatorCapaian', 'CapaianController@tambahIndikator');
         // Route::post('/masukkanIndikatorCapaian', 'CapaianController@masukkanIndikator');
-        Route::post('/capaian/proses', 'CapaianController@proses');
+        // Route::post('/capaian/proses', 'CapaianController@proses');
         Route::resource('capaian', 'CapaianController');
+
+        Route::post('/cariPengukuran', 'PengukuranController@cari');
+        Route::get('/pengukuran/detail/{opd_id}/{tahun}', 'PengukuranController@detail');
+        Route::resource('pengukuran', 'PengukuranController');
     });
 
     Route::group(['prefix' => '/dokumen'], function() {

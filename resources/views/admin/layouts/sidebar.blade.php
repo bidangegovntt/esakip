@@ -88,6 +88,7 @@
                 <li class="{{ set_active(['input/rencanaAnggaran', 'input/rencanaAnggaran/*']) }}"><a href="{{ url('input/rencanaAnggaran') }}"><i class="fa fa-circle-o"></i> Perencanaan Anggaran </a></li>
                 <li class="{{ set_active(['input/realisasiAnggaran', 'input/realisasiAnggaran/*']) }}"><a href="{{ url('input/realisasiAnggaran') }}"><i class="fa fa-circle-o"></i> Realisasi Anggaran </a></li>
                 <li class="{{ set_active(['input/capaian', 'input/capaian/*']) }}"><a href="{{ url('input/capaian') }}"><i class="fa fa-circle-o"></i> Capaian </a></li>
+                <li class="{{ set_active(['input/pengukuran', 'input/pengukuran/*']) }}"><a href="{{ url('input/pengukuran') }}"><i class="fa fa-circle-o"></i> Pengukuran </a></li>
             </ul>
         </li>
         <li class="{{ set_active(['dokumen', 'dokumen/*']) }} treeview">

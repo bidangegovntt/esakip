@@ -15,6 +15,7 @@ class CreateCapaiansTable extends Migration
     {
         Schema::create('capaians', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('tahun')->unsigned()->nullable();
             $table->smallInteger('tahun_awal')->nullable();
             $table->smallInteger('tahun_akhir')->nullable();
             $table->tinyInteger('opd_id');

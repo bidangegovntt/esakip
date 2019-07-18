@@ -8,7 +8,6 @@ class CapaianLayout extends Model
 {
     protected $fillable = [
         'capaian_id', 
-        'tahun', 
         'sasaran', 
         'iku', 
         'satuan', 
@@ -16,7 +15,8 @@ class CapaianLayout extends Model
         'realisasi',
         'rencana_anggaran',
         'realisasi_anggaran',
-        'capaian'
+        'capaian',
+        'triwulan'
     ];
 
     public function data_capaian()
