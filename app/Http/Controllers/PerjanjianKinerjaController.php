@@ -77,7 +77,7 @@ class PerjanjianKinerjaController extends Controller
             "indikator_id" => $perjanjian_kinerja_indikator->id,
             "target_kinerja" => $request->target_kinerja,
             "tw" => $request->tw,
-            "target" => $request->target,
+            "target" => $request->target_kinerja,
             "satuan" => $request->satuan
         ]);
 
