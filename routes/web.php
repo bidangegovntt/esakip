@@ -78,6 +78,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('pejabat-opd', 'PejabatOpdController');
         Route::resource('pejabat-bidang', 'PejabatBidangController');
         Route::resource('pejabat-subbidang', 'PejabatSubbidangController');
+
+        Route::get('/tampilSasaran', 'SasaranController@tampil');
+        Route::post('/hapusSasaran', 'SasaranController@hapus');
+        Route::resource('sasaran', 'SasaranController');
+        
+        Route::resource('indikator', 'IndikatorController');
+        Route::resource('target', 'TargetController');
     });
 
     Route::group(['prefix' => '/input'], function() {

@@ -64,6 +64,9 @@
                 <li class="{{ set_active(['master/pejabat-opd', 'master/pejabat-opd/*']) }}"><a href="{{ url('master/pejabat-opd') }}"><i class="fa fa-circle-o"></i> Pejabat OPD </a></li>
                 <li class="{{ set_active(['master/pejabat-bidang', 'master/pejabat-bidang/*']) }}"><a href="{{ url('master/pejabat-bidang') }}"><i class="fa fa-circle-o"></i> Pejabat Bidang </a></li>
                 <li class="{{ set_active(['master/pejabat-subbidang', 'master/pejabat-subbidang/*']) }}"><a href="{{ url('master/pejabat-subbidang') }}"><i class="fa fa-circle-o"></i> Pejabat Subbidang </a></li>
+                <li class="{{ set_active(['master/sasaran', 'master/sasaran/*']) }}"><a href="{{ url('master/sasaran') }}"><i class="fa fa-circle-o"></i> Sasaran </a></li>
+                <li class="{{ set_active(['master/indikator', 'master/indikator/*']) }}"><a href="{{ url('master/indikator') }}"><i class="fa fa-circle-o"></i> Indikator </a></li>
+                <li class="{{ set_active(['master/target', 'master/target/*']) }}"><a href="{{ url('master/target') }}"><i class="fa fa-circle-o"></i> Target </a></li>
             </ul>
         </li>
         @endif
