@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DtIndikator;
 use Illuminate\Http\Request;
 
 class IndikatorController extends Controller
@@ -13,7 +14,9 @@ class IndikatorController extends Controller
      */
     public function index()
     {
-        //
+        $indikator = DtIndikator::get();
+
+        return view('admin.pages.indikator.index');
     }
 
     /**
@@ -34,7 +37,13 @@ class IndikatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $indikator = DtIndikator::create([
+            "nama" => $request->nama
+        ]);
+        
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
     }
 
     /**
@@ -54,9 +63,13 @@ class IndikatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $indikator = DtIndikator::where('id', $request->id)->first();
+
+        return response()->json([
+            'data' => $indikator
+        ]);
     }
 
     /**
@@ -68,7 +81,13 @@ class IndikatorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $indikator = DtIndikator::find($request->id);
+        $indikator->nama = $request->nama;
+        $indikator->save();
+
+        return response()->json([
+            'success' => 'data berhasil diperbaharui'
+        ]);
     }
 
     /**
@@ -80,5 +99,25 @@ class IndikatorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tampil()
+    {
+        $Indikator = DtIndikator::get();
+
+        return response()->json([
+            'data' => $Indikator
+        ]);
+    }
+
+    public function hapus(Request $request)
+    {
+        $Indikator = DtIndikator::find($request->id);
+
+        $Indikator->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 }

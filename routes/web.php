@@ -83,7 +83,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/hapusSasaran', 'SasaranController@hapus');
         Route::resource('sasaran', 'SasaranController');
         
+        Route::get('/tampilIndikator', 'IndikatorController@tampil');
+        Route::post('/hapusIndikator', 'IndikatorController@hapus');
         Route::resource('indikator', 'IndikatorController');
+
+        Route::get('/tampilTarget', 'TargetController@tampil');
+        Route::post('/hapusTarget', 'TargetController@hapus');
         Route::resource('target', 'TargetController');
     });
 

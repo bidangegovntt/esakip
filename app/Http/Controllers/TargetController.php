@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DtTarget;
 use Illuminate\Http\Request;
 
 class TargetController extends Controller
@@ -13,7 +14,9 @@ class TargetController extends Controller
      */
     public function index()
     {
-        //
+        $target = DtTarget::get();
+
+        return view('admin.pages.target.index');
     }
 
     /**
@@ -34,7 +37,13 @@ class TargetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $target = DtTarget::create([
+            "nama" => $request->nama
+        ]);
+        
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
     }
 
     /**
@@ -54,9 +63,13 @@ class TargetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $target = DtTarget::where('id', $request->id)->first();
+
+        return response()->json([
+            'data' => $target
+        ]);
     }
 
     /**
@@ -68,7 +81,13 @@ class TargetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $target = DtTarget::find($request->id);
+        $target->nama = $request->nama;
+        $target->save();
+
+        return response()->json([
+            'success' => 'data berhasil diperbaharui'
+        ]);
     }
 
     /**
@@ -80,5 +99,25 @@ class TargetController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tampil()
+    {
+        $target = DtTarget::get();
+
+        return response()->json([
+            'data' => $target
+        ]);
+    }
+
+    public function hapus(Request $request)
+    {
+        $target = DtTarget::find($request->id);
+
+        $target->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 }
