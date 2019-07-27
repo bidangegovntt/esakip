@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Opd;
+use App\DtTarget;
+use App\DtSasaran;
+use App\DtIndikator;
+use App\RealisasiPpk;
 use Illuminate\Http\Request;
 
 class RealisasiPpkController extends Controller
@@ -13,7 +18,17 @@ class RealisasiPpkController extends Controller
      */
     public function index()
     {
-        //
+        $opds = Opd::get();
+        $sasarans = DtSasaran::get();
+        $indikators = DtIndikator::get();
+        $targets = DtTarget::get();
+
+        return view('admin.pages.realisasi-ppk.index', [
+            'opds' => $opds, 
+            'sasarans' => $sasarans, 
+            'indikators' => $indikators,
+            'targets' => $targets
+        ]);
     }
 
     /**
@@ -34,7 +49,20 @@ class RealisasiPpkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $realisasiPpks = RealisasiPpk::create([
+            "tahun" => $request->tahun,
+            "opd_id" => $request->opd_id,
+            "sasaran_id" => $request->sasaran_id,
+            "indikator_id" => $request->indikator_id,
+            "target_id" => $request->target_id,
+            "program" => $request->program,
+            "kegiatan" => $request->kegiatan,
+            "anggaran" => $request->anggaran
+        ]);
+        
+        return response()->json([
+            'success' => 'data berhasil disimpan'
+        ]);
     }
 
     /**
@@ -80,5 +108,37 @@ class RealisasiPpkController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function cari(Request $request)
+    {
+        // return $request;
+        $tahun = $request->tahun;
+        $opd = $request->opd;
+
+        $realisasiPpk = RealisasiPpk::where('opd_id', $opd)->where('tahun', $tahun)
+        ->with(
+            'data_opd',
+            'data_sasaran',
+            'data_indikator',
+            'data_target'
+        )
+        ->get();
+
+        return response()->json([
+            'success' => 'Berhasil mengambil data',
+            'data' => $realisasiPpk
+        ]);
+    }
+
+    public function hapus(Request $request)
+    {
+        $realisasiPpks = RealisasiPpk::find($request->id);
+
+        $realisasiPpks->delete();
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 }

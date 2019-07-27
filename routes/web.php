@@ -196,7 +196,11 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::post('/cariRealisasiPpk', 'RealisasiPpkController@cari');
         Route::post('/hapusRealisasiPpk', 'RealisasiPpkController@hapus');
-        Route::resource('RealisasiPpk', 'RealisasiPpkController');
+        Route::resource('realisasiPpk', 'RealisasiPpkController');
+
+        Route::post('/cariRk', 'RkController@cari');
+        Route::post('/hapusRk', 'RkController@hapus');
+        Route::resource('rk', 'RkController');
     });
 
     Route::group(['prefix' => '/dokumen'], function() {

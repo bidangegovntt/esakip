@@ -116,7 +116,8 @@ class RencanaPpkController extends Controller
         $tahun = $request->tahun;
         $opd = $request->opd;
 
-        $rencanaPpk = RencanaPpk::with(
+        $rencanaPpk = RencanaPpk::where('opd_id', $opd)->where('tahun', $tahun)
+        ->with(
             'data_opd',
             'data_sasaran',
             'data_indikator',
