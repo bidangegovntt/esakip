@@ -189,6 +189,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/cariPengukuran', 'PengukuranController@cari');
         Route::get('/pengukuran/detail/{opd_id}/{tahun}', 'PengukuranController@detail');
         Route::resource('pengukuran', 'PengukuranController');
+
+        Route::post('/cariRencanaPpk', 'RencanaPpkController@cari');
+        Route::post('/hapusRencanaPpk', 'RencanaPpkController@hapus');
+        Route::resource('rencanaPpk', 'RencanaPpkController');
+
+        Route::post('/cariRealisasiPpk', 'RealisasiPpkController@cari');
+        Route::post('/hapusRealisasiPpk', 'RealisasiPpkController@hapus');
+        Route::resource('RealisasiPpk', 'RealisasiPpkController');
     });
 
     Route::group(['prefix' => '/dokumen'], function() {

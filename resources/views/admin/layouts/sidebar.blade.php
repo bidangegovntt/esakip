@@ -92,6 +92,8 @@
                 <li class="{{ set_active(['input/realisasiAnggaran', 'input/realisasiAnggaran/*']) }}"><a href="{{ url('input/realisasiAnggaran') }}"><i class="fa fa-circle-o"></i> Realisasi Anggaran </a></li>
                 <li class="{{ set_active(['input/capaian', 'input/capaian/*']) }}"><a href="{{ url('input/capaian') }}"><i class="fa fa-circle-o"></i> Capaian </a></li>
                 <li class="{{ set_active(['input/pengukuran', 'input/pengukuran/*']) }}"><a href="{{ url('input/pengukuran') }}"><i class="fa fa-circle-o"></i> Pengukuran </a></li>
+                <li class="{{ set_active(['input/rencanaPpk', 'input/rencanaPpk/*']) }}"><a href="{{ url('input/rencanaPpk') }}"><i class="fa fa-circle-o"></i> Rencana PPK </a></li>
+                <li class="{{ set_active(['input/realisasiPpk', 'input/realisasiPpk/*']) }}"><a href="{{ url('input/realisasiPpk') }}"><i class="fa fa-circle-o"></i> Realisasi PPK </a></li>
             </ul>
         </li>
         <li class="{{ set_active(['dokumen', 'dokumen/*']) }} treeview">
