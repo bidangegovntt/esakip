@@ -132,9 +132,9 @@ class RencanaPpkController extends Controller
 
     public function hapus(Request $request)
     {
-        $capaian = CapaianLayout::find($request->id);
+        $rencanaPpks = RencanaPpk::find($request->id);
 
-        $capaian->delete();
+        $rencanaPpks->delete();
 
         return response()->json([
             'success' => 'Record deleted successfully!'

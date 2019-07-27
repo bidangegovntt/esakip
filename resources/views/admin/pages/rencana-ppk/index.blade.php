@@ -315,7 +315,7 @@
             var id = $(this).data('id');
             if (confirm("Yakin akan menghapus?")) {
                 $.ajax({
-                    url: 'hapusCapaian',
+                    url: 'hapusRencanaPpk',
                     type: 'POST',
                     data: {
                         _token: CSRF_TOKEN,
@@ -323,18 +323,16 @@
                     },
                     success: function(response) {
                         var tahun = $('#tahun').val();
-                        var tahun_awal = $('#tahun_awal').val();
                         var opd = $('#opd').children("option:selected").val();
 
-                        showData(tahun, tahun_awal, opd);
+                        showData(tahun, opd);
                     }
                 });
             } else {
                 var tahun = $('#tahun').val();
-                var tahun_awal = $('#tahun_awal').val();
                 var opd = $('#opd').children("option:selected").val();
 
-                showData(tahun, tahun_awal, opd);
+                showData(tahun, opd);
             }            
         });
     });
