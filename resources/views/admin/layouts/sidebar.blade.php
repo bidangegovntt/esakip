@@ -85,7 +85,7 @@
                 <li class="{{ set_active(['input/iku', 'input/iku/*']) }}"><a href="{{ url('input/iku') }}"><i class="fa fa-circle-o"></i> Indikator Kinerja Utama </a></li>
                 <li class="{{ set_active(['input/ppk', 'input/ppk/*']) }}"><a href="{{ url('input/ppk') }}"><i class="fa fa-circle-o"></i> Rencana Program dan Kegiatan </a></li>
                 <li class="{{ set_active(['input/perjanjianKinerja', 'input/perjanjianKinerja/*']) }}"><a href="{{ url('input/perjanjianKinerja') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja </a></li>
-                <li class="{{ set_active(['input/realisasiKinerja', 'input/realisasiKinerja/*']) }}"><a href="{{ url('input/realisasiKinerja') }}"><i class="fa fa-circle-o"></i> Realisasi Kinerja </a></li>
+                {{-- <li class="{{ set_active(['input/realisasiKinerja', 'input/realisasiKinerja/*']) }}"><a href="{{ url('input/realisasiKinerja') }}"><i class="fa fa-circle-o"></i> Realisasi Kinerja </a></li> --}}
                 <li class="{{ set_active(['input/pk3', 'input/pk3/*']) }}"><a href="{{ url('input/pk3') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja Eselon III </a></li>
                 <li class="{{ set_active(['input/pk4', 'input/pk4/*']) }}"><a href="{{ url('input/pk4') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja Eselon IV </a></li>
                 <li class="{{ set_active(['input/rencanaAnggaran', 'input/rencanaAnggaran/*']) }}"><a href="{{ url('input/rencanaAnggaran') }}"><i class="fa fa-circle-o"></i> Perencanaan Anggaran </a></li>
@@ -94,6 +94,7 @@
                 <li class="{{ set_active(['input/pengukuran', 'input/pengukuran/*']) }}"><a href="{{ url('input/pengukuran') }}"><i class="fa fa-circle-o"></i> Pengukuran </a></li>
                 <li class="{{ set_active(['input/rencanaPpk', 'input/rencanaPpk/*']) }}"><a href="{{ url('input/rencanaPpk') }}"><i class="fa fa-circle-o"></i> Rencana PPK </a></li>
                 <li class="{{ set_active(['input/realisasiPpk', 'input/realisasiPpk/*']) }}"><a href="{{ url('input/realisasiPpk') }}"><i class="fa fa-circle-o"></i> Realisasi PPK </a></li>
+                <li class="{{ set_active(['input/rk', 'input/rk/*']) }}"><a href="{{ url('input/rk') }}"><i class="fa fa-circle-o"></i> Realisasi Kinerja </a></li>
             </ul>
         </li>
         <li class="{{ set_active(['dokumen', 'dokumen/*']) }} treeview">

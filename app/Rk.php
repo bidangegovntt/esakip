@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RealisasiPpk extends Model
+class Rk extends Model
 {
     protected $fillable = [
-        'opd_id', 'tahun', 'sasaran_id', 'indikator_id', 'target_id', 'program', 'kegiatan', 'anggaran'
+        'opd_id', 'tahun', 'sasaran_id', 'indikator_id', 'target', 'realisasi'
     ];
 
     public function data_opd()
