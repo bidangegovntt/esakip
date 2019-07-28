@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Opd;
 use App\DtTarget;
 use App\DtSasaran;
+use App\CapaianPpk;
 use App\DtIndikator;
 use App\RealisasiPpk;
 use Illuminate\Http\Request;
@@ -59,6 +60,20 @@ class RealisasiPpkController extends Controller
             "kegiatan" => $request->kegiatan,
             "anggaran" => $request->anggaran
         ]);
+
+        $capaianPpk = CapaianPpk::where('opd_id', $request->opd_id)
+        ->where('tahun', $request->tahun)
+        ->where('sasaran_id', $request->sasaran_id)
+        ->with('data_rencana_ppk')
+        ->first();
+
+        $rencana_anggaran = $capaianPpk->data_rencana_ppk->first()->anggaran;
+        $realisasi_anggaran = $request->anggaran;
+        $hitung = ($realisasi_anggaran / $rencana_anggaran) * 100;
+
+        $capaianPpk->realisasi_ppk_id = $realisasiPpks->id;
+        $capaianPpk->capaian = $hitung;
+        $capaianPpk->save();
         
         return response()->json([
             'success' => 'data berhasil disimpan'

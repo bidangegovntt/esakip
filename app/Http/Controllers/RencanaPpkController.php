@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Opd;
 use App\DtTarget;
 use App\DtSasaran;
+use App\CapaianPpk;
 use App\RencanaPpk;
 use App\DtIndikator;
 use Illuminate\Http\Request;
@@ -58,6 +59,13 @@ class RencanaPpkController extends Controller
             "program" => $request->program,
             "kegiatan" => $request->kegiatan,
             "anggaran" => $request->anggaran
+        ]);
+
+        $capaianPpk = CapaianPpk::create([
+            "opd_id" => $request->opd_id,
+            "tahun" => $request->tahun,
+            "sasaran_id" => $request->sasaran_id,
+            "rencana_ppk_id" => $rencanaPpks->id
         ]);
         
         return response()->json([

@@ -201,6 +201,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/cariRk', 'RkController@cari');
         Route::post('/hapusRk', 'RkController@hapus');
         Route::resource('rk', 'RkController');
+
+        Route::get('/tampilCapaian2', 'Capaian2Controller@tampil');
+        Route::post('/hapusCapaian2', 'Capaian2Controller@hapus');
+        Route::resource('capaian2', 'Capaian2Controller');
     });
 
     Route::group(['prefix' => '/dokumen'], function() {

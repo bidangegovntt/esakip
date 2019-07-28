@@ -95,6 +95,7 @@
                 <li class="{{ set_active(['input/rencanaPpk', 'input/rencanaPpk/*']) }}"><a href="{{ url('input/rencanaPpk') }}"><i class="fa fa-circle-o"></i> Rencana PPK </a></li>
                 <li class="{{ set_active(['input/realisasiPpk', 'input/realisasiPpk/*']) }}"><a href="{{ url('input/realisasiPpk') }}"><i class="fa fa-circle-o"></i> Realisasi PPK </a></li>
                 <li class="{{ set_active(['input/rk', 'input/rk/*']) }}"><a href="{{ url('input/rk') }}"><i class="fa fa-circle-o"></i> Realisasi Kinerja </a></li>
+                <li class="{{ set_active(['input/capaian2', 'input/capaian2/*']) }}"><a href="{{ url('input/capaian2') }}"><i class="fa fa-circle-o"></i> Capaian </a></li>
             </ul>
         </li>
         <li class="{{ set_active(['dokumen', 'dokumen/*']) }} treeview">
