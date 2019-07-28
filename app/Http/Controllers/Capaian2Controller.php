@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DtSasaran;
 use App\CapaianPpk;
+use App\CapaianKinerja;
 use Illuminate\Http\Request;
 
 class Capaian2Controller extends Controller
@@ -87,6 +88,7 @@ class Capaian2Controller extends Controller
 
     public function tampil()
     {
+        $chart = [];
         $capaianPpk = CapaianPpk::with(
             'data_sasaran', 
             'data_rencana_ppk', 
@@ -94,8 +96,21 @@ class Capaian2Controller extends Controller
         )
         ->get();
 
+        $capaianRk = CapaianKinerja::with(
+            'data_realisasi_kinerja',
+            'data_realisasi_kinerja.data_sasaran',
+            'data_realisasi_kinerja.data_indikator'
+        )
+        ->get();
+
+        foreach ($capaianPpk as $key => $capaianPpks) {
+            $chart[$key] = $capaianPpks->capaian;
+        }
+
         return response()->json([
-            'data' => $capaianPpk
+            'data' => $capaianPpk,
+            'rk' => $capaianRk,
+            'chart' => $capaianPpk
         ]);
     }
 }

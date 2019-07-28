@@ -6,6 +6,7 @@ use App\Rk;
 use App\Opd;
 use App\DtSasaran;
 use App\DtIndikator;
+use App\CapaianKinerja;
 use Illuminate\Http\Request;
 
 class RkController extends Controller
@@ -53,6 +54,15 @@ class RkController extends Controller
             "indikator_id" => $request->indikator_id,
             "target" => $request->target,
             "realisasi" => $request->realisasi
+        ]);
+
+        $target = $request->target;
+        $realisasi = $request->realisasi;
+        $hitung = ($realisasi / $target) * 100;
+
+        $capaianRk = CapaianKinerja::create([
+            "realisasi_kinerja_id" => $rk->id,
+            "capaian" => $hitung
         ]);
         
         return response()->json([
