@@ -88,7 +88,9 @@ class Capaian2Controller extends Controller
 
     public function tampil()
     {
-        $chart = [];
+        $chartppk = [];
+        $chartrk = [];
+
         $capaianPpk = CapaianPpk::with(
             'data_sasaran', 
             'data_rencana_ppk', 
@@ -104,13 +106,44 @@ class Capaian2Controller extends Controller
         ->get();
 
         foreach ($capaianPpk as $key => $capaianPpks) {
-            $chart[$key] = $capaianPpks->capaian;
+            $chartppk[$key] = $capaianPpks->capaian;
         }
+
+        foreach ($capaianRk as $key => $capaianRks) {
+            $chartrk[$key] = $capaianRks->capaian;
+        }
+
+        $chartppk = CapaianPpk::with(
+            'data_sasaran', 
+            'data_rencana_ppk', 
+            'data_realisasi_ppk'
+        )
+        ->get()
+        ->map(function($query) {
+            return [
+                "label" => $query->capaian . "%",
+                "data" => $query->capaian,
+                "color" => "#3c8dbc"
+            ];
+        });
+
+        $chartrk = CapaianKinerja::with(
+            'data_realisasi_kinerja'
+        )
+        ->get()
+        ->map(function($query) {
+            return [
+                "label" => $query->capaian . "%",
+                "data" => $query->capaian,
+                "color" => "#3c8dbc"
+            ];
+        });
 
         return response()->json([
             'data' => $capaianPpk,
             'rk' => $capaianRk,
-            'chart' => $capaianPpk
+            'chartppk' => $chartppk,
+            'chartrk' => $chartrk
         ]);
     }
 }

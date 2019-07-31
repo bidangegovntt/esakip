@@ -150,6 +150,27 @@
 
                         $('#tabeldata').append(tr);
                     });
+                        
+                    var donutData = response.chartppk
+                    $.plot('#donut-chart', donutData, {
+                        series: {
+                        pie: {
+                            show       : true,
+                            radius     : 1,
+                            innerRadius: 0.5,
+                            label      : {
+                                show     : true,
+                                radius   : 2 / 3,
+                                formatter: labelFormatter,
+                                threshold: 0.1
+                            }
+
+                        }
+                        },
+                        legend: {
+                        show: false
+                        }
+                    });
 
                     $.each(response.rk, function(i, value){
                         // console.log(value);
@@ -164,64 +185,39 @@
 
                         $('#tabeldata2').append(tr);
                     });
-                }
-            });
-        }
+
+                    var donutData2 = response.chartrk
+                    $.plot('#donut-chart2', donutData2, {
+                        series: {
+                        pie: {
+                            show       : true,
+                            radius     : 1,
+                            innerRadius: 0.5,
+                            label      : {
+                            show     : true,
+                            radius   : 2 / 3,
+                            formatter: labelFormatter,
+                            threshold: 0.1
+                            }
+
+                        }
+                        },
+                        legend: {
+                        show: false
+                        }
+                    })
+                            }
+                        });
+                    }
 
         /*
         * DONUT CHART
         * -----------
         */
 
-        var donutData = [
-            { label: 'Series2', data: 30, color: '#3c8dbc' },
-            { label: 'Series3', data: 20, color: '#3c8dbc' },
-            { label: 'Series4', data: 50, color: '#3c8dbc' }
-        ]
-        $.plot('#donut-chart', donutData, {
-            series: {
-            pie: {
-                show       : true,
-                radius     : 1,
-                innerRadius: 0.5,
-                label      : {
-                show     : true,
-                radius   : 2 / 3,
-                formatter: labelFormatter,
-                threshold: 0.1
-                }
+        
 
-            }
-            },
-            legend: {
-            show: false
-            }
-        })
-
-        var donutData2 = [
-            { label: 'Series2', data: 30, color: '#3c8dbc' },
-            { label: 'Series3', data: 20, color: '#3c8dbc' },
-            { label: 'Series4', data: 50, color: '#3c8dbc' }
-        ]
-        $.plot('#donut-chart2', donutData2, {
-            series: {
-            pie: {
-                show       : true,
-                radius     : 1,
-                innerRadius: 0.5,
-                label      : {
-                show     : true,
-                radius   : 2 / 3,
-                formatter: labelFormatter,
-                threshold: 0.1
-                }
-
-            }
-            },
-            legend: {
-            show: false
-            }
-        })
+        
         /*
         * END DONUT CHART
         */
@@ -234,7 +230,7 @@
         return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
             + label
             + '<br>'
-            + Math.round(series.percent) + '%</div>'
+            + '<span style="color: #3c8dbc">' + Math.round(series.percent) + '</span></div>'
         }
     });
 </script>
