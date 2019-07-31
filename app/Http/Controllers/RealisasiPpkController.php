@@ -65,11 +65,14 @@ class RealisasiPpkController extends Controller
         ->where('tahun', $request->tahun)
         ->where('sasaran_id', $request->sasaran_id)
         ->with('data_rencana_ppk')
+        ->latest('id')
         ->first();
 
-        $rencana_anggaran = $capaianPpk->data_rencana_ppk->first()->anggaran;
+        $rencana_anggaran = $capaianPpk->data_rencana_ppk->anggaran;
         $realisasi_anggaran = $request->anggaran;
-        $hitung = ($realisasi_anggaran / $rencana_anggaran) * 100;
+        $hitung = round(($realisasi_anggaran / $rencana_anggaran) * 100);
+
+        // return $hitung;
 
         $capaianPpk->realisasi_ppk_id = $realisasiPpks->id;
         $capaianPpk->capaian = $hitung;
