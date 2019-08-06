@@ -111,6 +111,28 @@
                     <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
+                            <select class="form-control" id="input-sasaran" name="sasaran">
+                                <option value="">--Pilih Sasaran--</option>
+                                @foreach ($sasarans as $sasaran)
+                                    <option value="{{ $sasaran->id }}">{{ $sasaran->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="input-indikator" name="indikator">
+                                <option value="">--Pilih indikator--</option>
+                                @foreach ($indikators as $indikator)
+                                    <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    {{-- <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-sasaran" placeholder="Sasaran">
                         </div>
                     </div>
@@ -119,7 +141,7 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-indikator" placeholder="Indikator">
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div id="input-target">
                         
                     </div> --}}
@@ -172,7 +194,7 @@
                             <input type="hidden" class="form-control" id="edit-tujuan-id">
                         </div>
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-sasaran-text" placeholder="Sasaran">
@@ -184,6 +206,28 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit-indikator-text" placeholder="Indikator">
                             <input type="hidden" class="form-control" id="edit-indikator-id" placeholder="Indikator">
+                        </div>
+                    </div> --}}
+                    <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="input-sasaran" name="sasaran">
+                                <option value="">--Pilih Sasaran--</option>
+                                @foreach ($sasarans as $sasaran)
+                                    <option value="{{ $sasaran->id }}">{{ $sasaran->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="input-indikator" name="indikator">
+                                <option value="">--Pilih indikator--</option>
+                                @foreach ($indikators as $indikator)
+                                    <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     {{-- <div id="edit-target">
@@ -411,10 +455,10 @@
                             if(sasaran == value_layout.sasaran_id) {
                                 tr += "<td></td>";
                             } else {
-                                tr += "<td>" + value_layout.data_sasaran.deskripsi + "</td>";
+                                tr += "<td>" + value_layout.data_sasaran.nama + "</td>";
                             }                          
                             
-                            tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                            tr += "<td>" + value_layout.data_indikator.nama + "</td>";
                             tr += "<td>" + value_layout.strategi + "</td>";
                             tr += "<td>" + value_layout.kebijakan + "</td>";
                             

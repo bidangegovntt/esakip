@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Rpjmd;
+use App\DtSasaran;
+use App\DtIndikator;
 use App\RpjmdLayout;
 use App\RpjmdTujuan;
 use App\RpjmdSasaran;
@@ -20,8 +22,14 @@ class RpjmdController extends Controller
     public function index()
     {
         $rpjmds = Rpjmd::get();
+        $sasarans = DtSasaran::get();
+        $indikators = DtIndikator::get();
 
-        return view('admin.pages.rpjmd.index', ['rpjmds' => $rpjmds]);
+        return view('admin.pages.rpjmd.index', [
+            'rpjmds' => $rpjmds,
+            'sasarans' => $sasarans, 
+            'indikators' => $indikators
+        ]);
     }
 
     /**
@@ -65,17 +73,17 @@ class RpjmdController extends Controller
             "deskripsi" => $request->tujuan
         ]);
 
-        // rpjmd sasaran
-        $rpjmd_sasaran = RpjmdSasaran::create([
-            "rpjmd_tujuan_id" => $rpjmd_tujuan->id,
-            "deskripsi" => $request->sasaran
-        ]);
+        // // rpjmd sasaran
+        // $rpjmd_sasaran = RpjmdSasaran::create([
+        //     "rpjmd_tujuan_id" => $rpjmd_tujuan->id,
+        //     "deskripsi" => $request->sasaran
+        // ]);
 
-        // rpjmd indikator
-        $rpjmd_indikator = RpjmdIndikatorKinerja::create([
-            "rpjmd_sasaran_id" => $rpjmd_sasaran->id,
-            "deskripsi" => $request->indikator
-        ]);
+        // // rpjmd indikator
+        // $rpjmd_indikator = RpjmdIndikatorKinerja::create([
+        //     "rpjmd_sasaran_id" => $rpjmd_sasaran->id,
+        //     "deskripsi" => $request->indikator
+        // ]);
 
         // foreach($request->target as $key => $targete) {
         //     $rpjmd_target = RpjmdIndikatorKinerjaTarget::create([
@@ -88,8 +96,8 @@ class RpjmdController extends Controller
         // rpjmd layout
         $rpjmd_layout = RpjmdLayout::create([
             "tujuan_id" => $rpjmd_tujuan->id,
-            "sasaran_id" => $rpjmd_sasaran->id,
-            "indikator_id" => $rpjmd_indikator->id,
+            "sasaran_id" => $request->sasaran,
+            "indikator_id" => $request->indikator,
             "strategi" => $request->strategi,
             "kebijakan" => $request->kebijakan
         ]);

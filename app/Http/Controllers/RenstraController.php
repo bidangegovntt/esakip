@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Opd;
 use App\Renstra;
+use App\DtSasaran;
+use App\DtIndikator;
 use App\RenstraLayout;
 use App\RenstraTarget;
 use App\RenstraTujuan;
 use App\RenstraSasaran;
-use PDF;
 use App\RenstraIndikator;
 use Illuminate\Http\Request;
 
@@ -23,8 +25,14 @@ class RenstraController extends Controller
     {
         $opds = Opd::get();
         $renstras = Renstra::get();
+        $sasarans = DtSasaran::get();
+        $indikators = DtIndikator::get();
 
-        return view('admin.pages.renstra.index', ['opds' => $opds]);
+        return view('admin.pages.renstra.index', [
+            'opds' => $opds,
+            'sasarans' => $sasarans, 
+            'indikators' => $indikators
+        ]);
     }
 
     /**
@@ -69,21 +77,21 @@ class RenstraController extends Controller
             "deskripsi" => $request->tujuan
         ]);
 
-        // renstra sasaran
-        $renstra_sasaran = RenstraSasaran::create([
-            "renstra_tujuan_id" => $renstra_tujuan->id,
-            "deskripsi" => $request->sasaran
-        ]);
+        // // renstra sasaran
+        // $renstra_sasaran = RenstraSasaran::create([
+        //     "renstra_tujuan_id" => $renstra_tujuan->id,
+        //     "deskripsi" => $request->sasaran
+        // ]);
 
-        // renstra indikator
-        $renstra_indikator = RenstraIndikator::create([
-            "renstra_sasaran_id" => $renstra_sasaran->id,
-            "deskripsi" => $request->indikator
-        ]);
+        // // renstra indikator
+        // $renstra_indikator = RenstraIndikator::create([
+        //     "renstra_sasaran_id" => $renstra_sasaran->id,
+        //     "deskripsi" => $request->indikator
+        // ]);
 
         foreach($request->target as $key => $targete) {
             $renstra_target = RenstraTarget::create([
-                "renstra_indikator_id" => $renstra_indikator->id,
+                "renstra_indikator_id" => $request->indikator,
                 "tahun" => $targete['tahun'],
                 "nilai" => $targete['nilai']
             ]);
@@ -92,8 +100,8 @@ class RenstraController extends Controller
         // renstra layout
         $renstra_layout = RenstraLayout::create([
             "tujuan_id" => $renstra_tujuan->id,
-            "sasaran_id" => $renstra_sasaran->id,
-            "indikator_id" => $renstra_indikator->id,
+            "sasaran_id" => $request->sasaran,
+            "indikator_id" => $request->indikator,
             "satuan" => $request->satuan,
             "kinerja_eksiting" => $request->kinerja_eksiting
         ]);

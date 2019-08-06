@@ -25,11 +25,11 @@ class RenstraLayout extends Model
 
     public function data_sasaran()
     {
-        return $this->belongsTo('App\RenstraSasaran', 'sasaran_id', 'id');
+        return $this->belongsTo('App\DtSasaran', 'sasaran_id', 'id');
     }
 
     public function data_indikator()
     {
-        return $this->belongsTo('App\RenstraIndikator', 'indikator_id', 'id');
+        return $this->belongsTo('App\DtIndikator', 'indikator_id', 'id');
     }
 }

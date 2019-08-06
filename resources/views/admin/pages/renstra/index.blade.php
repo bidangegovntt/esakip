@@ -137,6 +137,28 @@
                     <div class="form-group">
                         <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
                         <div class="col-sm-9">
+                            <select class="form-control" id="input-sasaran" name="sasaran">
+                                <option value="">--Pilih Sasaran--</option>
+                                @foreach ($sasarans as $sasaran)
+                                    <option value="{{ $sasaran->id }}">{{ $sasaran->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="indikator" class="col-sm-3 control-label">Indikator</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="input-indikator" name="indikator">
+                                <option value="">--Pilih indikator--</option>
+                                @foreach ($indikators as $indikator)
+                                    <option value="{{ $indikator->id }}">{{ $indikator->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    {{-- <div class="form-group">
+                        <label for="sasaran" class="col-sm-3 control-label">Sasaran</label>
+                        <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-sasaran" placeholder="Sasaran">
                         </div>
                     </div>
@@ -145,7 +167,7 @@
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="input-indikator" placeholder="Indikator">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="satuan" class="col-sm-3 control-label">Satuan</label>
                         <div class="col-sm-9">
@@ -461,10 +483,10 @@
                             if(sasaran == value_layout.sasaran_id) {
                                 tr += "<td></td>";
                             } else {
-                                tr += "<td>" + value_layout.data_sasaran.deskripsi + "</td>";
+                                tr += "<td>" + value_layout.data_sasaran.nama + "</td>";
                             }                          
                             
-                            tr += "<td>" + value_layout.data_indikator.deskripsi + "</td>";
+                            tr += "<td>" + value_layout.data_indikator.nama + "</td>";
                             tr += "<td>" + value_layout.satuan + "</td>";
                             tr += "<td>" + value_layout.kinerja_eksiting + "</td>";
                             
@@ -587,7 +609,7 @@
                     target: target
                 },
                 success: function(response) {
-                    // console.log(response);
+                    console.log(response);
                     if(response.success) {
                         $('#modalCreate').modal('hide');
                         tujuan = $('#input-tujuan').val("");

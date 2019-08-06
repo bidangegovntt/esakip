@@ -25,11 +25,11 @@ class RpjmdLayout extends Model
 
     public function data_sasaran()
     {
-        return $this->belongsTo('App\RpjmdSasaran', 'sasaran_id', 'id');
+        return $this->belongsTo('App\DtSasaran', 'sasaran_id', 'id');
     }
 
     public function data_indikator()
     {
-        return $this->belongsTo('App\RpjmdIndikatorKinerja', 'indikator_id', 'id');
+        return $this->belongsTo('App\DtIndikator', 'indikator_id', 'id');
     }
 }
