@@ -115,14 +115,23 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/masukkanIndikatorRenstra', 'RenstraController@masukkanIndikator');
         Route::resource('renstra', 'RenstraController');
 
-        Route::post('/cariIku', 'IkuController@cari');
-        Route::get('/getDataIku', 'IkuController@getDataIku');
-        Route::post('/hapusIku', 'IkuController@hapus');
-        Route::get('/tambahSasaranIku', 'IkuController@tambahSasaran');
-        Route::post('/masukkanSasaranIku', 'IkuController@masukkanSasaran');
-        Route::get('/tambahIndikatorIku', 'IkuController@tambahIndikator');
-        Route::post('/masukkanIndikatorIku', 'IkuController@masukkanIndikator');
-        Route::resource('iku', 'IkuController');
+        // Route::post('/cariIku', 'IkuController@cari');
+        // Route::get('/getDataIku', 'IkuController@getDataIku');
+        // Route::post('/hapusIku', 'IkuController@hapus');
+        // Route::get('/tambahSasaranIku', 'IkuController@tambahSasaran');
+        // Route::post('/masukkanSasaranIku', 'IkuController@masukkanSasaran');
+        // Route::get('/tambahIndikatorIku', 'IkuController@tambahIndikator');
+        // Route::post('/masukkanIndikatorIku', 'IkuController@masukkanIndikator');
+        // Route::resource('iku', 'IkuController');
+
+        Route::post('/cariIku2', 'Iku2Controller@cari');
+        Route::get('/getDataIku2', 'Iku2Controller@getDataIku2');
+        Route::post('/hapusIku2', 'Iku2Controller@hapus');
+        Route::get('/tambahSasaranIku2', 'Iku2Controller@tambahSasaran');
+        Route::post('/masukkanSasaranIku2', 'Iku2Controller@masukkanSasaran');
+        Route::get('/tambahIndikatorIku2', 'Iku2Controller@tambahIndikator');
+        Route::post('/masukkanIndikatorIku2', 'Iku2Controller@masukkanIndikator');
+        Route::resource('iku2', 'Iku2Controller');
 
         Route::post('/cariPpk', 'PpkController@cari');
         Route::post('/hapusPpk', 'PpkController@hapus');

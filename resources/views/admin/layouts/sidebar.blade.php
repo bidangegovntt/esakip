@@ -82,7 +82,8 @@
                 <li class="{{ set_active(['input/gallery', 'input/gallery/*']) }}"><a href="{{ url('input/gallery') }}"><i class="fa fa-circle-o"></i> Gallery </a></li>
                 <li class="{{ set_active(['input/rpjmd', 'input/rpjmd/*']) }}"><a href="{{ url('input/rpjmd') }}"><i class="fa fa-circle-o"></i> RPJMD </a></li>
                 <li class="{{ set_active(['input/renstra', 'input/renstra/*']) }}"><a href="{{ url('input/renstra') }}"><i class="fa fa-circle-o"></i> RENSTRA </a></li>
-                <li class="{{ set_active(['input/iku', 'input/iku/*']) }}"><a href="{{ url('input/iku') }}"><i class="fa fa-circle-o"></i> Indikator Kinerja Utama </a></li>
+                {{-- <li class="{{ set_active(['input/iku', 'input/iku/*']) }}"><a href="{{ url('input/iku') }}"><i class="fa fa-circle-o"></i> Indikator Kinerja Utama </a></li> --}}
+                <li class="{{ set_active(['input/iku2', 'input/iku2/*']) }}"><a href="{{ url('input/iku2') }}"><i class="fa fa-circle-o"></i> Indikator Kinerja Utama </a></li>
                 <li class="{{ set_active(['input/ppk', 'input/ppk/*']) }}"><a href="{{ url('input/ppk') }}"><i class="fa fa-circle-o"></i> Rencana Program dan Kegiatan </a></li>
                 <li class="{{ set_active(['input/perjanjianKinerja', 'input/perjanjianKinerja/*']) }}"><a href="{{ url('input/perjanjianKinerja') }}"><i class="fa fa-circle-o"></i> Perjanjian Kinerja </a></li>
                 {{-- <li class="{{ set_active(['input/realisasiKinerja', 'input/realisasiKinerja/*']) }}"><a href="{{ url('input/realisasiKinerja') }}"><i class="fa fa-circle-o"></i> Realisasi Kinerja </a></li> --}}
