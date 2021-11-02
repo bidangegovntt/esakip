@@ -10,18 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Auth::routes();
 
 Route::get('/', 'ClientHomeController@index')->name('clientHome');
 
-Route::match(["GET", "POST"], "/register", function(){
+Route::match(["GET", "POST"], "/register", function () {
     return redirect("/login");
 })->name("register");
 
-Route::group(['prefix' => '/c'], function() {
+Route::group(['prefix' => '/c'], function () {
     Route::get('/sakip', 'ClientSakipController@index')->name('clientSakip');
 
-    Route::group(['prefix' => '/sakip'], function() {
+    Route::group(['prefix' => '/sakip'], function () {
         Route::get('/rencana-strategi', 'ClientSakipController@rencana_strategi')->name('sakip.rencana_strategi');
         Route::post('/rencana-strategi/cari', 'ClientSakipController@rencana_strategi_cari')->name('sakip.rencana_strategi_cari');
 
@@ -54,7 +58,7 @@ Route::group(['prefix' => '/c'], function() {
     Route::get('/gallery', 'ClientGalleryController@index')->name('clientGallery');
 });
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/home/chart', 'HomeController@chart')->name('home.chart');
 
@@ -64,7 +68,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/kriteria/{id}', 'KriteriaController@index')->name('kriteria.index');
 
-    Route::group(['prefix' => '/master'], function() {
+    Route::group(['prefix' => '/master'], function () {
         Route::get('users/{id}/privilege', 'UserController@privilege')->name('users.privilege');
         Route::resource('users', 'UserController');
 
@@ -82,7 +86,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/tampilSasaran', 'SasaranController@tampil');
         Route::post('/hapusSasaran', 'SasaranController@hapus');
         Route::resource('sasaran', 'SasaranController');
-        
+
         Route::get('/tampilIndikator', 'IndikatorController@tampil');
         Route::post('/hapusIndikator', 'IndikatorController@hapus');
         Route::resource('indikator', 'IndikatorController');
@@ -92,10 +96,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('target', 'TargetController');
     });
 
-    Route::group(['prefix' => '/input'], function() {
+    Route::group(['prefix' => '/input'], function () {
         Route::resource('berita', 'BeritaController');
         Route::resource('gallery', 'GalleryController');
-        
+
         Route::post('/cariRpjmd', 'RpjmdController@cari');
         Route::post('/hapusRpjmd', 'RpjmdController@hapus');
         Route::get('/tambahSasaranRpjmd', 'RpjmdController@tambahSasaran');
@@ -216,7 +220,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('capaian2', 'Capaian2Controller');
     });
 
-    Route::group(['prefix' => '/dokumen'], function() {
+    Route::group(['prefix' => '/dokumen'], function () {
         Route::post('/cariLakip', 'LakipController@cari');
         Route::post('/hapusLakip', 'LakipController@hapus');
         Route::post('/lakip/proses', 'LakipController@proses');
