@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Opd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OpdController extends Controller
 {
@@ -37,7 +38,7 @@ class OpdController extends Controller
      */
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "nama" => "required|min:5|max:200",
         ])->validate();
 
@@ -46,8 +47,8 @@ class OpdController extends Controller
         ]);
 
         $request->session()->flash('status', 'Data berhasil disimpan');
-        
-        return redirect()->route('opd.create');
+
+        return redirect()->route('opd.index');
     }
 
     /**
@@ -83,7 +84,7 @@ class OpdController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "nama" => "required|min:5|max:200",
         ])->validate();
 
@@ -92,8 +93,8 @@ class OpdController extends Controller
         $opd->save();
 
         $request->session()->flash('status', 'Data berhasil diubah');
-        
-        return redirect()->route('opd.edit', ['id' => $id]);
+
+        return redirect()->route('opd.index', ['id' => $id]);
     }
 
     /**
@@ -108,7 +109,7 @@ class OpdController extends Controller
         $opd->delete();
 
         $request->session()->flash('status', 'Data ' . $opd->nama . ' berhasil dihapus');
-        
+
         return redirect()->route('opd.index');
     }
 }

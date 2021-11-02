@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
-            'roles' => json_encode(['ADMIN']),
+            'roles' => 'admin'/*json_encode(['ADMIN'])*/,
             'status' => 'ACTIVE',
             'opd_id' => $id
         ]);
