@@ -37,11 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function data_opd() {
+    public function data_opd()
+    {
         return $this->belongsTo('App\Opd', 'opd_id', 'id');
     }
 
-    public function data_jabatan_opd() {
+    public function data_jabatan_opd()
+    {
         return $this->belongsTo('App\JabatanOpd', 'jabatan_id', 'id');
     }
 }

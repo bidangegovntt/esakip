@@ -7,6 +7,7 @@ use App\Menu;
 use App\User;
 use App\JabatanOpd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -43,7 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "name" => "required|min:3|max:100",
             "opd_id" => "required",
             "password" => "required|min:5",
@@ -58,7 +59,7 @@ class UserController extends Controller
         ]);
 
         $request->session()->flash('status', 'Data berhasil disimpan');
-        
+
         return redirect()->route('users.create');
     }
 
@@ -85,9 +86,9 @@ class UserController extends Controller
         $opds = Opd::get();
 
         return view('admin.pages.user.edit', [
-                'user' => $user,
-                'opds' => $opds
-            ]);
+            'user' => $user,
+            'opds' => $opds
+        ]);
     }
 
     /**
@@ -99,11 +100,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        \Validator::make($request->all(), [
+        Validator::make($request->all(), [
             "name" => "required|min:3|max:100",
             // "password" => "required",
             "opd_id" => "required",
-            "roles" => "required", 
+            "roles" => "required",
         ])->validate();
 
         $user = User::find($id);
@@ -114,7 +115,7 @@ class UserController extends Controller
         $user->save();
 
         $request->session()->flash('status', 'Data berhasil diubah');
-        
+
         return redirect()->route('users.edit', ['id' => $id]);
     }
 
@@ -131,11 +132,11 @@ class UserController extends Controller
         $user->delete();
 
         $request->session()->flash('status', 'Data ' . $user->nama . ' berhasil dihapus');
-        
+
         return redirect()->route('users.index');
     }
 
-    public function privilege() 
+    public function privilege()
     {
         $menus = Menu::get();
 
